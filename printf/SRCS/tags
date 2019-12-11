@@ -1,0 +1,179 @@
+		char.vim	/^inoremap <silent> 	 =UltiSnips#ExpandSnippetOrJump()$/;"	m
+		flags.vim	/^inoremap <silent> 	 =UltiSnips#ExpandSnippetOrJump()$/;"	m
+		int.vim	/^inoremap <silent> 	 =UltiSnips#ExpandSnippetOrJump()$/;"	m
+	char.vim	/^map  :NERDTreeToggle$/;"	m
+	flags.vim	/^map  :NERDTreeToggle$/;"	m
+	int.vim	/^map  :NERDTreeToggle$/;"	m
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+0	char.vim	/^normal! 0$/;"	m
+0	flags.vim	/^normal! 0$/;"	m
+0	int.vim	/^normal! 0$/;"	m
+<C-Tab>	char.vim	/^inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()$/;"	m
+<C-Tab>	flags.vim	/^inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()$/;"	m
+<C-Tab>	int.vim	/^inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()$/;"	m
+<F1>	char.vim	/^nmap <F1> :Stdheader$/;"	m
+<F1>	flags.vim	/^nmap <F1> :Stdheader$/;"	m
+<F1>	int.vim	/^nmap <F1> :Stdheader$/;"	m
+<F2>	char.vim	/^nmap <F2> :Stdheader$/;"	m
+<F2>	flags.vim	/^nmap <F2> :Stdheader$/;"	m
+<F2>	int.vim	/^nmap <F2> :Stdheader$/;"	m
+<F3>	char.vim	/^noremap <F3> :call FoldToggle()$/;"	m
+<F3>	flags.vim	/^noremap <F3> :call FoldToggle()$/;"	m
+<F3>	int.vim	/^noremap <F3> :call FoldToggle()$/;"	m
+<Plug>Colorizer	char.vim	/^nnoremap <silent> <Plug>Colorizer :ColorToggle$/;"	m
+<Plug>Colorizer	flags.vim	/^nnoremap <silent> <Plug>Colorizer :ColorToggle$/;"	m
+<Plug>Colorizer	int.vim	/^nnoremap <silent> <Plug>Colorizer :ColorToggle$/;"	m
+<Plug>NetrwBrowseX	char.vim	/^nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))$/;"	m
+<Plug>NetrwBrowseX	flags.vim	/^nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))$/;"	m
+<Plug>NetrwBrowseX	int.vim	/^nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))$/;"	m
+<Plug>NetrwBrowseXVis	char.vim	/^vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()$/;"	m
+<Plug>NetrwBrowseXVis	flags.vim	/^vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()$/;"	m
+<Plug>NetrwBrowseXVis	int.vim	/^vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()$/;"	m
+CC	../libft/Makefile	/^CC		= gcc$/;"	m
+CFLAGS	../libft/Makefile	/^CFLAGS	= -Wall -Wextra -Werror$/;"	m
+DEP	../libft/Makefile	/^DEP		:= $(SRC:%.c=$(DEP_DIR)\/%.d)$/;"	m
+DEPB	../libft/Makefile	/^DEPB	:= $(SRCB:%.c=$(DEP_DIR)\/%.d)$/;"	m
+DEP_DIR	../libft/Makefile	/^DEP_DIR	= dep$/;"	m
+DFLAGS	../libft/Makefile	/^DFLAGS	= -MP -MMD -MF $(DEP_DIR)\/$*.d -MT '$@'$/;"	m
+DIR	../libft/Makefile	/^DIR		= $(DEP_DIR) $(OBJ_DIR)$/;"	m
+FT_PRINTF_H	ft_printf.h	/^# define FT_PRINTF_H$/;"	d
+LIBFT_H	../libft/libft.h	/^# define LIBFT_H$/;"	d
+MINUS	ft_printf.h	/^#define MINUS /;"	d
+NAME	../libft/Makefile	/^NAME	= libft.a$/;"	m
+NUL	ft_printf.h	/^#define NUL /;"	d
+OBJ	../libft/Makefile	/^OBJ 	:= $(SRC:%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJB	../libft/Makefile	/^OBJB 	:= $(SRCB:%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJ_DIR	../libft/Makefile	/^OBJ_DIR	= obj$/;"	m
+POINT	ft_printf.h	/^#define POINT /;"	d
+SRC	../libft/Makefile	/^SRC		= ft_strlen.c ft_strlcpy.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_strlcat.c \\$/;"	m
+SRCB	../libft/Makefile	/^SRCB	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \\$/;"	m
+SessionLoad	char.vim	/^let SessionLoad = 1$/;"	v
+SessionLoad	flags.vim	/^let SessionLoad = 1$/;"	v
+SessionLoad	int.vim	/^let SessionLoad = 1$/;"	v
+ZERO	ft_printf.h	/^#define ZERO /;"	d
+\tc	char.vim	/^nmap \\tc <Plug>Colorizer$/;"	m
+\tc	flags.vim	/^nmap \\tc <Plug>Colorizer$/;"	m
+\tc	int.vim	/^nmap \\tc <Plug>Colorizer$/;"	m
+arg	ft_printf.h	/^	char	arg;$/;"	m	struct:s_flags
+content	../libft/libft.h	/^	void			*content;$/;"	m	struct:s_list
+f_l	../libft/ft_split.c	/^static int		f_l(char *s, char c, int i)$/;"	f	file:
+ft_atoi	../libft/ft_atoi.c	/^int		ft_atoi(const char *str)$/;"	f
+ft_bzero	../libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_calloc	../libft/ft_calloc.c	/^void	*ft_calloc(size_t count, size_t size)$/;"	f
+ft_cleanstruct	ft_printf.c	/^int		ft_cleanstruct(t_flags *flags)$/;"	f
+ft_count_c	../libft/ft_itoa.c	/^static int			ft_count_c(long int n, int i)$/;"	f	file:
+ft_count_char_int	ft_flags.c	/^int			ft_count_char_int(long int nb, int base)$/;"	f
+ft_display_before	ft_fct.c	/^int				ft_display_before(t_flags *flags, long int nb)$/;"	f
+ft_find	../libft/ft_split.c	/^static int		ft_find(char letter, char c)$/;"	f	file:
+ft_find	../libft/ft_strtrim.c	/^static int		ft_find(char c, char const *set)$/;"	f	file:
+ft_free	../libft/ft_split.c	/^static char		**ft_free(char **tab_words, int i)$/;"	f	file:
+ft_get_fct	ft_printf.c	/^int		ft_get_fct(char **str, va_list ap, t_flags *flags)$/;"	f
+ft_get_flags	ft_printf.c	/^int		ft_get_flags(char **str, t_flags *flags, va_list ap)$/;"	f
+ft_init_mask	ft_flags.c	/^void			ft_init_mask(t_flags *flags, long int nb, int base)$/;"	f
+ft_isalnum	../libft/ft_isalnum.c	/^int		ft_isalnum(int c)$/;"	f
+ft_isalpha	../libft/ft_isalpha.c	/^int		ft_isalpha(int c)$/;"	f
+ft_isascii	../libft/ft_isascii.c	/^int		ft_isascii(int c)$/;"	f
+ft_isdigit	../libft/ft_isdigit.c	/^int		ft_isdigit(int c)$/;"	f
+ft_isfind	../libft/ft_isfind.c	/^int			ft_isfind(char *str, char stop)$/;"	f
+ft_isprint	../libft/ft_isprint.c	/^int		ft_isprint(int c)$/;"	f
+ft_itoa	../libft/ft_itoa.c	/^char				*ft_itoa(int n)$/;"	f
+ft_lstadd_back	../libft/ft_lstadd_back.c	/^void	ft_lstadd_back(t_list **alst, t_list *new)$/;"	f
+ft_lstadd_front	../libft/ft_lstadd_front.c	/^void	ft_lstadd_front(t_list **alst, t_list *new)$/;"	f
+ft_lstdelone	../libft/ft_lstdelone.c	/^void	ft_lstdelone(t_list *lst, void (*del)(void *))$/;"	f
+ft_lstiter	../libft/ft_lstiter.c	/^void		ft_lstiter(t_list *lst, void (*f)(void *))$/;"	f
+ft_lstlast	../libft/ft_lstlast.c	/^t_list		*ft_lstlast(t_list *lst)$/;"	f
+ft_lstmap	../libft/ft_lstmap.c	/^t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))$/;"	f
+ft_lstnew	../libft/ft_lstnew.c	/^t_list		*ft_lstnew(void *content)$/;"	f
+ft_lstsize	../libft/ft_lstsize.c	/^int		ft_lstsize(t_list *lst)$/;"	f
+ft_memccpy	../libft/ft_memccpy.c	/^void	*ft_memccpy(void *dst, const void *src, int c, size_t n)$/;"	f
+ft_memchr	../libft/ft_memchr.c	/^void	*ft_memchr(const void *s, int c, size_t n)$/;"	f
+ft_memcmp	../libft/ft_memcmp.c	/^int		ft_memcmp(const void *s1, const void *s2, size_t n)$/;"	f
+ft_memcpy	../libft/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *src, size_t n)$/;"	f
+ft_memmove	../libft/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_t len)$/;"	f
+ft_memset	../libft/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/;"	f
+ft_precis	ft_flags.c	/^int			ft_precis(va_list ap, t_flags *flags, char **str)$/;"	f
+ft_printf	ft_printf.c	/^int		ft_printf(const char *format, ...)$/;"	f
+ft_printstr	ft_printf.c	/^int		ft_printstr(char **str)$/;"	f
+ft_process	../libft/ft_itoa.c	/^static char			ft_process(char *s, long int nbr)$/;"	f	file:
+ft_put_ptr	ft_p.c	/^int				ft_put_ptr(va_list ap, t_flags *flags)$/;"	f
+ft_put_ptr2	ft_p.c	/^static int		ft_put_ptr2(unsigned long nb, t_flags *flags)$/;"	f	file:
+ft_putchar	../libft/ft_putchar.c	/^void	ft_putchar(char c)$/;"	f
+ft_putchar_fd	../libft/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
+ft_putchar_int	../libft/ft_putchar_int.c	/^int	ft_putchar_int(char c)$/;"	f
+ft_putchar_mod	ft_fct.c	/^int				ft_putchar_mod(va_list ap, t_flags *flags)$/;"	f
+ft_putchar_mod2	ft_fct.c	/^static int		ft_putchar_mod2(void)$/;"	f	file:
+ft_putchar_ptf	ft_cs.c	/^int				ft_putchar_ptf(va_list ap, t_flags *flags)$/;"	f
+ft_putchar_ptf2	ft_cs.c	/^static int		ft_putchar_ptf2(char c)$/;"	f	file:
+ft_putendl	../libft/ft_putendl.c	/^void	ft_putendl(char *s)$/;"	f
+ft_putendl_fd	../libft/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f
+ft_puthexa_max	ft_x.c	/^int				ft_puthexa_max(va_list ap, t_flags *flags)$/;"	f
+ft_puthexa_maxb	ft_x.c	/^static int		ft_puthexa_maxb(unsigned int nb, t_flags *flags)$/;"	f	file:
+ft_puthexa_min	ft_x.c	/^int				ft_puthexa_min(va_list ap, t_flags *flags)$/;"	f
+ft_puthexa_minb	ft_x.c	/^static int		ft_puthexa_minb(unsigned int nb, t_flags *flags)$/;"	f	file:
+ft_putnbr	../libft/ft_putnbr.c	/^void	ft_putnbr(int n)$/;"	f
+ft_putnbr_fd	../libft/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f
+ft_putnbr_int	ft_diu.c	/^int				ft_putnbr_int(va_list ap, t_flags *flags)$/;"	f
+ft_putnbr_intb	ft_diu.c	/^static int		ft_putnbr_intb(int nb, t_flags *flags)$/;"	f	file:
+ft_putnbr_uint	ft_diu.c	/^int		ft_putnbr_uint(va_list ap, t_flags *flags)$/;"	f
+ft_putnbr_uintb	ft_diu.c	/^static int		ft_putnbr_uintb(unsigned int nb, t_flags *flags)$/;"	f	file:
+ft_putstr	../libft/ft_putstr.c	/^void	ft_putstr(char *str)$/;"	f
+ft_putstr_fd	../libft/ft_putstr_fd.c	/^void	ft_putstr_fd(char *str, int fd)$/;"	f
+ft_putstr_int	ft_cs.c	/^int				ft_putstr_int(va_list ap, t_flags *flags)$/;"	f
+ft_putstr_int2	ft_cs.c	/^static int		ft_putstr_int2(char *str, t_flags *flags)$/;"	f	file:
+ft_putzero	ft_fct.c	/^int				ft_putzero()$/;"	f
+ft_reverse	../libft/ft_itoa.c	/^static char			ft_reverse(char *s)$/;"	f	file:
+ft_split	../libft/ft_split.c	/^char			**ft_split(char const *s, char c)$/;"	f
+ft_strchr	../libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
+ft_strdup	../libft/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/;"	f
+ft_strjoin	../libft/ft_strjoin.c	/^char	*ft_strjoin(char const *s1, char const *s2)$/;"	f
+ft_strlcat	../libft/ft_strlcat.c	/^size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)$/;"	f
+ft_strlcpy	../libft/ft_strlcpy.c	/^size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize)$/;"	f
+ft_strlen	../libft/ft_strlen.c	/^int		ft_strlen(const char *s)$/;"	f
+ft_strmapi	../libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))$/;"	f
+ft_strncmp	../libft/ft_strncmp.c	/^int		ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
+ft_strnstr	../libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
+ft_strrchr	../libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strtrim	../libft/ft_strtrim.c	/^char			*ft_strtrim(char const *s1, char const *set)$/;"	f
+ft_substr	../libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
+ft_tolower	../libft/ft_tolower.c	/^int		ft_tolower(int c)$/;"	f
+ft_toupper	../libft/ft_toupper.c	/^int		ft_toupper(int c)$/;"	f
+ft_width	ft_flags.c	/^void		ft_width(va_list ap, t_flags *flags, char **str, int i)$/;"	f
+ft_words	../libft/ft_split.c	/^static int		ft_words(char *s, char c)$/;"	f	file:
+gx	char.vim	/^nmap gx <Plug>NetrwBrowseX$/;"	m
+gx	char.vim	/^vmap gx <Plug>NetrwBrowseXVis$/;"	m
+gx	flags.vim	/^nmap gx <Plug>NetrwBrowseX$/;"	m
+gx	flags.vim	/^vmap gx <Plug>NetrwBrowseXVis$/;"	m
+gx	int.vim	/^nmap gx <Plug>NetrwBrowseX$/;"	m
+gx	int.vim	/^vmap gx <Plug>NetrwBrowseXVis$/;"	m
+next	../libft/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
+precis	ft_printf.h	/^	int		precis;$/;"	m	struct:s_flags
+rslt	ft_printf.h	/^	int		rslt;$/;"	m	struct:s_flags
+s:cpo_save	char.vim	/^let s:cpo_save=&cpo$/;"	v
+s:cpo_save	flags.vim	/^let s:cpo_save=&cpo$/;"	v
+s:cpo_save	int.vim	/^let s:cpo_save=&cpo$/;"	v
+s:l	char.vim	/^let s:l = 1 - ((0 * winheight(0) + 41) \/ 82)$/;"	v
+s:l	char.vim	/^let s:l = 36 - ((35 * winheight(0) + 41) \/ 82)$/;"	v
+s:l	flags.vim	/^let s:l = 1 - ((0 * winheight(0) + 41) \/ 82)$/;"	v
+s:l	int.vim	/^let s:l = 1 - ((0 * winheight(0) + 41) \/ 82)$/;"	v
+s:so_save	char.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
+s:so_save	flags.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
+s:so_save	int.vim	/^let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0$/;"	v
+s:sx	char.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
+s:sx	flags.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
+s:sx	int.vim	/^let s:sx = expand("<sfile>:p:r")."x.vim"$/;"	v
+s:wipebuf	char.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
+s:wipebuf	flags.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
+s:wipebuf	int.vim	/^  let s:wipebuf = bufnr('%')$/;"	v
+s_flags	ft_printf.h	/^typedef struct	s_flags$/;"	s
+s_list	../libft/libft.h	/^typedef struct	s_list$/;"	s
+t_flags	ft_printf.h	/^}				t_flags;$/;"	t	typeref:struct:s_flags
+t_list	../libft/libft.h	/^}				t_list;$/;"	t	typeref:struct:s_list
+width	ft_printf.h	/^	int		width;$/;"	m	struct:s_flags
+zt	char.vim	/^normal! zt$/;"	m
+zt	flags.vim	/^normal! zt$/;"	m
+zt	int.vim	/^normal! zt$/;"	m
