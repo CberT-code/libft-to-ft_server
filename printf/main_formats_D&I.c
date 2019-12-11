@@ -1,14 +1,13 @@
-#include "ft_printf.h"
 #include <stdio.h>
 
 int main()
 {
-/*    char *str = "hello !";
+    char *str = "hello !";
     char *vide = "";
     char *ptr_nul = NULL;
     char c = 'c';
     char char_nul = 0;
-    char char_sp = ' '; */
+    char char_sp = ' '; 
     int my_ret;
 
  printf("\n***************\nFORMAT D\n***************\n\n");

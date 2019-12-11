@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 14:15:51 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/10 20:56:50 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:29:23 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,74 +35,6 @@ int			ft_count_char_int(long int nb, int base)
 	return (count);
 }
 
-/* void		ft_flags_nul(va_list ap, t_flags *flags, char **str)
-{
-	int nb;
-
-		flags->arg = flags->arg | (1 << 0);
-	while (*(*str) == '0')
-		(*str)++;
-	if ((nb = atoi(*str)) > 0)
-	{
-		flags->width = nb;
-		*str = (*str + ft_count_char_int(flags->width, 10));
-	}
-	else if (*(*str) == '*')
-	{
-		flags->width = va_arg(ap, int);
-		(*str)++;
-	}
-	else
-		flags->arg = flags->arg & ~ (1 << 0);
-
-}
-
-void		ft_flags_zero(va_list ap, t_flags *flags, char **str)
-{
-	int nb;
-
-		flags->arg = flags->arg | (1 << 1);
-	while (*(*str) == '0')
-		(*str)++;
-	if ((nb = atoi(*str)) > 0)
-	{
-		flags->width = nb;
-		*str = (*str + ft_count_char_int(flags->width, 10));
-	}
-	else if (*(*str) == '*')
-	{
-		flags->width = va_arg(ap, int);
-		(*str)++;
-	}
-	else
-		flags->arg = flags->arg & ~ (1 << 1);
-}
-
-void		ft_flags_minus(va_list ap, t_flags *flags, char **str)
-{
-	int nb;
-
-	flags->arg = flags->arg | (1 << 2);
-	while (*(*str) == '-')
-		(*str)++;
-	while (*(*str) == '0')
-		(*str)++;
-	if ((nb = ft_atoi(*str)) > 0)
-	{
-		flags->width = nb;
-		*str = (*str + ft_count_char_int(flags->width, 10));
-	}
-	else if (*(*str) == '*')
-	{
-		flags->width = va_arg(ap, int);
-		(*str)++;
-	}
-	else
-		flags->arg = flags->arg & ~ (1 << 2);
-`	if (flags->width < 0)
-		flags->width *= -1;
-}
-*/
 void		ft_width(va_list ap, t_flags *flags, char **str, int i)
 {
 	int nb;
@@ -124,7 +56,7 @@ void		ft_width(va_list ap, t_flags *flags, char **str, int i)
 		if (flags->width < 0)
 		{
 			flags->width *= -1;
-			flags->arg = flags->arg | (1 << i);
+			flags->arg = flags->arg | (1 << 1);
 		}
 	}
 	else
@@ -137,10 +69,14 @@ int			ft_precis(va_list ap, t_flags *flags, char **str)
 
 	flags->arg = flags->arg | (1 << 3);
 	(*str)++;
+	while (*(*str) == '0')
+		(*str)++;
+	//printf("le char avant atoi = %c\n", *(*str));
 	if ((nb = ft_atoi(*str)) > 0)
 	{
 		flags->precis = nb;
 		*str = (*str + ft_count_char_int(flags->precis, 10));
+	//printf("le char apres atoi est = %c\n", *(*str));
 	}
 	else if (*(*str) == '*')
 	{
@@ -151,7 +87,6 @@ int			ft_precis(va_list ap, t_flags *flags, char **str)
 	}
 	else 
 		flags->arg = flags->arg & ~ (1 << 3);
-	printf(" char = %c\n", *(*str));
 	return (1);
 }
 

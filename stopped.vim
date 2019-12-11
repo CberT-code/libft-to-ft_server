@@ -56,16 +56,22 @@ set window=0
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/42/printf
+cd ~/42/printf/SRCS
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 main.c
+badd +37 ft_printf.h
+badd +1 ft_printf.c
+badd +112 ft_flags.c
+badd +56 ft_fct.c
+badd +47 ft_diu.c
+badd +54 ft_x.c
+badd +28 ft_p.c
+badd +21 ../libft/ft_atoi.c
 argglobal
 silent! argdel *
-$argadd main.c
-edit main.c
+edit ft_printf.c
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -110,7 +116,7 @@ set nofoldenable
 setlocal nofoldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=3
 setlocal foldmarker={{{,}}}
 set foldmethod=syntax
 setlocal foldmethod=syntax
@@ -180,12 +186,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 26 - ((25 * winheight(0) + 39) / 79)
+let s:l = 84 - ((69 * winheight(0) + 40) / 81)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 05|
+84
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
