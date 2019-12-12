@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 13:54:11 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/10 18:22:48 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 18:28:08 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int		ft_get_flags(char **str, t_flags *flags, va_list ap);
 int		ft_get_fct(char **str, va_list ap, t_flags *flags);
 int		ft_printf(const char *format, ...);
 int		ft_printstr(char **str);
-//void	ft_flags_zero(va_list ap, t_flags *flags, char **str);
-//void	ft_flags_nul(va_list ap, t_flags *flags, char **str);
 int		ft_precis(va_list ap, t_flags *flags, char **str);
 void	ft_width(va_list ap, t_flags *flags, char **str, int i);
 int		ft_count_char_int(long int nb, int base);

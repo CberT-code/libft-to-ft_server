@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:40:39 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 17:43:37 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:34:03 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ int		ret;
 
 	ptr = &num;
 
+	printf("i%%--12.7dt%%04i %04.2%% et %%c titi\n", 125, 124, 256);
+		rslt = ft_printf("%--12.7dt%04i %04.2% et %c titi\n", 125, 124, 44);
+		rslt2 = printf("%--12.7dt%04i %04.2% et %c titi\n", 125, 124, 44);
+		printf("ft_printf = %d, printf = %d\n", rslt, rslt2); 
+	printf("u%%4.2ss %%-1.s %%---5.3s i\n", "coco", NULL, "yooo");
+		rslt = ft_printf("|%-1.s|\n", NULL, "yooo");
+		rslt2 = printf("|%-1.s|\n", NULL, "yooo");
+		printf("ft_printf = %d, printf = %d\n", rslt, rslt2); 
 	printf("%%d , 0\n");
 		rslt = ft_printf("|%d|\n", 0);
 		rslt2 = printf("|%d|\n", 0);

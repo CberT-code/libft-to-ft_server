@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:48:46 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 17:41:18 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 19:38:30 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int				ft_putchar_mod(va_list ap, t_flags *flags)
 
 	c = va_arg(ap, int);
 	flags->precis = 0;
+	flags->arg = flags->arg & ~ (1 << 3);
 	ft_init_mask(flags, 1, 10);
 	flags->rslt += ft_display_before(flags, 1);
 	flags->rslt += ft_putchar_mod2();

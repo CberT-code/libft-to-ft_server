@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 14:15:51 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 17:40:54 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 20:07:31 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int			ft_precis(va_list ap, t_flags *flags, char **str)
 	(*str)++;
 	while (*(*str) == '0')
 		(*str)++;
-	//essayer de mettre a -2
 	if (ft_isdigit(*(*str)) && (nb = ft_atoi(*str)) > 0)
 	{
 		flags->precis = nb;
@@ -84,7 +83,6 @@ int			ft_precis(va_list ap, t_flags *flags, char **str)
 			return (0);
 		(*str)++;
 	}
-	//else if (flags->precis diff -2) pour gerer le 0 au d et 0 precision
 	return (1);
 }
 
