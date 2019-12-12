@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 19:00:24 by cbertola          #+#    #+#             */
-/*   Updated: 2019/11/20 19:16:35 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:39:09 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ int			ft_isfind(char *str, char stop)
 	int i;
 
 	i = 0;
-	if (str == NULL)
-		return (-1);
-	while (str[i])
+	while (str[i] != '\0')
 	{
-		if (str[i++] == stop)
+		if (str[i] == stop)
 			return (i);
+		i++;
 	}
 	return (-1);
 }

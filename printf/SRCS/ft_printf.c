@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:41:09 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 20:34:59 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 23:42:20 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ int		ft_get_fct(char **str, va_list ap, t_flags *flags)
 	tab[7] = &ft_puthexa_max;
 	tab[8] = &ft_putchar_mod;
 	tab_sign = "cspdiuxX%";
-	j = ((ft_isfind(tab_sign, *(*str))) - 1);
+	j = (ft_isfind(tab_sign, *(*str)));
 	(*str)++;
+	if (j == -1)
+		return (1);
 	return ((tab[j])(ap, flags));
 }
 
