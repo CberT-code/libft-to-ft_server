@@ -6,7 +6,7 @@
 /*   By: lemarabe, schene, cbertola                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 14:50:35 by lesbests          #+#    #+#             */
-/*   Updated: 2019/12/09 23:58:47 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 02:22:03 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,35 @@ int main()
  printf("\n***************\nFORMAT D\n***************\n\n");
 
     printf(">> BASIC_____________________________________________________________________________________________________\n");
+    printf(">> %%d\n");
 	ret2 = ft_printf("MY_PRINTF\t[no flag]\t|%d|\t|%d|\t|%d|\t|%d|\t|%d|\n", pos, neg, z, max, min);
     ret = printf("VR_PRINTF\t[no flag]\t|%d|\t|%d|\t|%d|\t|%d|\t|%d|\n", pos, neg, z, max, min);
 	color(ret, ret2);
 	printf("PRINTF = %d,\t FT_PRINTF = %d\n", ret, ret2);
 	reset();
 
+    printf(">> %%04d\n");
 	ret2 = ft_printf("MY_PRINTF\t[no flag]\t|%04d|\t|%08d|\t|%04d|\t|%04d|\t|%04d|\n", pos, -71, z, max, min);
     ret = printf("VR_PRINTF\t[no flag]\t|%04d|\t|%08d|\t|%04d|\t|%04d|\t|%04d|\n", pos, -71, z, max, min);
 	color(ret, ret2);
 	printf("PRINTF = %d,\t FT_PRINTF = %d\n", ret, ret2);
 	reset();
 
+    printf(">> %%08.1d\n");
 	ret2 = ft_printf("MY_PRINTF\t[no flag]\t|%08.1d|\t|%08.1d|\t|%08.1d|\t|%08.1d|\t|%08.1d|\n", pos, -71, z, max, min);
     ret = printf("VR_PRINTF\t[no flag]\t|%08.1d|\t|%08.1d|\t|%08.1d|\t|%08.1d|\t|%08.1d|\n", pos, -71, z, max, min);
 	color(ret, ret2);
 	printf("PRINTF = %d,\t FT_PRINTF = %d\n", ret, ret2);
 	reset();
 
+    printf(">> %%04.6d\n");
 	ret2 = ft_printf("MY_PRINTF\t[no flag]\t|%04.6d|\t|%04.6d|\t|%04.6d|\t|%04.6d|\t|%04.6d|\n", pos, -71, z, max, min);
     ret = printf("VR_PRINTF\t[no flag]\t|%04.6d|\t|%04.6d|\t|%04.6d|\t|%04.6d|\t|%04.6d|\n", pos, -71, z, max, min);
 	color(ret, ret2);
 	printf("PRINTF = %d,\t FT_PRINTF = %d\n", ret, ret2);
 	reset();
 
+    printf(">> %%004.6d\n");
 	ret2 = ft_printf("MY_PRINTF\t[no flag]\t|%004.6d|\t|%004.6d|\t|%004.6d|\t|%004.6d|\t|%004.6d|\n", pos, -71, z, max, min);
     ret = printf("VR_PRINTF\t[no flag]\t|%004.6d|\t|%004.6d|\t|%004.6d|\t|%004.6d|\t|%004.6d|\n", pos, -71, z, max, min);
 	color(ret, ret2);
@@ -616,5 +621,5 @@ int main()
     ret = printf("VR_PRINTF\t[null -]\t|%-s|\t|%-12s|\t|%-3s|\t|%-.12s|\t|%-.3s|\t|%-12.3s|\t|%-3.3s|\t|%-3.12s|\t|%-12.12s|\t|%-.0s|\n", ptr_nul, ptr_nul, ptr_nul, ptr_nul, ptr_nul, ptr_nul, ptr_nul, ptr_nul, ptr_nul, ptr_nul);
 	color(ret, ret2);
 	printf("PRINTF = %d,\t FT_PRINTF = %d\n", ret, ret2);
-	reset();
+	reset(); 
 }

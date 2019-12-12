@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 13:20:09 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/11 18:32:15 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:54:03 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ static int		ft_putnbr_intb(int nb, t_flags *flags)
 	int			j;
 	int			result[11];
 	long int	nbr;
-	(void)flags;
 
 	nbr = nb;
 	i = 0;
 	j = 0;
 	if (nbr < 0)
 		nbr *= -1;
-	if (nbr == 0)
+	if (nbr == 0 && (flags->precis != -1 || !(flags->arg & POINT)))
 		return (ft_putchar_int('0'));
 	while (nbr > 0)
 	{
@@ -58,10 +57,9 @@ static int		ft_putnbr_uintb(unsigned int nb, t_flags *flags)
 	int					i;
 	int					j;
 	int					result[11];
-	(void)flags;
 
 	i = 0;
-	if (nb == 0)
+	if (nb == 0 && (flags->precis != -1 || !(flags->arg & POINT)))
 		return (ft_putchar_int('0'));
 	while (nb > 0)
 	{

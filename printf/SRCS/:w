@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 14:15:51 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 17:40:54 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:33:20 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,15 @@ void			ft_init_mask(t_flags *flags, long int nb, int base)
 	int nbc;
 	
 	nbc = 0;
-	if	((nbc = ft_count_char_int(nb, base)) == -1)
+	if	((nbc = ft_count_char_int(nb, base)) == -1 && nb != 0)
 		nbc = nb;
 	if (flags->arg & POINT)
 	{
-		if (nb == 0)
-			flags->width++;
-		if (nb <= 0)
+		if (nb < 0)
 			flags->precis++;
 		if ((flags->precis -= nbc) < 0)
 			flags->precis = 0;
+		//printf("flags->precis = %d\n", flags->precis);
 		if ((flags->width -= nbc + flags->precis) < 0)
 			flags->width = 0;
 	}

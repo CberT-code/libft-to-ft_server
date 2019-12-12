@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:35:46 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/10 19:21:15 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:54:34 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ static int		ft_puthexa_minb(unsigned int nb, t_flags *flags)
 	int				i;
 	int				rtn;
 	char			result[9];
-	(void)flags;
 
 	base = "0123456789abcdef";
 	i = 0;
-	if (nb == 0 && flags->precis != -2)
+	if (nb == 0 && (flags->precis != -1 || !(flags->arg & POINT)))
 		return (ft_putchar_int('0'));
 	while (nb > 0)
 	{
@@ -56,11 +55,10 @@ static int		ft_puthexa_maxb(unsigned int nb, t_flags *flags)
 	int				i;
 	int				rtn;
 	char			result[9];
-	(void)flags;
 
 	base = "0123456789ABCDEF";
 	i = 0;
-	if (nb == 0 && flags->precis != -2)
+	if (nb == 0 && (flags->precis != -1 || !(flags->arg & POINT)))
 		return (ft_putchar_int('0'));
 	while (nb > 0)
 	{

@@ -63,15 +63,15 @@ endif
 set shortmess=aoO
 badd +37 ft_printf.h
 badd +1 ft_printf.c
-badd +139 ft_flags.c
+badd +113 ft_flags.c
 badd +56 ft_fct.c
 badd +1 ft_diu.c
 badd +54 ft_x.c
 badd +28 ft_p.c
-badd +29 ../libft/ft_atoi.c
+badd +33 ../libft/ft_atoi.c
 argglobal
 silent! argdel *
-edit ../libft/ft_atoi.c
+edit ft_fct.c
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -127,7 +127,7 @@ setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
 set nofoldenable
-setlocal nofoldenable
+setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=0
@@ -200,12 +200,18 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 21 - ((20 * winheight(0) + 40) / 81)
+44
+normal! zo
+49
+normal! zo
+58
+normal! zo
+let s:l = 44 - ((43 * winheight(0) + 40) / 81)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-21
-normal! 05|
+44
+normal! 0
 wincmd w
 argglobal
 if bufexists('ft_printf.c') | buffer ft_printf.c | else | edit ft_printf.c | endif
@@ -244,10 +250,10 @@ setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
 set nofoldenable
-setlocal nofoldenable
+setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=3
+setlocal foldlevel=0
 setlocal foldmarker={{{,}}}
 set foldmethod=syntax
 setlocal foldmethod=syntax
@@ -317,12 +323,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 84 - ((69 * winheight(0) + 40) / 81)
+let s:l = 41 - ((40 * winheight(0) + 40) / 81)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-84
-normal! 0
+41
+normal! 01|
 wincmd w
 argglobal
 if bufexists('ft_diu.c') | buffer ft_diu.c | else | edit ft_diu.c | endif
@@ -440,18 +446,12 @@ normal! zo
 normal! zo
 43
 normal! zo
-57
-normal! zo
-67
-normal! zo
-78
-normal! zo
-let s:l = 61 - ((50 * winheight(0) + 40) / 81)
+let s:l = 43 - ((35 * winheight(0) + 40) / 81)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-61
-normal! 05|
+43
+normal! 0
 wincmd w
 argglobal
 if bufexists('ft_flags.c') | buffer ft_flags.c | else | edit ft_flags.c | endif
@@ -490,7 +490,7 @@ setlocal fixendofline
 set foldcolumn=1
 setlocal foldcolumn=1
 set nofoldenable
-setlocal nofoldenable
+setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=0
@@ -563,14 +563,19 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 140 - ((43 * winheight(0) + 40) / 81)
+67
+normal! zo
+76
+normal! zo
+81
+normal! zo
+let s:l = 67 - ((50 * winheight(0) + 40) / 81)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-140
-normal! 030|
+67
+normal! 0
 wincmd w
-4wincmd w
 exe 'vert 1resize ' . ((&columns * 91 + 182) / 364)
 exe 'vert 2resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 3resize ' . ((&columns * 90 + 182) / 364)
