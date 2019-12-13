@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 14:15:51 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 23:44:30 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/13 02:27:21 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void		ft_width(va_list ap, t_flags *flags, char **str, int i)
 		if (flags->width < 0)
 		{
 			flags->width *= -1;
-			flags->arg = flags->arg | (1 << 1);
+			flags->arg = flags->arg & ~ (1 << i);
+			flags->arg = flags->arg | (1 << 2);
 		}
 	}
 	else
@@ -79,9 +80,12 @@ int			ft_precis(va_list ap, t_flags *flags, char **str)
 	else if (*(*str) == '*')
 	{
 		flags->precis = va_arg(ap, int);
-		if (flags->precis < 0)
-			return (0);
 		(*str)++;
+		if (flags->precis < 0)
+		{
+			flags->arg = flags->arg & ~ (1 << 3);
+			return (0);
+		}
 	}
 	return (1);
 }

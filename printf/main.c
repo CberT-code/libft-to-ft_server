@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:40:39 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 22:53:32 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/13 02:23:40 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int		ret;
 
 	ptr = &num;
 
+	printf("lol\n");
+		rslt = ft_printf("466 %d\t%%*.*d\t\t: |%*.*d|\n", i, 2, -1, 0);
+		rslt2 = printf("466 %d\t%%*.*d\t\t: |%*.*d|\n", i, 2, -1, 0);
+		printf("ft_printf = %d, printf = %d\n", rslt, rslt2); 
 	printf("i%%--12.7dt%%04i %04.2%% et %%c titi\n", 125, 124, 256);
 		rslt = ft_printf("%--12.7dt%04i %04.2% et %c titi\n", 125, 124, 44);
 		rslt2 = printf("%--12.7dt%04i %04.2% et %c titi\n", 125, 124, 44);

@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 17:49:03 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/12 20:05:17 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/13 02:09:25 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int				ft_putstr_int(va_list ap, t_flags *flags)
 			flags->rslt += ft_putchar_int(' ');
 	flags->rslt += ft_putstr_int2(c, flags);
 	if (flags->arg & MINUS)
-		while ((flags->width)-- > nb)
+		while (flags->width-- > nb)
 			flags->rslt += ft_putchar_int(' ');
 	return (1);
 }
