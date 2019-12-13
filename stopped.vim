@@ -56,21 +56,16 @@ set window=0
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/42/printf/SRCS
+cd ~/Rendu/printf/libft
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +83 ft_flags.c
-badd +24 ft_fct.c
-badd +0 ft_cs.c
-badd +0 ft_printf.h
-badd +69 ft_printf.c
-badd +27 ../libft/ft_isfind.c
+badd +0 Makefile
 argglobal
 silent! argdel *
-$argadd ft_flags.c
-edit ft_cs.c
+$argadd Makefile
+edit Makefile
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -85,13 +80,13 @@ setlocal breakindentopt=
 setlocal bufhidden=
 setlocal buflisted
 setlocal buftype=
-setlocal cindent
+setlocal nocindent
 setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
+setlocal comments=sO:#\ -,mO:#\ \ ,b:#
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal completefunc=
 setlocal nocopyindent
@@ -105,8 +100,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal noexpandtab
-if &filetype != 'c'
-setlocal filetype=c
+if &filetype != 'make'
+setlocal filetype=make
 endif
 setlocal fixendofline
 set foldcolumn=1
@@ -129,10 +124,10 @@ setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
 setlocal imsearch=-1
-setlocal include=
+setlocal include=^\\s*include
 setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal indentexpr=GetMakeIndent()
+setlocal indentkeys=!^F,o,O,<:>,=else,=endif
 setlocal noinfercase
 setlocal iskeyword=@,48-57,_,192-255
 setlocal keywordprg=
@@ -150,7 +145,7 @@ setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
+setlocal omnifunc=
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -161,8 +156,8 @@ setlocal noscrollbind
 setlocal shiftwidth=4
 setlocal noshortname
 setlocal signcolumn=auto
-setlocal smartindent
-setlocal softtabstop=4
+setlocal nosmartindent
+setlocal softtabstop=0
 setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
@@ -171,8 +166,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'c'
-setlocal syntax=c
+if &syntax != 'make'
+setlocal syntax=make
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -185,11 +180,11 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 24 - ((23 * winheight(0) + 40) / 81)
+let s:l = 1 - ((0 * winheight(0) + 39) / 79)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-24
+1
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
