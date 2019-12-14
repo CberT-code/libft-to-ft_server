@@ -6,29 +6,21 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 16:44:36 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/01 17:06:15 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/14 18:51:36 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "../../libft/libft.h"
 
-int        main()
+int        main(int argc, char **argv)
 {
     int        fd;
-    int        fd2;
     char    *line;
-    int        i;
-    int ret;
+	(void)argc;
 
-    i = 0;
-    fd = open("text.txt", O_RDONLY);
-    fd2 = open("tata.txt", O_RDONLY);
-    
-	get_next_line(fd, &line);
-        printf("%s\n", line);
+    fd = open(argv[1], O_RDONLY);
+	while (get_next_line(fd, &line) != 0)
+       printf("%s\n", line);
     return (0);
 }
 
