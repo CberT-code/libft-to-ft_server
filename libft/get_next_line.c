@@ -6,12 +6,12 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 11:30:10 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/14 18:47:57 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/15 13:51:03 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-# define BUFFER_SIZE 1
+#define BUFFER_SIZE 1
 
 int			search_fd(t_list_gnl **lst_one, int fd)
 {
@@ -86,10 +86,9 @@ int			ft_exist(t_list_gnl **lst, char **line)
 
 int			get_next_line(int fd, char **line)
 {
-	int				retour;
+	int					retour;
 	static t_list_gnl	*lst_one;
 
-	printf("hey");
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (-1);
 	if (search_fd(&lst_one, fd))
