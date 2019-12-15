@@ -9,15 +9,14 @@ int		fill_int(int bit, char *str, t_info *ent)
 
 	i = 0;
 	j = 0;
-	while (*str++ != ' ')
+	while (str[i] != ' ')
 		i++;
-	while (*str++ == ' ')
+	while (str[i] == ' ')
 		i++;
 	while (j < 3)
 	{
-		temp[j] = ft_atoi(str);
-		i += ft_count_char_int(temp[j], 10) + 1;
-		str = str + i;
+		temp[j] = ft_atoi(str + i);
+		i += ft_count_char_int(temp[j++], 10) + 1;
 	}
 	ent->check_bit = ent->check_bit | (1 << bit);
 	return (i);
@@ -57,21 +56,24 @@ void		parsing(char *str, t_info *ent)
 	{
 		while (*str == ' ' || *str == '\n')
 			str++;
+		if (ft_start_str("R ", str) > 0)
+			str = str + fill_int(0, str, ent);
+		printf("ici\n");
 		if (ft_start_str("NO ", str) > 0)
-			fill_str(0, str, ent);
-		if (ft_start_str("SO ", str))
-			fill_str(1, str, ent);
-		if (ft_start_str("WE ", str))
-			fill_str(2, str, ent);
-		if (ft_start_str("EA ", str))
-			fill_str(3, str, ent);
-		if (ft_start_str("S ", str))
-			fill_str(4, str, ent);
-		if (ft_start_str("F ", str))
-			fill_int(5, str, ent);
-		if (ft_start_str("C ", str))
+			str = str + fill_str(1, str, ent);
+		if (ft_start_str("SO ", str) > 0)
+			str = str + fill_str(2, str, ent);
+		if (ft_start_str("WE ", str) > 0)
+			str = str + fill_str(3, str, ent);
+		if (ft_start_str("EA ", str) > 0)
+			str = str + fill_str(4, str, ent);
+		if (ft_start_str("S ", str) > 0)
+			str = str + fill_str(5, str, ent);
+		if (ft_start_str("F ", str) > 0)
+			str = str + fill_int(6, str, ent);
+		if (ft_start_str("C ", str) > 0)
 		if (*str == 'C')
-			fill_int(6, str, ent);
+			str = str + fill_int(7, str, ent);
 	}
 }
 

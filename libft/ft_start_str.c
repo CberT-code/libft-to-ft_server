@@ -6,17 +6,22 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 12:40:01 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/15 13:46:33 by cbertola         ###   ########.fr       */
+/*   Updated: 2019/12/15 16:45:26 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int		ft_start_str(char *str1, char *str2)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	while (str1[i])
+	{
 		if (str1[i] != str2[i])
 			return (0);
+		i++;
+	}
 	return (i);
 }

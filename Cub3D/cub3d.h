@@ -15,8 +15,9 @@
 
 typedef struct			s_info
 {
-	unsigned char		check_bit;
+	short				check_bit;
 	char				**check;
+	int					R[3];
 	int					F[3];
 	int					C[3];
 }						t_info;
