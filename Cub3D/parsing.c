@@ -34,11 +34,9 @@ int		fill_str(int bit, char *str, t_info *ent)
 		i++;
 	while (str[i] == ' ')
 		i++;
-	while (ft_isalpha(str[i]))
-		temp[j++] = str[i++];
-	temp[j] = '\0';
+		temp = str + i;
 	j = ft_strlen(temp);
-	if (!(ent->check[bit] = (char *)malloc(sizeof(char) * j)))
+	if (!(ent->check[bit] = (char *)malloc((sizeof(char) * j) + 1)))
 		return (-1);
 	ent->check_bit = ent->check_bit | (1 << bit);
 	j = 0;
@@ -47,6 +45,8 @@ int		fill_str(int bit, char *str, t_info *ent)
 		ent->check[bit][j] = temp[j];
 		j++;
 	}
+		ent->check[bit][j] = '\0';
+		printf("ent = %s\n", ent->check[0]);
 	return (i);
 }
 
@@ -56,24 +56,23 @@ void		parsing(char *str, t_info *ent)
 	{
 		while (*str == ' ' || *str == '\n')
 			str++;
-		if (ft_start_str("R ", str) > 0)
-			str = str + fill_int(0, str, ent);
-		printf("ici\n");
 		if (ft_start_str("NO ", str) > 0)
-			str = str + fill_str(1, str, ent);
+			str = str + fill_str(0, str, ent);
 		if (ft_start_str("SO ", str) > 0)
-			str = str + fill_str(2, str, ent);
+			str = str + fill_str(1, str, ent);
 		if (ft_start_str("WE ", str) > 0)
-			str = str + fill_str(3, str, ent);
+			str = str + fill_str(2, str, ent);
 		if (ft_start_str("EA ", str) > 0)
-			str = str + fill_str(4, str, ent);
+			str = str + fill_str(3, str, ent);
 		if (ft_start_str("S ", str) > 0)
-			str = str + fill_str(5, str, ent);
+			str = str + fill_str(4, str, ent);
 		if (ft_start_str("F ", str) > 0)
-			str = str + fill_int(6, str, ent);
+			str = str + fill_int(5, str, ent);
 		if (ft_start_str("C ", str) > 0)
-		if (*str == 'C')
+			str = str + fill_int(6, str, ent);
+		if (ft_start_str("R ", str) > 0)
 			str = str + fill_int(7, str, ent);
+		str++;
 	}
 }
 
@@ -100,5 +99,20 @@ int        main(int argc, char **argv)
        printf("%s\n", line);
 	   check_ent(line, &ent);
 	}
+		printf("ent = %s\n", ent.check[0]);
+		printf("ent = %s\n", ent.check[1]);
+		printf("ent = %s\n", ent.check[2]);
+		printf("ent = %s\n", ent.check[3]);
+		printf("ent = %s\n", ent.check[4]);
+		printf("ent = %s\n", ent.check[5]);
+		printf("ent = %s\n", ent.check[6]);
+		printf("ent = %d\n", ent.R[0]);
+		printf("ent = %d\n", ent.R[1]);
+		printf("ent = %d\n", ent.F[0]);
+		printf("ent = %d\n", ent.F[1]);
+		printf("ent = %d\n", ent.F[2]);
+		printf("ent = %d\n", ent.C[0]);
+		printf("ent = %d\n", ent.C[1]);
+		printf("ent = %d\n", ent.C[2]);
     return (0);
 }

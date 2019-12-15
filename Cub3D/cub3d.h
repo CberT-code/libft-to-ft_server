@@ -6,8 +6,8 @@
 # define CHECKER 255;
 
 /*
-** | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
-** |ind| C | F | S | EA| WE| SO| NO|
+** | 8 | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+** |ind| R | C | F | S | EA| WE| SO| NO|
 ** 0 -> 4 = char **check
 ** 5 = int *F
 ** 6 = int *C
