@@ -9,6 +9,7 @@ int		fill_int(int bit, char *str, t_info *ent)
 
 	i = 0;
 	j = 0;
+	printf("bit = %d\n", bit);
 	while (str[i] != ' ')
 		i++;
 	while (str[i] == ' ')
@@ -19,6 +20,7 @@ int		fill_int(int bit, char *str, t_info *ent)
 		i += ft_count_char_int(temp[j++], 10) + 1;
 	}
 	ent->check_bit = ent->check_bit | (1 << bit);
+		printf("ent = %s\n", ent->check[bit]);
 	return (i);
 }
 
@@ -36,7 +38,8 @@ int		fill_str(int bit, char *str, t_info *ent)
 		i++;
 		temp = str + i;
 	j = ft_strlen(temp);
-	if (!(ent->check[bit] = (char *)malloc((sizeof(char) * j) + 1)))
+		printf("bit = %d\n", bit);
+	if (!(ent->check[bit] = malloc((sizeof(char) * j) + 1)))
 		return (-1);
 	ent->check_bit = ent->check_bit | (1 << bit);
 	j = 0;
@@ -46,8 +49,8 @@ int		fill_str(int bit, char *str, t_info *ent)
 		j++;
 	}
 		ent->check[bit][j] = '\0';
-		printf("ent = %s\n", ent->check[0]);
-	return (i);
+		printf("ent = %s\n", ent->check[bit]);
+	return (i + j);
 }
 
 void		parsing(char *str, t_info *ent)
@@ -78,7 +81,6 @@ void		parsing(char *str, t_info *ent)
 
 int		check_ent(char *str, t_info *ent)
 {
-	ent->check = (char **)malloc(sizeof(char **) * 5);
 	parsing(str, ent);
 	if (ent->check_bit != 255)
 		return (-1);
@@ -93,13 +95,13 @@ int        main(int argc, char **argv)
 	(void)argc;
 	t_info ent;
 
+	ent.check = (char **)malloc(sizeof(char *) * 8);
     fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line) != 0)
 	{
-       printf("%s\n", line);
 	   check_ent(line, &ent);
 	}
-		printf("ent = %s\n", ent.check[0]);
+		printf("enti = %s\n", ent.check[0]);
 		printf("ent = %s\n", ent.check[1]);
 		printf("ent = %s\n", ent.check[2]);
 		printf("ent = %s\n", ent.check[3]);
