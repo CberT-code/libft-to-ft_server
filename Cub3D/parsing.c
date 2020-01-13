@@ -14,10 +14,16 @@ int		fill_int(int bit, char *str, t_info *ent)
 		i++;
 	while (str[i] == ' ')
 		i++;
-	while (j < 3)
+	while (j < 2)
 	{
 		temp[j] = ft_atoi(str + i);
 		i += ft_count_char_int(temp[j++], 10) + 1;
+	}
+	printf("bit = %d\n", bit);
+	if (bit == 7)
+	{
+		ent->R[0] = temp[0];
+		ent->R[1] = temp[1];
 	}
 	ent->check_bit = ent->check_bit | (1 << bit);
 		printf("ent = %s\n", ent->check[bit]);
@@ -89,12 +95,12 @@ int		check_ent(char *str, t_info *ent)
 
 int        main(int argc, char **argv)
 {
-    int        fd;
-    char    *line;
-	char	*str;
-	(void)argc;
-	t_info ent;
+    int			fd;
+    char		*line;
+	char		*str;
+	t_info		ent;
 
+	(void)argc;
 	ent.check = (char **)malloc(sizeof(char *) * 8);
     fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line) != 0)
@@ -106,8 +112,6 @@ int        main(int argc, char **argv)
 		printf("ent = %s\n", ent.check[2]);
 		printf("ent = %s\n", ent.check[3]);
 		printf("ent = %s\n", ent.check[4]);
-		printf("ent = %s\n", ent.check[5]);
-		printf("ent = %s\n", ent.check[6]);
 		printf("ent = %d\n", ent.R[0]);
 		printf("ent = %d\n", ent.R[1]);
 		printf("ent = %d\n", ent.F[0]);
