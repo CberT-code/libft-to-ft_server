@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 11:59:00 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/20 21:31:19 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/20 23:27:58 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct			s_list_gnl
 
 char					**ft_splitnum(char *s, int c);
 char					*ft_strsubstr(char *s1, char *sub);
+char					*ft_strsubstr_free(char *s1, char *sub);
 int						ft_how_many(char *str, char *tab);
 int						ft_strlen(const char *s);
 int						ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -48,7 +49,7 @@ char					*ft_strrchr(const char *s, int c);
 char					*ft_strdup(const char *s1);
 size_t					ft_strlcat(char *dst, const char *src, size_t dstsize);
 char					*ft_strjoin(char const *s1, char const *s2);
-char					*ft_strjoin_free(char *s1, char *s2);
+char					*ft_strjoin_free(char *s1, char *s2, int k);
 char					*ft_strtrim(char const *s1, char const *set);
 char					*ft_strmapi(char const *s, char (*f)(unsigned int,
 			char));

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsubstr.c                                     :+:      :+:    :+:   */
+/*   ft_strsubstr_free.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 19:30:49 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/20 22:42:46 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/20 23:08:35 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_bzero_tab(int *tab)
 		tab[i] = 0;
 }
 
-char		*ft_strsubstr(char *s1, char *sub)
+char		*ft_strsubstr_free(char *s1, char *sub)
 {
 	int		i;
 	int		j;
@@ -33,17 +33,19 @@ char		*ft_strsubstr(char *s1, char *sub)
 	i = ft_strlen(s1) - ft_how_many(s1, sub);
 	if (!(s3 = malloc(sizeof(char) * i + 1)))
 		return (NULL);
+	i = 0;
 	while (*sub)
 	{
 		tab[(int)*sub] = 1;
 		sub++;
 	}
-	while (*s1)
+	while (s1[i])
 	{
-		if (tab[(int)*s1] == 0)
-			s3[j++] = *s1;
-		s1++;
+		if (tab[(int)s1[i]] == 0)
+			s3[j++] = s1[i];
+		i++;
 	}
 	s3[j] = '\0';
+	free(s1);
 	return (s3);
 }
