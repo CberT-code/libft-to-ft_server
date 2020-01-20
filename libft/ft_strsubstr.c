@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strsubstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 15:27:36 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/20 21:17:52 by cbertola         ###   ########.fr       */
+/*   Created: 2020/01/20 19:30:49 by cbertola          #+#    #+#             */
+/*   Updated: 2020/01/20 21:32:49 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strsubstr(char *s1, char *sub)
 {
-	char		*ptr;
-	long int	u;
-	long int	i;
+	int		i;
+	int		j;
+	char	*s3;
+	int		tab[256];
 
-	i = -1;
-	if (!s1 && !s2)
+	j = 0;
+	i = ft_strlen(s1) - ft_how_many(s1, sub);
+	if (!(s3 = malloc(sizeof(char) * i + 1)))
 		return (NULL);
-	u = ft_strlen(s1) + ft_strlen(s2);
-	if (!(ptr = malloc(u * (sizeof(char) + 1))))
-		return (NULL);
+	while (*sub)
+	{
+		tab[(int)*sub] = 1;
+		sub++;
+	}
 	while (*s1)
-		ptr[++i] = *s1++;
-	while (*s2)
-		ptr[++i] = *s2++;
-	ptr[++i] = '\0';
-	return (ptr);
+	{
+		if (tab[(int)*s1] == 0)
+			s3[j++] = *s1;
+		s1++;
+	}
+	s3[j] = '\0';
+	return (s3);
 }

@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 11:27:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/14 14:53:57 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/17 15:44:07 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -97,27 +97,30 @@ char	*envoi(char *s1, char **line)
 	return (s3);
 }
 
-int		get_next_line(int fd, char **line)
+int		get_next_line(char **line)
 {
 	static char *stock;
 	char *buff;
 	int readc;
-
-	buff = malloc(sizeof(char) * BUFFER_SIZE + 1 );
-	readc = read(fd, buff, BUFFER_SIZE);
-	buff[readc] = '\0';
-	stock = join(stock, buff);
+	
+	if (charisfind(stock, '\n') < 0)
+	{
+		buff = malloc(sizeof(char) * 4050 + 1 );
+		readc = read(0, buff, 4050);
+		buff[readc] = '\0';
+		stock = join(stock, buff);
+	}
 	if (charisfind(stock, '\n') >= 0)
 	{
 		stock = envoi(stock, line);
 		return (1);
 	}
-	if (readc < BUFFER_SIZE)
+	if (readc < 4050)
 	{
 		*line = stock;
 		return (0);
 	}
-	return (get_next_line(fd, line));
+	return (get_next_line(line));
 
 }
 
@@ -127,7 +130,7 @@ int		main()
 	int fd;
 
 	fd = open("test", O_RDONLY);
-	while (get_next_line(fd, &line) != 0)
+	while (get_next_line(&line) != 0)
 		printf("%s\n", line);
 	return (0);
 

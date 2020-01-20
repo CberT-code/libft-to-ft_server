@@ -1,0 +1,222 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/16 12:38:30 by cbertola          #+#    #+#             */
+/*   Updated: 2020/01/16 15:26:49 by cbertola         ###   ########.fr       */
+/*                                                                            */
+#include <libc.h>
+
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int		charisfind(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	if (str == NULL)
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+/*char	*join(char *s1, char *s2)
+{
+	char *str;
+	char *p;
+
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	p = str;
+	while (*s1)
+	{
+		*str = *s1;
+		str++;
+		s1++;
+	}
+	while (*s2)
+	{
+		*str = *s2;
+		str++;
+		s2++;
+	}
+	*str = '\0';
+	return (p);
+}
+*/
+
+char	*envoi(char *stock, char **line)
+{
+	char	*str;
+	char	*str2;
+	int i;
+	int j;
+
+	i = charisfind(stock, '\n') ;
+	j = ft_strlen(stock) - i;
+	if (!(str = malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	if (!(str2 = malloc(sizeof(char) * j + 1)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (stock[i] != '\n')
+	{
+		str[j++] = stock[i++];
+	str[j] = '\0';
+	i++;
+	j = 0;
+	while (stock[i])
+		str2[j++] = stock[i++];
+	str2[j] = '\0';
+	*line = str;
+	free(stock);
+	return (str2);
+
+}
+/*
+char	*envoi(char *s1, char **line)
+{
+	int i;
+	int j;
+	char *s2;
+	char *s3;
+
+	i = charisfind(s1, '\n');
+	j = ft_strlen(s1) - i;
+	if (!(s2 = malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	if (!(s3 = malloc(sizeof(char) * j + 1)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i] != '\n')
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i++] = '\0';
+	*line = s2;
+	while (s1[i])
+		s3[j++] = s1[i++];
+	s3[j] = '\0';
+	free(s1);
+	return (s3);
+}*/
+/*
+int		get_next_line(int fd, char **line)
+{
+	static	char	*stock;
+	char			*buff;
+	int				readc;
+
+	if (fd < 0 || BUFFER_SIZE < 1)
+		return (-1);
+	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	readc = read(fd, buff, BUFFER_SIZE);
+	buff[readc] = '\0';
+	stock = join(stock, buff);
+	if (charisfind(stock, '\n' >= 0))
+	{
+		stock = envoi(stock, line);
+		return (1);
+	}
+	if (readc < BUFFER_SIZE)
+	{
+		*line = stock;
+		return (0);
+	}
+	return (get_next_line(fd,line));
+
+}
+*/
+char	*join(char *s1, char *s2)
+{
+	int i;
+	int j;
+	char *str;
+
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
+	i = ft_strlen(s1) + ft_strlen(s2);
+	if (!(str = malloc(sizeof(char) * i + 1)))
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i++] = s2[j++];
+	}
+	str[i] = '\0';
+	return (str);
+
+}
+
+int		get_next_line(int fd, char **line)
+{
+	static char *stock;
+	char *buff;
+	int readc;
+
+	buff = malloc(sizeof(char) * BUFFER_SIZE + 1 );
+	readc = read(fd, buff, BUFFER_SIZE);
+	buff[readc] = '\0';
+	stock = join(stock, buff);
+	if (charisfind(stock, '\n') >= 0)
+	{
+		stock = envoi(stock, line);
+		return (1);
+	}
+	if (readc < BUFFER_SIZE)
+	{
+		*line = stock;
+		return (0);
+	}
+	return (get_next_line(fd, line));
+
+}
+
+int		main()
+{
+	char *line;
+	int fd;
+	int i = 40;
+
+	fd = open("get_next_line.c", O_RDONLY);
+	printf("%d\n",fd);
+
+	//get_next_line(fd, &line);
+	while (get_next_line(fd, &line) == 1)
+		printf("%s\n", line);
+
+}
