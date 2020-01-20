@@ -6,7 +6,9 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 BUFFER_SIZE	libft/get_next_line.c	/^#define BUFFER_SIZE /;"	d	file:
 C	cub3d.h	/^	int					C[3];$/;"	m	struct:s_elem
+CC	Makefile	/^CC			= gcc$/;"	m
 CC	libft/makefile	/^CC		= gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS		= -I includes -Wall -Wextra -Werror$/;"	m
 CFLAGS	libft/makefile	/^CFLAGS	= -Wall -Wextra -Werror$/;"	m
 CHECKER	cub3d.h	/^# define CHECKER /;"	d
 CUB3D_H	cub3d.h	/^# define CUB3D_H$/;"	d
@@ -35,27 +37,33 @@ F	cub3d.h	/^	int					F[3];$/;"	m	struct:s_elem
 FONT_HEIGHT	minilibx/mlx_int.h	/^#define	FONT_HEIGHT	/;"	d
 FONT_WIDTH	minilibx/mlx_int.h	/^#define FONT_WIDTH	/;"	d
 FT_PRINTF_H	libft/ft_printf.h	/^# define FT_PRINTF_H$/;"	d
+LIBFT	Makefile	/^LIBFT		= libft$/;"	m
 LIBFT_H	libft/libft.h	/^# define LIBFT_H$/;"	d
 MAX_EVENT	minilibx/mlx_int.h	/^#define	MAX_EVENT	/;"	d
 MAX_PIXEL_NB	minilibx/mlx_int.h	/^#define MAX_PIXEL_NB	/;"	d
 MINUS	libft/ft_printf.h	/^# define MINUS /;"	d
 MLX_H	minilibx/mlx.h	/^#define	MLX_H$/;"	d
+NAME	Makefile	/^NAME		= cub3d.a$/;"	m
 NAME	libft/makefile	/^NAME	= libft.a$/;"	m
+NAME_LIBFT	Makefile	/^NAME_LIBFT	= libft.a$/;"	m
 NOM	minilibx/Makefile	/^NOM=libmlx.a$/;"	m
 NUL	libft/ft_printf.h	/^# define NUL /;"	d
 OBJ	libft/makefile	/^OBJ 	:= $(SRC:%.c=$(OBJ_DIR)\/%.o)$/;"	m
 OBJ	minilibx/Makefile	/^OBJ=$(OBJ1:.m=.o)$/;"	m
 OBJ1	minilibx/Makefile	/^OBJ1=$(SRC:.c=.o)$/;"	m
 OBJB	libft/makefile	/^OBJB 	:= $(SRCB:%.c=$(OBJ_DIR)\/%.o)$/;"	m
+OBJS	Makefile	/^OBJS		= ${SRCS:.c=.o}$/;"	m
 OBJ_DIR	libft/makefile	/^OBJ_DIR	= obj$/;"	m
 PNG_HDR_SIZE	minilibx/mlx_png.c	/^#define PNG_HDR_SIZE	/;"	d	file:
 PNG_MAGIC_SIZE	minilibx/mlx_png.c	/^#define	PNG_MAGIC_SIZE	/;"	d	file:
 POINT	libft/ft_printf.h	/^# define POINT /;"	d
 R	cub3d.h	/^	int					R[2];$/;"	m	struct:s_elem
 RETURN	minilibx/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
+RM	Makefile	/^RM			= rm -f$/;"	m
 SRC	libft/makefile	/^SRC		= ft_strlen.c ft_strlcpy.c ft_strchr.c ft_strrchr.c ft_strncmp.c ft_strlcat.c \\$/;"	m
 SRC	minilibx/Makefile	/^SRC= mlx_shaders.c mlx_new_window.m mlx_init_loop.m mlx_new_image.m mlx_xpm.c mlx_int_str_to_wordtab.c$/;"	m
 SRCB	libft/makefile	/^SRCB	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \\$/;"	m
+SRCS	Makefile	/^SRCS		= parsing.c parsing_elem.c$/;"	m
 UNIQ_BPP	minilibx/mlx_int.h	/^#define UNIQ_BPP	/;"	d
 ZERO	libft/ft_printf.h	/^# define ZERO /;"	d
 Z_CHUNK	minilibx/mlx_png.c	/^#define	Z_CHUNK	/;"	d	file:
@@ -96,6 +104,8 @@ ft_atoi	libft/ft_atoi.c	/^int		ft_atoi(const char *str)$/;"	f
 ft_atoi_pos	libft/ft_atoi_pos.c	/^int		ft_atoi_pos(const char *str)$/;"	f
 ft_before_char	libft/get_next_line_utils.c	/^char		*ft_before_char(char *str, char stop)$/;"	f
 ft_bzero	libft/ft_bzero.c	/^void	ft_bzero(void *s, size_t n)$/;"	f
+ft_bzero_tab	libft/ft_strsubstr.c	/^static void	ft_bzero_tab(int *tab)$/;"	f	file:
+ft_bzero_tab	libft/ft_strsubstr_free.c	/^static void	ft_bzero_tab(int *tab)$/;"	f	file:
 ft_calloc	libft/ft_calloc.c	/^void	*ft_calloc(size_t count, size_t size)$/;"	f
 ft_cleanstruct	libft/ft_printf.c	/^int		ft_cleanstruct(t_flags *flags)$/;"	f
 ft_count_c	libft/ft_itoa.c	/^static int			ft_count_c(long int n, int i)$/;"	f	file:
@@ -109,6 +119,7 @@ ft_find	libft/get_next_line_utils.c	/^int			ft_find(char *str, char stop)$/;"	f
 ft_find_c	libft/ft_split.c	/^static int		ft_find_c(char letter, char c)$/;"	f	file:
 ft_find_c	libft/ft_strtrim.c	/^static int		ft_find_c(char c, char const *set)$/;"	f	file:
 ft_free	libft/ft_split.c	/^static char		**ft_free(char **tab_words, int i)$/;"	f	file:
+ft_free	libft/ft_splitnum.c	/^static char		**ft_free(char **tab_words, int i)$/;"	f	file:
 ft_get_fct	libft/ft_printf.c	/^int		ft_get_fct(char **str, va_list ap, t_flags *flags)$/;"	f
 ft_get_flags	libft/ft_printf.c	/^int		ft_get_flags(char **str, t_flags *flags, va_list ap)$/;"	f
 ft_how_many	libft/ft_how_many.c	/^int		ft_how_many(char *str, char *tab)$/;"	f
@@ -168,6 +179,7 @@ ft_putzero	libft/ft_fct.c	/^int				ft_putzero(void)$/;"	f
 ft_reverse	libft/ft_itoa.c	/^static char			ft_reverse(char *s)$/;"	f	file:
 ft_send	libft/get_next_line_utils.c	/^char		*ft_send(t_list_gnl **lst, char **line)$/;"	f
 ft_split	libft/ft_split.c	/^char			**ft_split(char const *s, char c)$/;"	f
+ft_splitnum	libft/ft_splitnum.c	/^char			**ft_splitnum(char *s, int c)$/;"	f
 ft_start_str	libft/ft_start_str.c	/^int		ft_start_str(char *str1, char *str2)$/;"	f
 ft_strchr	libft/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f
 ft_strdup	libft/ft_strdup.c	/^char	*ft_strdup(const char *s1)$/;"	f
@@ -181,6 +193,8 @@ ft_strmapi	libft/ft_strmapi.c	/^char	*ft_strmapi(char const *s, char (*f)(unsign
 ft_strncmp	libft/ft_strncmp.c	/^int		ft_strncmp(const char *s1, const char *s2, size_t n)$/;"	f
 ft_strnstr	libft/ft_strnstr.c	/^char	*ft_strnstr(const char *haystack, const char *needle, size_t len)$/;"	f
 ft_strrchr	libft/ft_strrchr.c	/^char	*ft_strrchr(const char *s, int c)$/;"	f
+ft_strsubstr	libft/ft_strsubstr.c	/^char		*ft_strsubstr(char *s1, char *sub)$/;"	f
+ft_strsubstr	libft/ft_strsubstr_free.c	/^char		*ft_strsubstr(char *s1, char *sub)$/;"	f
 ft_strtrim	libft/ft_strtrim.c	/^char			*ft_strtrim(char const *s1, char const *set)$/;"	f
 ft_substr	libft/ft_substr.c	/^char	*ft_substr(char const *s, unsigned int start, size_t len)$/;"	f
 ft_tolower	libft/ft_tolower.c	/^int		ft_tolower(int c)$/;"	f
@@ -280,7 +294,6 @@ next	minilibx/mlx_int.h	/^  struct mlx_img_ctx_s	*next;$/;"	m	struct:mlx_img_ctx
 next	minilibx/mlx_int.h	/^  struct mlx_img_list_s	*next;$/;"	m	struct:mlx_img_list_s	typeref:struct:mlx_img_list_s::mlx_img_list_s
 next	minilibx/mlx_int.h	/^  struct mlx_win_list_s	*next;$/;"	m	struct:mlx_win_list_s	typeref:struct:mlx_win_list_s::mlx_win_list_s
 parsing_elem	parsing_elem.c	/^void		parsing_elem(char *str, t_elem *elem)$/;"	f
-parsing_map	parsing.c	/^int		parsing_map(char *str, t_map *map)$/;"	f
 pixel_data	minilibx/font.c	/^  unsigned char	 pixel_data[1140 * 20 * 4 + 1];$/;"	m	struct:__anon1	file:
 pixel_fshader	minilibx/mlx_int.h	/^  GLuint	pixel_fshader;$/;"	m	struct:glsl_info_s
 pixel_program	minilibx/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:glsl_info_s
