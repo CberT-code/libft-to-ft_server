@@ -1,96 +1,61 @@
 
 #include "cub3d.h"
 
-int		fill_int(int bit, char *str, t_info *ent)
+int		ft_error(char *str)
 {
-	int		i;
-	int		j;
-	int		temp[3];
-
-	i = 0;
-	j = 0;
-	printf("bit = %d\n", bit);
-	while (str[i] != ' ')
-		i++;
-	while (str[i] == ' ')
-		i++;
-	while (j < 2)
-	{
-		temp[j] = ft_atoi(str + i);
-		i += ft_count_char_int(temp[j++], 10) + 1;
-	}
-	printf("bit = %d\n", bit);
-	if (bit == 7)
-	{
-		ent->R[0] = temp[0];
-		ent->R[1] = temp[1];
-	}
-	ent->check_bit = ent->check_bit | (1 << bit);
-		printf("ent = %s\n", ent->check[bit]);
-	return (i);
+	ft_printf(str);
+	return (-1);
 }
 
-int		fill_str(int bit, char *str, t_info *ent)
+int		parsing_map(char *str, t_map *map)
 {
-	int		i;
-	int		j;
-	char	*temp;
 
-	i = 0;
-	j = 0;
-	while (str[i] != ' ')
-		i++;
-	while (str[i] == ' ')
-		i++;
-		temp = str + i;
-	j = ft_strlen(temp);
-		printf("bit = %d\n", bit);
-	if (!(ent->check[bit] = malloc((sizeof(char) * j) + 1)))
-		return (-1);
-	ent->check_bit = ent->check_bit | (1 << bit);
-	j = 0;
-	while (temp[j])
-	{
-		ent->check[bit][j] = temp[j];
-		j++;
-	}
-		ent->check[bit][j] = '\0';
-		printf("ent = %s\n", ent->check[bit]);
-	return (i + j);
-}
-
-void		parsing(char *str, t_info *ent)
-{
-	while (*str)
-	{
-		while (*str == ' ' || *str == '\n')
-			str++;
-		if (ft_start_str("NO ", str) > 0)
-			str = str + fill_str(0, str, ent);
-		if (ft_start_str("SO ", str) > 0)
-			str = str + fill_str(1, str, ent);
-		if (ft_start_str("WE ", str) > 0)
-			str = str + fill_str(2, str, ent);
-		if (ft_start_str("EA ", str) > 0)
-			str = str + fill_str(3, str, ent);
-		if (ft_start_str("S ", str) > 0)
-			str = str + fill_str(4, str, ent);
-		if (ft_start_str("F ", str) > 0)
-			str = str + fill_int(5, str, ent);
-		if (ft_start_str("C ", str) > 0)
-			str = str + fill_int(6, str, ent);
-		if (ft_start_str("R ", str) > 0)
-			str = str + fill_int(7, str, ent);
-		str++;
-	}
-}
-
-int		check_ent(char *str, t_info *ent)
-{
-	parsing(str, ent);
-	if (ent->check_bit != 255)
-		return (-1);
 	return (1);
+}
+
+int		check_map(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (map->tab_map[j])
+		if (map->tab_map[0][i++] != '1')
+			return (ft_error(ERROR_MAP_F_WALL));
+	map->line_len = i;
+	while (++j < map->tab_len)
+	{
+		if (map->tab_map[j][0] != '1')
+			return (ft_error(ERROR_MAP_S_WALL));
+		if (map->tab_map[j][i] != '1')
+			return (ft_error(ERROR_MAP_FE_WALL));
+	}
+	i = 0;
+	while (map->tab_map[j])
+		if (map->tab_map[j][i++] != '1')
+			return (ft_error(ERROR_MAP_E_WALL));
+	return (1);
+}
+
+
+int		check_elem(char *str, t_elem *elem, t_map *map)
+{
+	if (elem->bit_elem < 255)
+	{
+		parsing_elem(str, elem);
+		return (1);
+	}
+	if (*str == '1')
+	{
+		printf("testcoucou\n");
+		map->str_map = ft_strjoin_free(map->str_map, str);
+		map->tab_len++;
+		return (1);
+	}
+	if (!map->str_map)
+		return (1);
+	return (0);
 }
 
 int        main(int argc, char **argv)
@@ -98,27 +63,22 @@ int        main(int argc, char **argv)
     int			fd;
     char		*line;
 	char		*str;
-	t_info		ent;
+	t_elem		*elem;
+	t_map		*map;
 
 	(void)argc;
-	ent.check = (char **)malloc(sizeof(char *) * 8);
+	elem = malloc(sizeof(t_elem));
+	map = malloc(sizeof(t_map));
+	elem->check = (char **)malloc(sizeof(char *) * 8);
+	elem->bit_elem = 0;
+	map->tab_len = 0;
     fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line) != 0)
+		   check_elem(line, elem, map);
+	if (!map->str_map)
 	{
-	   check_ent(line, &ent);
+		return (-1);
 	}
-		printf("enti = %s\n", ent.check[0]);
-		printf("ent = %s\n", ent.check[1]);
-		printf("ent = %s\n", ent.check[2]);
-		printf("ent = %s\n", ent.check[3]);
-		printf("ent = %s\n", ent.check[4]);
-		printf("ent = %d\n", ent.R[0]);
-		printf("ent = %d\n", ent.R[1]);
-		printf("ent = %d\n", ent.F[0]);
-		printf("ent = %d\n", ent.F[1]);
-		printf("ent = %d\n", ent.F[2]);
-		printf("ent = %d\n", ent.C[0]);
-		printf("ent = %d\n", ent.C[1]);
-		printf("ent = %d\n", ent.C[2]);
-    return (0);
+	map->tab_map = ft_split(map->str_map, '\n');
+	return (check_map(map));
 }
