@@ -26,12 +26,23 @@ int	destroy()
 int main(void)
 {
     data_t        data;
+	int x;
+	int y;
 
+	y = 0;
     if (!(data.mlx_ptr = mlx_init()))
         return (EXIT_FAILURE);
 	if (!(data.mlx_win = mlx_new_window(data.mlx_ptr, 1400, 720, "CUB3D")))
        return (EXIT_FAILURE);
 	mlx_mouse_hook (data.mlx_win, click_mouse, NULL);
 	mlx_hook(data.mlx_win, 17, 0, destroy, NULL);
+	while (y < 400)
+	{
+		x = 0;
+		while (x < 1000)
+			mlx_pixel_put(data.mlx_ptr, data.mlx_win, x++, y, 0xffffff);
+		y++;
+	}
+			mlx_string_put(data.mlx_ptr, data.mlx_win, 500, 200, 0x000000, "coucou");
 	mlx_loop(data.mlx_ptr);
 }
