@@ -1,44 +1,54 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/20 18:49:28 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/25 18:00:32 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRCS		= parsing.c parsing_elem.c
+SRCS		= main_test.c parsing.c parsing_elem.c error_free.c
 
-OBJS		= ${SRCS:.c=.o}
+LIBFT		= libft/libft.a
 
-LIBFT		= libft
-
-NAME_LIBFT	= libft.a
-
-NAME		= cub3d.a
+NAME		= cub3d
 
 RM			= rm -f
 
 CC			= gcc
 
-CFLAGS		= -I includes -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
+
+MLXFLAGS	= -lmlx -framework OpenGL -framework Appkit 
+
+LOGFILE		= $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
+
+${NAME}:	$(LIBFT)
+			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+			./$(NAME) test.cub
+
+libft:
+		make re -C libft
+		make clean -C libft
+
+clean:      
+		make re -C libft
+		make clean -C libft
+		rm -f $(NAME)
+
+fclean:
+			make fclean -C libft
+			rm -f ${NAME}
+
+git:		fclean
+			git add *
+			git commit -m "$(LOGFILE) $(MSG)"
+			git push
 
 all:		${NAME}
 
-${NAME}:    ${OBJS}
-			@make -C $(LIBFT)
-			@cp libft/libft.a ./$(NAME)
-			@ar rc $(NAME) $(OBJS)
-			@ranlib $(NAME)
-clean:      
-			@make -C $(LIBFT) clean
-			${RM} ${OBJS}
+re:			clean all
 
-fclean:		clean
-			cd ${LIBFT} && ${RM} ${NAME_LIBFT}
-			${RM} ${NAME}
-
-re:			fclean all
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re libft
