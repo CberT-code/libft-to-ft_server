@@ -39,8 +39,14 @@ int main(void)
 	while (y < 400)
 	{
 		x = 0;
+		if (y % 50 == 0)
+			mlx_pixel_put(data.mlx_ptr, data.mlx_win, x, y, 0x000000);
 		while (x < 1000)
+		{
+			if (x % 50 == 0)
+				mlx_pixel_put(data.mlx_ptr, data.mlx_win, x, y, 0x000000);
 			mlx_pixel_put(data.mlx_ptr, data.mlx_win, x++, y, 0xffffff);
+		}
 		y++;
 	}
 			mlx_string_put(data.mlx_ptr, data.mlx_win, 500, 200, 0x000000, "coucou");
