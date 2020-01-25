@@ -1,6 +1,6 @@
 #include "minilibx/mlx.h"
 #include <stdlib.h>
-#include <unistd.h>
+#include "cub3d.h"
 
 typedef struct    data_s
 {
@@ -23,12 +23,15 @@ int	destroy()
 	return (0);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-    data_t        data;
-	int x;
-	int y;
+    data_t		data;
+	int			x;
+	int			y;
+	t_elem		*elem;
 
+	(void)argc;
+	elem = parsing(argv[1]);
 	y = 0;
     if (!(data.mlx_ptr = mlx_init()))
         return (EXIT_FAILURE);
@@ -39,13 +42,12 @@ int main(void)
 	while (y < 400)
 	{
 		x = 0;
-		if (y % 50 == 0)
-			mlx_pixel_put(data.mlx_ptr, data.mlx_win, x, y, 0x000000);
 		while (x < 1000)
 		{
-			if (x % 50 == 0)
-				mlx_pixel_put(data.mlx_ptr, data.mlx_win, x, y, 0x000000);
-			mlx_pixel_put(data.mlx_ptr, data.mlx_win, x++, y, 0xffffff);
+			if (x % 50 == 0 || y % 20 == 0)
+				mlx_pixel_put(data.mlx_ptr, data.mlx_win, x++, y, 0x000000);
+			else
+			mlx_pixel_put(data.mlx_ptr, data.mlx_win, x++, y, 0xCBC9C8);
 		}
 		y++;
 	}

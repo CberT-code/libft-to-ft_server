@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/25 17:57:40 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/25 17:50:30 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@
 # define ERROR_MAP_F_WALL "Error\nThe wall is open on the north side\n"
 # define ERROR_MAP_S_WALL "Error\nThe wall is open on the west side\n"
 # define ERROR_MAP_FE_WALL "Error\nThe wall is open on the east side\n"
-# define ERROR_MAP_E_WALL "Error\nThe wall is open on the south side\n"
+# define ERROR_MAP_E_WALL "Error\nThe wall is open on the sourth side\n"
 # define ERROR_MAP_NO "Error\nNO MAP FOUND\n"
 # define ERROR_PLAYER_NO_POS "Error\nNO PLAYER POSITION FOUND\n"
 # define ERROR_PLAYER_EX_POS "Error\nTOO MANY PLAYER POSITION FOUND\n"
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
+# define MAP elem->map
 
 typedef struct			s_map
 {
