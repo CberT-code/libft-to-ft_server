@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/25 17:54:45 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/25 20:45:33 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ int			check_elem(char *str, t_elem *elem)
 		parsing_elem(str, elem);
 		return (1);
 	}
-	if (ft_isdigit(*str))
+	if (*str == '1')
 	{
-		elem->map->str_map = ft_strjoin_free(elem->map->str_map, str, 1);
-		elem->map->str_map = ft_strsubstr_free(elem->map->str_map, " ");
-		if (elem->map->line_len == 0)
-			elem->map->line_len = ft_strlen(elem->map->str_map);
-		elem->map->tab_len++;
+		
+	//	elem->map->str_map = ft_strjoin_free(elem->map->str_map, str, 1);
+	//	elem->map->str_map = ft_strsubstr_free(elem->map->str_map, " ");
+	//	if (elem->map->line_len == 0)
+	//		elem->map->line_len = ft_strlen(elem->map->str_map);
+	//	elem->map->tab_len++;
 		return (1);
 	}
 	if (!elem->map->str_map)
@@ -60,21 +61,6 @@ int			check_elem(char *str, t_elem *elem)
 	return (0);
 }
 
-void		init_struct(t_elem *elem)
-{
-	t_player	*player;
-	t_map		*map;
-
-	map = malloc(sizeof(t_map));
-	player = malloc(sizeof(t_player));
-	elem->check = (char **)malloc(sizeof(char *) * 5);
-	map->tab_len = 0;
-	map->str_map = "";
-	map->line_len = 0;
-	elem->bit_elem = 0;
-	elem->map = map;
-	elem->player = player;
-}
 
 int			check_str_map(t_elem *elem)
 {
@@ -111,7 +97,7 @@ t_elem		*parsing(char *doc_map)
 	free(line);
 	if (check_str_map(elem) != 1)
 		return (NULL);
-	elem->map->tab_map = ft_splitnum(elem->map->str_map, elem->map->line_len);
+	//elem->map->tab_map = ft_splitnum(elem->map->str_map, elem->map->line_len);
 	if (check_map(elem) == NULL)
 		return (NULL);
 	return (elem);

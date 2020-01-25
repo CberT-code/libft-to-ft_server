@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:46:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/21 19:48:48 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/25 19:15:14 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,20 @@ void		*ft_error(char *str, t_elem *elem)
 	if (elem != NULL)
 		free_elem(elem);
 	return (NULL);
+}
+
+void		init_struct(t_elem *elem)
+{
+	t_player	*player;
+	t_map		*map;
+
+	map = malloc(sizeof(t_map));
+	player = malloc(sizeof(t_player));
+	elem->check = (char **)malloc(sizeof(char *) * 5);
+	map->tab_len = 0;
+	map->str_map = "";
+	map->line_len = 0;
+	elem->bit_elem = 0;
+	elem->map = map;
+	elem->player = player;
 }
