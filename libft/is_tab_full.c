@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   is_tab_full.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 17:56:45 by cbertola          #+#    #+#             */
-/*   Updated: 2019/10/21 13:45:20 by cbertola         ###   ########.fr       */
+/*   Created: 2020/01/26 23:25:47 by cbertola          #+#    #+#             */
+/*   Updated: 2020/01/27 00:10:02 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list		*ft_lstnew(void *content)
+int		is_tab_full(char *tab, char c)
 {
-	t_list	*elem;
+	int i;
 
-	if (!(elem = malloc(1 * sizeof(t_list))))
-		return (NULL);
-	elem->content = content;
-	elem->next = NULL;
-	return (elem);
+	i = 0;
+	while (tab[i])
+		if (tab[i++] != c)
+			return (0);
+	return (1);
 }

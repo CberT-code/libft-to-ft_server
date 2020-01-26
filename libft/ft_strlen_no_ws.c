@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_no_ws.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/18 20:05:51 by cbertola          #+#    #+#             */
-/*   Updated: 2019/10/18 20:30:21 by cbertola         ###   ########.fr       */
+/*   Created: 2020/01/26 16:54:16 by cbertola          #+#    #+#             */
+/*   Updated: 2020/01/26 16:57:43 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list		*ft_lstlast(t_list *lst)
+int		ft_strlen_no_ws(char *str)
 {
-	if (lst)
-		while (lst->next)
-			lst = lst->next;
-	return (lst);
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ' && str[i] != '\t' && str[i] != '\n' &&
+			str[i] != '\v' && str[i] != '\f' && str[i] != '\r')
+		i++;
+	return (i);
 }
