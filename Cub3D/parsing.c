@@ -6,41 +6,17 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/25 20:45:33 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/27 00:38:40 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		*check_map(t_elem *elem)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while (elem->map->tab_map[j][i])
-		if (elem->map->tab_map[j][i++] != '1')
-			return (ft_error_map(ERROR_MAP_F_WALL, elem, 3));
-	i--;
-	elem->map->line_len = ft_strlen(elem->map->tab_map[j]);
-	while (++j < elem->map->tab_len)
-	{
-		if (elem->map->tab_map[j][0] != '1')
-			return (ft_error_map(ERROR_MAP_S_WALL, elem, 3));
-		if (elem->map->tab_map[j][i] != '1')
-			return (ft_error_map(ERROR_MAP_FE_WALL, elem, 3));
-	}
-	i = 0;
-	j--;
-	while (elem->map->tab_map[j][i])
-		if (elem->map->tab_map[j][i++] != '1')
-			return (ft_error_map(ERROR_MAP_E_WALL, elem, 3));
-	return (elem->map);
-}
-
 int			check_elem(char *str, t_elem *elem)
 {
+	int i ;
+
+	i = 0;
 	if (elem->bit_elem < 255)
 	{
 		parsing_elem(str, elem);
@@ -48,19 +24,14 @@ int			check_elem(char *str, t_elem *elem)
 	}
 	if (*str == '1')
 	{
-		
-	//	elem->map->str_map = ft_strjoin_free(elem->map->str_map, str, 1);
-	//	elem->map->str_map = ft_strsubstr_free(elem->map->str_map, " ");
-	//	if (elem->map->line_len == 0)
-	//		elem->map->line_len = ft_strlen(elem->map->str_map);
-	//	elem->map->tab_len++;
+		i = 1;
+		map_str(str, elem->map);	
 		return (1);
 	}
-	if (!elem->map->str_map)
+	if (!i)
 		return (1);
 	return (0);
 }
-
 
 int			check_str_map(t_elem *elem)
 {
@@ -95,11 +66,9 @@ t_elem		*parsing(char *doc_map)
 	}
 	check_elem(line, elem);
 	free(line);
-	if (check_str_map(elem) != 1)
-		return (NULL);
-	//elem->map->tab_map = ft_splitnum(elem->map->str_map, elem->map->line_len);
+	full_map(elem->map);
 	if (check_map(elem) == NULL)
-		return (NULL);
+		return (NULL); 
 	return (elem);
 }
 

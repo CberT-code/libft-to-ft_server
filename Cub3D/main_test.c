@@ -2,12 +2,6 @@
 #include <stdlib.h>
 #include "cub3d.h"
 
-typedef struct    data_s
-{
-    void          *mlx_ptr;
-    void          *mlx_win;
-}                 data_t;
-
 int		click_mouse(int key)
 {
 	char  i;

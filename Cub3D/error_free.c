@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:46:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/25 19:15:14 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/27 00:06:49 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ void		init_struct(t_elem *elem)
 {
 	t_player	*player;
 	t_map		*map;
+	t_lmap		*line;
 
 	map = malloc(sizeof(t_map));
 	player = malloc(sizeof(t_player));
 	elem->check = (char **)malloc(sizeof(char *) * 5);
-	map->tab_len = 0;
+	map->tab_line = 0;
 	map->str_map = "";
 	map->line_len = 0;
 	elem->bit_elem = 0;
