@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:43:13 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/25 17:43:28 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:26:16 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,16 @@ void		fill_str(int bit, char *str, t_elem *elem)
 		i++;
 	temp = str + i;
 	j = ft_strlen(temp);
-	if (!(elem->check[bit] = malloc((sizeof(char) * j) + 1)))
+	if (!(elem->texture[bit] = malloc((sizeof(char) * j) + 1)))
 		return ;
 	elem->bit_elem = elem->bit_elem | (1 << bit);
 	j = 0;
 	while (temp[j])
 	{
-		elem->check[bit][j] = temp[j];
+		elem->texture[bit][j] = temp[j];
 		j++;
 	}
-	elem->check[bit][j] = '\0';
+	elem->texture[bit][j] = '\0';
 }
 
 void		parsing_elem(char *str, t_elem *elem)

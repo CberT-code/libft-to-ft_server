@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/27 00:09:22 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/27 17:26:48 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@
 ** 6 = int *C
 */
 
-# define ERROR_MAP_F_WALL "Error\nThe wall is open on the north side\n"
-# define ERROR_MAP_S_WALL "Error\nThe wall is open on the west side\n"
-# define ERROR_MAP_FE_WALL "Error\nThe wall is open on the east side\n"
-# define ERROR_MAP_E_WALL "Error\nThe wall is open on the south side\n"
+# define ERROR_MAP_N_WALL "Error\nThe wall is open on the north side\n"
+# define ERROR_MAP_W_WALL "Error\nThe wall is open on the west side\n"
+# define ERROR_MAP_E_WALL "Error\nThe wall is open on the east side\n"
+# define ERROR_MAP_S_WALL "Error\nThe wall is open on the south side\n"
 # define ERROR_MAP_NO "Error\nNO MAP FOUND\n"
 # define ERROR_MAP "Error\n MAP\n"
 # define ERROR_PLAYER_NO_POS "Error\nNO PLAYER POSITION FOUND\n"
@@ -65,7 +65,7 @@ typedef struct			s_player
 typedef struct			s_elem
 {
 	short				bit_elem;
-	char				**check;
+	char				**texture;
 	int					R[2];
 	int					F[3];
 	int					C[3];
@@ -88,12 +88,11 @@ int			num_player(char *str, t_elem *elem);
 int			fill_int(int bit, char *str, int *tab, short *bit_elem);
 int			fill_int_rgb(int bit, char *str, int *tab, short *bit_elem);
 int			check_elem(char *str, t_elem *elem);
-int			check_str_map(t_elem *elem);
 void		full_map(t_map *map);
 void		fill_str(int bit, char *str, t_elem *elem);
 void		parsing_elem(char *str, t_elem *elem);
 void		init_struct(t_elem *elem);
-void		*free_elem(t_elem *elem);
+void		free_elem(t_elem *elem);
 void		*ft_error_map(char *str, t_elem *elem, int i);
 void		*ft_error(char *str, t_elem *elem);
 void		*check_map(t_elem *elem);

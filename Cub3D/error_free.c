@@ -6,13 +6,13 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:46:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/27 00:06:49 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/27 16:19:01 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void		*free_elem(t_elem *elem)
+void		free_elem(t_elem *elem)
 {
 	int i;
 
@@ -20,12 +20,12 @@ void		*free_elem(t_elem *elem)
 	while (i < 5)
 	{
 		if (elem->bit_elem & (1 << i++))
-			free(elem->check[i - 1]);
+			free(elem->texture[i - 1]);
 	}
-	free(elem->check);
+	free(elem->texture);
 	free(elem->map);
+	free(elem->player);
 	free(elem);
-	return (NULL);
 }
 
 void		*ft_error_map(char *str, t_elem *elem, int i)
@@ -38,12 +38,9 @@ void		*ft_error_map(char *str, t_elem *elem, int i)
 	{
 		while (elem->map->tab_map[j])
 			free(elem->map->tab_map[j++]);
-		free(elem->map->tab_map);
 	}
-	if (i >= 1)
-		free(elem->map->str_map);
 	free_elem(elem);
-	return (NULL);
+	exit(0);
 }
 
 void		*ft_error(char *str, t_elem *elem)
@@ -51,7 +48,7 @@ void		*ft_error(char *str, t_elem *elem)
 	ft_printf(str);
 	if (elem != NULL)
 		free_elem(elem);
-	return (NULL);
+	exit(0);
 }
 
 void		init_struct(t_elem *elem)
@@ -62,7 +59,8 @@ void		init_struct(t_elem *elem)
 
 	map = malloc(sizeof(t_map));
 	player = malloc(sizeof(t_player));
-	elem->check = (char **)malloc(sizeof(char *) * 5);
+	elem->texture = (char **)malloc(sizeof(char *) * 5);
+	map->line = 0;
 	map->tab_line = 0;
 	map->str_map = "";
 	map->line_len = 0;
