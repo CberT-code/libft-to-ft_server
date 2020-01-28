@@ -6,24 +6,11 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:43:13 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/27 15:26:16 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:30:58 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int		num_player(char *str, t_elem *elem)
-{
-	int i;
-
-	i = ft_how_many(elem->map->str_map, "NSEW") < 1;
-	if (i < 1)
-		ft_error_map(ERROR_PLAYER_NO_POS, elem, 1);
-	if (i > 1)
-		ft_error_map(ERROR_PLAYER_EX_POS, elem, 1);
-	return (i);
-
-}
 
 int			fill_int(int bit, char *str, int *tab, short *bit_elem)
 {

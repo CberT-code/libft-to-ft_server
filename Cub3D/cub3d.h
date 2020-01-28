@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/27 17:26:48 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:28:27 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct			s_map
 	char				position;
 	char				**tab_map;
 	t_lmap				*line;
-	char				*str_map;
 	int					tab_line;
 	int					line_len;
 }						t_map;
@@ -58,7 +57,7 @@ typedef struct			s_player
 {
 	double				pos_x;
 	double				pos_y;
-	double				pos_angle;
+	double				angle;
 	double				vitess;
 }						t_player;
 
@@ -84,7 +83,8 @@ typedef struct			data_s
 ** 1 = N , 2 = E , 4 = S , 8 = W
 */
 
-int			num_player(char *str, t_elem *elem);
+int			num_player(t_elem *elem, t_map *map);
+int			num_player2(t_elem *elem, int j, int h);
 int			fill_int(int bit, char *str, int *tab, short *bit_elem);
 int			fill_int_rgb(int bit, char *str, int *tab, short *bit_elem);
 int			check_elem(char *str, t_elem *elem);
@@ -97,6 +97,7 @@ void		*ft_error_map(char *str, t_elem *elem, int i);
 void		*ft_error(char *str, t_elem *elem);
 void		*check_map(t_elem *elem);
 void		map_str(char *str, t_map *map);
+void		check_map2(t_elem *elem, int j);
 void		*check_map(t_elem *elem);
 void		full_map(t_map *map);
 t_elem		*parsing(char *doc_map);
