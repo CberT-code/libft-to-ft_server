@@ -6,12 +6,13 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 18:19:31 by cbertola          #+#    #+#             */
-/*   Updated: 2019/12/07 14:39:06 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:54:39 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 #include <stdio.h>
+#include <libc.h>
 
 void		ft_modif2(t_user *user)
 {
@@ -22,27 +23,24 @@ void		ft_modif2(t_user *user)
 
 void		ft_modif(t_user *user)
 {
-	user->age = 22;
-	user->nom = "tata";
-	user->prenom = "totou";
+	t_user	*envoi;
+	
+	envoi = user;
+	printf("deuxieme = %p\n", envoi);
+	free(envoi);
+
 	ft_modif2(user);
 }
 
 int			main(void)
 {
-	t_user	user;
+	t_user	*user;
 
-	user.age = 21;
-	user.nom = "toto";
-	user.prenom = "titi";
+	user = malloc(sizeof(t_user));
 
-	printf("user.age = %d\n", user.age);
-	printf("user.nom = %s\n", user.nom);
-	printf("user.prenom = %s\n", user.prenom);
-
-	ft_modif(&user);
-	printf("user.age = %d\n", user.age);
-	printf("user.nom = %s\n", user.nom);
-	printf("user.prenom = %s\n", user.prenom);
+	printf("%p\n", user);
+	ft_modif(user);
+	printf("%p\n", user);
+	free(user);
 
 }

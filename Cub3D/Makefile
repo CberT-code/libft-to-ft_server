@@ -6,7 +6,7 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/27 00:08:29 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/27 15:08:46 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= main_test.c parsing.c parsing_elem.c error_free.c full_map.c
@@ -34,7 +34,6 @@ libft:
 		make clean -C libft
 
 clean:      
-		make re -C libft
 		make clean -C libft
 		rm -f $(NAME)
 
