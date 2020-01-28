@@ -71,20 +71,19 @@ set switchbuf=usetab
 set tabpagemax=64
 set tabstop=4
 set wildmenu
-set window=69
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/42Perso/Cub3D
+cd ~/42Perso/Cub3D/parsing
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-$argadd parsing.c
-edit cub3d.h
+$argadd full_map.c
+edit ../cub3d.h
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -107,13 +106,13 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 23 + 35) / 70)
-exe 'vert 1resize ' . ((&columns * 91 + 182) / 364)
-exe '2resize ' . ((&lines * 44 + 35) / 70)
-exe 'vert 2resize ' . ((&columns * 91 + 182) / 364)
+exe '1resize ' . ((&lines * 33 + 42) / 84)
+exe 'vert 1resize ' . ((&columns * 90 + 182) / 364)
+exe '2resize ' . ((&lines * 48 + 42) / 84)
+exe 'vert 2resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 3resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 4resize ' . ((&columns * 90 + 182) / 364)
-exe 'vert 5resize ' . ((&columns * 90 + 182) / 364)
+exe 'vert 5resize ' . ((&columns * 91 + 182) / 364)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -241,12 +240,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 49 - ((8 * winheight(0) + 11) / 23)
+let s:l = 1 - ((0 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-49
-normal! 05|
+1
+normal! 0
 wincmd w
 argglobal
 if bufexists("parsing.c") | buffer parsing.c | else | edit parsing.c | endif
@@ -376,12 +375,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 2 - ((1 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-2
-normal! 060|
+1
+normal! 0
 wincmd w
 argglobal
 if bufexists("parsing_elem.c") | buffer parsing_elem.c | else | edit parsing_elem.c | endif
@@ -511,15 +510,15 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 34) / 68)
+let s:l = 1 - ((0 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 011|
+normal! 02|
 wincmd w
 argglobal
-if bufexists("error_free.c") | buffer error_free.c | else | edit error_free.c | endif
+if bufexists("full_map.c") | buffer full_map.c | else | edit full_map.c | endif
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -646,12 +645,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 34) / 68)
+let s:l = 1 - ((0 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 022|
+normal! 09|
 wincmd w
 argglobal
 if bufexists("full_map.c") | buffer full_map.c | else | edit full_map.c | endif
@@ -781,27 +780,25 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 34) / 68)
+let s:l = 1 - ((0 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
 wincmd w
-2wincmd w
-exe '1resize ' . ((&lines * 23 + 35) / 70)
-exe 'vert 1resize ' . ((&columns * 91 + 182) / 364)
-exe '2resize ' . ((&lines * 44 + 35) / 70)
-exe 'vert 2resize ' . ((&columns * 91 + 182) / 364)
+exe '1resize ' . ((&lines * 33 + 42) / 84)
+exe 'vert 1resize ' . ((&columns * 90 + 182) / 364)
+exe '2resize ' . ((&lines * 48 + 42) / 84)
+exe 'vert 2resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 3resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 4resize ' . ((&columns * 90 + 182) / 364)
-exe 'vert 5resize ' . ((&columns * 90 + 182) / 364)
+exe 'vert 5resize ' . ((&columns * 91 + 182) / 364)
 tabnext 1
-badd +1 parsing.c
 badd +0 full_map.c
-badd +0 error_free.c
+badd +0 parsing.c
 badd +0 parsing_elem.c
-badd +0 cub3d.h
+badd +0 ../cub3d.h
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

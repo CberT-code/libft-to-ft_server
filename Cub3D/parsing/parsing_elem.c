@@ -6,11 +6,11 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:43:13 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 14:30:58 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:47:23 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int			fill_int(int bit, char *str, int *tab, short *bit_elem)
 {

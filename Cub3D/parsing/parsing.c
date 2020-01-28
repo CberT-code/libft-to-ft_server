@@ -6,11 +6,11 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 14:32:49 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:47:13 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int			num_player2(t_elem *elem, int j, int h)
 {

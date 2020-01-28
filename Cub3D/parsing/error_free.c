@@ -6,11 +6,11 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:46:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 14:33:19 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:46:39 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void		free_elem(t_elem *elem)
 {

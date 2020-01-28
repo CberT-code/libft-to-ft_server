@@ -6,11 +6,11 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:44:07 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 15:15:17 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/28 16:50:16 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void		check_map2(t_elem *elem, int j)
 {
@@ -24,7 +24,6 @@ void		check_map2(t_elem *elem, int j)
 	}
 	else
 	{
-		printf("test = %d\n", j);
 		while (size < (ft_strlen(elem->map->tab_map[j - 1]) - 1))
 			if (elem->map->tab_map[j - 1][size++] != '1')
 				ft_error_map(ERROR_MAP_N_WALL, elem, 3);

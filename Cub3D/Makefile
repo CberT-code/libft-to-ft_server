@@ -6,10 +6,10 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/28 16:40:31 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/28 16:48:37 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRCS		= main_test.c parsing.c parsing_elem.c error_free.c full_map.c
+SRCS		= main_test.c parsing/parsing.c parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c
 
 LIBFT		= libft/libft.a
 
