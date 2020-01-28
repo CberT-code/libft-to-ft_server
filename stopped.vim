@@ -219,12 +219,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 45 - ((44 * winheight(0) + 41) / 82)
+let s:l = 46 - ((45 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-45
-normal! 022|
+46
+normal! 021|
 tabnext 1
 badd +0 makefile
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0

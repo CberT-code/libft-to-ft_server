@@ -6,7 +6,7 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/28 16:40:14 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/28 16:40:31 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS		= main_test.c parsing.c parsing_elem.c error_free.c full_map.c
@@ -43,6 +43,7 @@ fclean:
 
 git:		fclean
 			git add -A
+			git add *
 			git commit -u -m "$(LOGFILE) $(MSG)"
 			git push
 
