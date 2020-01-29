@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 20:42:01 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/29 21:41:51 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,8 @@ void		map_color_case(t_data *data, int x, int y, int t_case)
 		if (elem->map->tab_map[x / t_case][y / t_case] == '1' ||
 				(y / t_case) >= ft_strlen(elem->map->tab_map[x / t_case]))
 			color_square(i, data->mini, (int)0xCBC9C8, elem->map->y_max);
-		else if (elem->map->tab_map[x / t_case][(y / t_case)] == 'N' ||
-				elem->map->tab_map[x / t_case][y / t_case] == 'E' ||
-				elem->map->tab_map[x / t_case][y / t_case] == 'S' ||
-				elem->map->tab_map[x / t_case][y / t_case] == 'W')
+		else if ((x / t_case == data->elem->player->pos_x) &&
+				(y / t_case == data->elem->player->pos_y))
 			color_square(i, data->mini, (int)0xFF0000, elem->map->y_max);
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, elem->map->y_max);
