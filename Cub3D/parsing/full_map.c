@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:44:07 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 01:03:42 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:06:56 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void		check_map2(t_elem *elem, int j)
 	int size;
 
 	size = ft_strlen(elem->map->tab_map[j]) - 1;
-	if (size > elem->map->x_max)
-		elem->map->x_max = size + 1;
+	if (size > elem->map->y_max)
+		elem->map->y_max = size + 1;
 	if (size == (ft_strlen(elem->map->tab_map[j - 1]) - 1))
 	{
 		if (elem->map->tab_map[j][size] != '1')
@@ -50,7 +50,7 @@ void		*check_map(t_elem *elem)
 	}
 	if (!(is_tab_full(elem->map->tab_map[j], '1')))
 		ft_error_map(ERROR_MAP_S_WALL, elem, 3);
-	elem->map->y_max = ++j;
+	elem->map->x_max = ++j;
 	return (elem->map);
 }
 

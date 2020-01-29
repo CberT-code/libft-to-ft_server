@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 13:51:50 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:51:59 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ typedef struct			s_lmap
 	struct s_lmap		*next;
 }						t_lmap;
 
+typedef struct	s_image
+{
+	void	*image;
+	int		height;
+	int		width;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	int 	*buffer;
+}				t_image;
+
 typedef struct			s_map
 {
 	char				**tab_map;
@@ -75,19 +86,21 @@ typedef struct			s_elem
 	t_player			*player;
 }						t_elem;
 
-typedef struct			data_s
+typedef struct			s_mini
+{
+	t_image				*img;
+	int					t_case;
+}						t_mini;
+
+typedef struct			s_data
 {
 	void				*mlx_ptr;
 	void				*mlx_win;
-}						data_t;
+	t_elem				*elem;
+	t_image				*img;
+	t_mini				*mini;
+}						t_data;
 
-typedef struct	mlx_img_list_s
-{
-  int			width;
-  int			height;
-  char			*buffer;
-  struct mlx_img_list_s	*next;
-} mlx_img_list_t;
 /* 
 ** Position :
 ** 1 = N , 2 = E , 4 = S , 8 = W
@@ -110,8 +123,9 @@ void		map_str(char *str, t_map *map);
 void		*check_map(t_elem *elem);
 void		check_map2(t_elem *elem, int j);
 void		full_map(t_map *map);
-void		map_color_case(data_t *data, t_elem *elem, int *yx, int t_case);
-void		display_map(data_t *data, t_elem *elem);
+void		map_color_case(t_data *data, int x, int y, int t_case);
+void		display_map(t_data *data, t_elem *elem,int  t_case);
+void		mini_map(t_data *data, t_elem *elem);
 t_elem		*parsing(char *doc_map);
 
 # endif

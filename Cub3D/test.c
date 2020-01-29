@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:00:21 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 14:21:03 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:54:32 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ int main(int argc, char **argv)
 	//mlx_hook(data.mlx_win, 17, 0, destroy, elem);
 	//mlx_hook(data.mlx_win, 2, 0, handle_key, NULL);
 	//display_map(&data, elem);
-	img->image = mlx_new_image(data.mlx_ptr, 50, 50);
-	img->buffer = (int *)mlx_get_data_addr(data.mlx_ptr, &img->bpp, &img->size_l, &img->endian);
-	img->buffer[0] = 0xffffff;
+	img->image = mlx_new_image(data.mlx_ptr, 1000, 500);
+	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp, &img->size_l, &img->endian);
+	img->buffer[0] = (int)0xFF0000;
+	img->buffer[1] = (int)0xFF0000;
+	img->buffer[2] = (int)0xFF0000;
+	//int (*pixel_array)[1000][1]; // prepare le cast
+	//pixel_array = (void *)img->buffer; // cast le char * en int[][]
+	//for (int i = 0; i < 50; i++)
+	//	*pixel_array[50][i] = 250;
 	mlx_put_image_to_window(data.mlx_ptr, data.mlx_win, img->image, 0, 0); 
 	mlx_loop(data.mlx_ptr);
 }
