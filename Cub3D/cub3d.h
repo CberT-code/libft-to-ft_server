@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 14:28:27 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/29 13:51:50 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # define CUB3D_H
 
 # include "libft/libft.h"
+# include <mlx.h>
+# include <stdlib.h>
 # define CHECKER 255;
 
 
@@ -46,11 +48,12 @@ typedef struct			s_lmap
 
 typedef struct			s_map
 {
-	char				position;
 	char				**tab_map;
 	t_lmap				*line;
 	int					tab_line;
 	int					line_len;
+	int					x_max;
+	int					y_max;
 }						t_map;
 
 typedef struct			s_player
@@ -78,6 +81,13 @@ typedef struct			data_s
 	void				*mlx_win;
 }						data_t;
 
+typedef struct	mlx_img_list_s
+{
+  int			width;
+  int			height;
+  char			*buffer;
+  struct mlx_img_list_s	*next;
+} mlx_img_list_t;
 /* 
 ** Position :
 ** 1 = N , 2 = E , 4 = S , 8 = W
@@ -97,9 +107,11 @@ void		*ft_error_map(char *str, t_elem *elem, int i);
 void		*ft_error(char *str, t_elem *elem);
 void		*check_map(t_elem *elem);
 void		map_str(char *str, t_map *map);
-void		check_map2(t_elem *elem, int j);
 void		*check_map(t_elem *elem);
+void		check_map2(t_elem *elem, int j);
 void		full_map(t_map *map);
+void		map_color_case(data_t *data, t_elem *elem, int *yx, int t_case);
+void		display_map(data_t *data, t_elem *elem);
 t_elem		*parsing(char *doc_map);
 
 # endif
