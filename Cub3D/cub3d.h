@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 18:51:59 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 03:54:46 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@
 # define ERROR_PLAYER_EX_POS "Error\nTOO MANY PLAYER POSITION FOUND\n"
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
+
+typedef struct			s_key
+{
+	int					key;
+	struct s_key		*next;
+}						t_key;
 
 typedef struct			s_lmap
 {
@@ -82,8 +88,6 @@ typedef struct			s_elem
 	int					R[2];
 	int					F[3];
 	int					C[3];
-	t_map				*map;
-	t_player			*player;
 }						t_elem;
 
 typedef struct			s_mini
@@ -99,6 +103,8 @@ typedef struct			s_data
 	t_elem				*elem;
 	t_image				*img;
 	t_mini				*mini;
+	t_map				*map;
+	t_player			*player;
 }						t_data;
 
 /* 
@@ -106,26 +112,27 @@ typedef struct			s_data
 ** 1 = N , 2 = E , 4 = S , 8 = W
 */
 
-int			num_player(t_elem *elem, t_map *map);
-int			num_player2(t_elem *elem, int j, int h);
+int			num_player(t_data *data, t_map *map);
+int			num_player2(t_data *data, int j, int h);
 int			fill_int(int bit, char *str, int *tab, short *bit_elem);
 int			fill_int_rgb(int bit, char *str, int *tab, short *bit_elem);
-int			check_elem(char *str, t_elem *elem);
+int			check_elem(char *str, t_elem *elem, t_data *data);
 void		full_map(t_map *map);
 void		fill_str(int bit, char *str, t_elem *elem);
 void		parsing_elem(char *str, t_elem *elem);
-void		init_struct(t_elem *elem);
-void		free_elem(t_elem *elem);
-void		*ft_error_map(char *str, t_elem *elem, int i);
-void		*ft_error(char *str, t_elem *elem);
-void		*check_map(t_elem *elem);
+void		init_struct(t_data *data);
+void		free_elem(t_data *data);
+void		*ft_error_map(char *str, t_data *data, int i);
+void		*ft_error(char *str, t_data *data);
+void		*check_map(t_data *data);
 void		map_str(char *str, t_map *map);
-void		*check_map(t_elem *elem);
-void		check_map2(t_elem *elem, int j);
+void		*check_map(t_data *data);
+void		check_map2(t_data *data, int j);
 void		full_map(t_map *map);
 void		map_color_case(t_data *data, int x, int y, int t_case);
-void		display_map(t_data *data, t_elem *elem,int  t_case);
+void		display_map(t_data *data, t_map *map,int  t_case);
 void		mini_map(t_data *data, t_elem *elem);
-t_elem		*parsing(char *doc_map);
+void		parsing(char *doc_map, t_data *data);
+void		color_square(int i, t_mini *mini, int color, int mult);
 
 # endif

@@ -6,52 +6,52 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 19:44:07 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 19:06:56 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 03:28:04 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		check_map2(t_elem *elem, int j)
+void		check_map2(t_data *data, int j)
 {
 	int size;
 
-	size = ft_strlen(elem->map->tab_map[j]) - 1;
-	if (size > elem->map->y_max)
-		elem->map->y_max = size + 1;
-	if (size == (ft_strlen(elem->map->tab_map[j - 1]) - 1))
+	size = ft_strlen(data->map->tab_map[j]) - 1;
+	if (size > data->map->y_max)
+		data->map->y_max = size + 1;
+	if (size == (ft_strlen(data->map->tab_map[j - 1]) - 1))
 	{
-		if (elem->map->tab_map[j][size] != '1')
-			ft_error_map(ERROR_MAP_E_WALL, elem, 3);
+		if (data->map->tab_map[j][size] != '1')
+			ft_error_map(ERROR_MAP_E_WALL, data, 3);
 	}
 	else
 	{
-		while (size < (ft_strlen(elem->map->tab_map[j - 1]) - 1))
-			if (elem->map->tab_map[j - 1][size++] != '1')
-				ft_error_map(ERROR_MAP_N_WALL, elem, 3);
-		while (size > (ft_strlen(elem->map->tab_map[j - 1]) - 1))
-			if (elem->map->tab_map[j][size--] != '1')
-				ft_error_map(ERROR_MAP_S_WALL, elem, 3);
+		while (size < (ft_strlen(data->map->tab_map[j - 1]) - 1))
+			if (data->map->tab_map[j - 1][size++] != '1')
+				ft_error_map(ERROR_MAP_N_WALL, data, 3);
+		while (size > (ft_strlen(data->map->tab_map[j - 1]) - 1))
+			if (data->map->tab_map[j][size--] != '1')
+				ft_error_map(ERROR_MAP_S_WALL, data, 3);
 	}
 }
 
-void		*check_map(t_elem *elem)
+void		*check_map(t_data *data)
 {
 	int j;
 
 	j = 0;
-	if (!(is_tab_full(elem->map->tab_map[j], '1')))
-		ft_error_map(ERROR_MAP_N_WALL, elem, 3);
-	while (++j < elem->map->line_len)
+	if (!(is_tab_full(data->map->tab_map[j], '1')))
+		ft_error_map(ERROR_MAP_N_WALL, data, 3);
+	while (++j < data->map->line_len)
 	{
-		if (elem->map->tab_map[j][0] != '1')
-			ft_error_map(ERROR_MAP_W_WALL, elem, 3);
-		check_map2(elem, j);
+		if (data->map->tab_map[j][0] != '1')
+			ft_error_map(ERROR_MAP_W_WALL, data, 3);
+		check_map2(data, j);
 	}
-	if (!(is_tab_full(elem->map->tab_map[j], '1')))
-		ft_error_map(ERROR_MAP_S_WALL, elem, 3);
-	elem->map->x_max = ++j;
-	return (elem->map);
+	if (!(is_tab_full(data->map->tab_map[j], '1')))
+		ft_error_map(ERROR_MAP_S_WALL, data, 3);
+	data->map->x_max = ++j;
+	return (data->map);
 }
 
 void		map_str(char *str, t_map *map)

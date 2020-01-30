@@ -6,29 +6,29 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:46:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 16:46:39 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 03:26:33 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		free_elem(t_elem *elem)
+void		free_elem(t_data *data)
 {
 	int i;
 
 	i = 0;
 	while (i < 5)
 	{
-		if (elem->bit_elem & (1 << i++))
-			free(elem->texture[i - 1]);
+		if (data->elem->bit_elem & (1 << i++))
+			free(data->elem->texture[i - 1]);
 	}
-	free(elem->texture);
-	free(elem->map);
-	free(elem->player);
-	free(elem);
+	free(data->elem->texture);
+	free(data->map);
+	free(data->player);
+	free(data->elem);
 }
 
-void		*ft_error_map(char *str, t_elem *elem, int i)
+void		*ft_error_map(char *str, t_data *data, int i)
 {
 	int j;
 
@@ -36,22 +36,22 @@ void		*ft_error_map(char *str, t_elem *elem, int i)
 	ft_printf(str);
 	if (i >= 3)
 	{
-		while (elem->map->tab_map[j])
-			free(elem->map->tab_map[j++]);
+		while (data->map->tab_map[j])
+			free(data->map->tab_map[j++]);
 	}
-	free_elem(elem);
+	free_elem(data);
 	exit(0);
 }
 
-void		*ft_error(char *str, t_elem *elem)
+void		*ft_error(char *str, t_data *data)
 {
 	ft_printf(str);
-	if (elem != NULL)
-		free_elem(elem);
+	if (data->elem != NULL)
+		free_elem(data);
 	exit(0);
 }
 
-void		init_struct(t_elem *elem)
+void		init_struct(t_data *data)
 {
 	t_player	*player;
 	t_map		*map;
@@ -59,7 +59,7 @@ void		init_struct(t_elem *elem)
 
 	map = ft_calloc(sizeof(t_map), 1);
 	player = ft_calloc(sizeof(t_player), 1);
-	elem->texture = (char **)malloc(sizeof(char *) * 5);
-	elem->map = map;
-	elem->player = player;
+	data->elem->texture = (char **)malloc(sizeof(char *) * 5);
+	data->map = map;
+	data->player = player;
 }

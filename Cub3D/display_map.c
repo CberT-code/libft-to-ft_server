@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/29 21:41:51 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 03:37:55 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,43 @@ void		color_square(int i, t_mini *mini, int color, int mult)
 
 void		map_color_case(t_data *data, int x, int y, int t_case)
 {
-	t_elem	*elem;
+	t_map	*map;
 	int		i;
 
-	i = y + (x * (data->elem->map->y_max * t_case));
-	elem = data->elem;
+	i = y + (x * (data->map->y_max * t_case));
+	map = data->map;
 	if (y % t_case == 0 || x % t_case == 0)
 		data->mini->img->buffer[i] = (int)0x000000;
 	else
 	{
-		if (elem->map->tab_map[x / t_case][y / t_case] == '1' ||
-				(y / t_case) >= ft_strlen(elem->map->tab_map[x / t_case]))
-			color_square(i, data->mini, (int)0xCBC9C8, elem->map->y_max);
-		else if ((x / t_case == data->elem->player->pos_x) &&
-				(y / t_case == data->elem->player->pos_y))
-			color_square(i, data->mini, (int)0xFF0000, elem->map->y_max);
+		if (map->tab_map[x / t_case][y / t_case] == '1' ||
+				(y / t_case) >= ft_strlen(map->tab_map[x / t_case]))
+			color_square(i, data->mini, (int)0xCBC9C8, map->y_max);
+		else if ((x / t_case == data->player->pos_x) &&
+				(y / t_case == data->player->pos_y))
+			color_square(i, data->mini, (int)0xFF0000, map->y_max);
 		else
-			color_square(i, data->mini, (int)0xFFFFFF, elem->map->y_max);
+			color_square(i, data->mini, (int)0xFFFFFF, map->y_max);
 	}
 }
 
-void		display_map(t_data *data, t_elem *elem, int t_case)
+void		display_map(t_data *data, t_map *map, int t_case)
 {
 	int		x;
 	int		y;
 	t_image	*img;
 
-	x = t_case * elem->map->x_max;
-	y = t_case * elem->map->y_max;
+	x = t_case * map->x_max;
+	y = t_case * map->y_max;
 	img = data->mini->img;
 	img->image = mlx_new_image(data->mlx_ptr, y, x);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
 	x = 1;
-	while (x <= (t_case * elem->map->x_max))
+	while (x <= (t_case * map->x_max))
 	{
 		y = 1;
-		while (y <= (t_case * elem->map->y_max))
+		while (y <= (t_case * map->y_max))
 		{
 			map_color_case(data, x, y, t_case);
 			y += t_case;
@@ -81,12 +81,12 @@ void		mini_map(t_data *data, t_elem *elem)
 	mini = malloc(sizeof(t_mini));
 	data->mini = mini;
 	mini->img = malloc(sizeof(t_image));
-	mini->t_case = elem->R[0] / 3 / elem->map->y_max;
-	while ((mini->t_case * elem->map->x_max) > (elem->R[0] / 3) ||
-			(mini->t_case * elem->map->y_max) > (elem->R[1] / 3))
+	mini->t_case = elem->R[0] / 3 / data->map->y_max;
+	while ((mini->t_case * data->map->x_max) > (elem->R[0] / 3) ||
+			(mini->t_case * data->map->y_max) > (elem->R[1] / 3))
 		mini->t_case--;
 	if (mini->t_case < 10)
 		printf("Map too big to be displayed %d\n", mini->t_case);
 	else
-		display_map(data, elem, mini->t_case);
+		display_map(data, data->map, mini->t_case);
 }

@@ -18,6 +18,7 @@ nmap \tc <Plug>Colorizer
 vmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 nnoremap <SNR>110_: :=v:count ? v:count : ''
+nnoremap <SNR>114_: :=v:count ? v:count : ''
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 nnoremap <silent> <Plug>(CommandTTag) :CommandTTag
@@ -46,6 +47,7 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set backupdir=~/.cache/vim
+set balloonexpr=SyntasticBalloonsExprNotifier()
 set confirm
 set directory=~/.cache/vim
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -111,8 +113,8 @@ exe 'vert 1resize ' . ((&columns * 90 + 182) / 364)
 exe '2resize ' . ((&lines * 48 + 42) / 84)
 exe 'vert 2resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 3resize ' . ((&columns * 90 + 182) / 364)
-exe 'vert 4resize ' . ((&columns * 90 + 182) / 364)
-exe 'vert 5resize ' . ((&columns * 91 + 182) / 364)
+exe 'vert 4resize ' . ((&columns * 91 + 182) / 364)
+exe 'vert 5resize ' . ((&columns * 90 + 182) / 364)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -240,12 +242,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 16) / 33)
+let s:l = 99 - ((0 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+99
+normal! 05|
 wincmd w
 argglobal
 if bufexists("parsing.c") | buffer parsing.c | else | edit parsing.c | endif
@@ -375,12 +377,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 57 - ((20 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+57
+normal! 042|
 wincmd w
 argglobal
 if bufexists("parsing_elem.c") | buffer parsing_elem.c | else | edit parsing_elem.c | endif
@@ -510,15 +512,15 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 41) / 82)
+let s:l = 107 - ((81 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 02|
+107
+normal! 0
 wincmd w
 argglobal
-if bufexists("full_map.c") | buffer full_map.c | else | edit full_map.c | endif
+if bufexists("error_free.c") | buffer error_free.c | else | edit error_free.c | endif
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -645,12 +647,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 41) / 82)
+let s:l = 62 - ((61 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 09|
+62
+normal! 018|
 wincmd w
 argglobal
 if bufexists("full_map.c") | buffer full_map.c | else | edit full_map.c | endif
@@ -780,25 +782,26 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 1 - ((0 * winheight(0) + 41) / 82)
+let s:l = 38 - ((37 * winheight(0) + 41) / 82)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+38
+normal! 023|
 wincmd w
 exe '1resize ' . ((&lines * 33 + 42) / 84)
 exe 'vert 1resize ' . ((&columns * 90 + 182) / 364)
 exe '2resize ' . ((&lines * 48 + 42) / 84)
 exe 'vert 2resize ' . ((&columns * 90 + 182) / 364)
 exe 'vert 3resize ' . ((&columns * 90 + 182) / 364)
-exe 'vert 4resize ' . ((&columns * 90 + 182) / 364)
-exe 'vert 5resize ' . ((&columns * 91 + 182) / 364)
+exe 'vert 4resize ' . ((&columns * 91 + 182) / 364)
+exe 'vert 5resize ' . ((&columns * 90 + 182) / 364)
 tabnext 1
-badd +0 full_map.c
-badd +0 parsing.c
-badd +0 parsing_elem.c
-badd +0 ../cub3d.h
+badd +1 ../cub3d.h
+badd +22 full_map.c
+badd +1 parsing.c
+badd +1 parsing_elem.c
+badd +1 error_free.c
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -810,7 +813,6 @@ if file_readable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &so = s:so_save | let &siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
