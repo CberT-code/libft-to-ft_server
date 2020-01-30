@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/30 07:02:54 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:31:43 by cyrillebe        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,12 @@ void		map_color_case(t_data *data, int x, int y, int t_case)
 		if (map->tab_map[x / t_case][y / t_case] == '1' ||
 				(y / t_case) >= ft_strlen(map->tab_map[x / t_case]))
 			color_square(i, data->mini, (int)0xCBC9C8, map->y_max);
-		else if ((x / t_case == data->player->pos_x) &&
-				(y / t_case == data->player->pos_y) &&
-				data->player->position == 0)
-		{
-			//color_square(i, data->mini, (int)0xFF0000, map->y_max);
-			data->player->position = i + (t_case / 2) + (map->y_max * t_case / 2);
-	printf("position joueur = %d\n", data->player->position);
-		}
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->y_max);
 	}
 }
 
-void		display_map(t_data *data, t_map *map, int t_case)
+void		display_map(t_data *data, t_map *map, int t_case, t_player *player)
 {
 	int		x;
 	int		y;
@@ -62,6 +54,9 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	x = t_case * map->x_max;
 	y = t_case * map->y_max;
 	img = data->mini->img;
+	if (player->position == 0)
+			player->position = player->pos_y * player->pos_x * t_case;
+	printf("position joueur = %d\n", player->position);
 	img->image = mlx_new_image(data->mlx_ptr, y, x);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
