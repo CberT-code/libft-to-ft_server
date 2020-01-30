@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/30 03:37:55 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 07:02:54 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		map_color_case(t_data *data, int x, int y, int t_case)
 	int		i;
 
 	i = y + (x * (data->map->y_max * t_case));
-	map = data->map;
+		map = data->map;
 	if (y % t_case == 0 || x % t_case == 0)
 		data->mini->img->buffer[i] = (int)0x000000;
 	else
@@ -41,8 +41,13 @@ void		map_color_case(t_data *data, int x, int y, int t_case)
 				(y / t_case) >= ft_strlen(map->tab_map[x / t_case]))
 			color_square(i, data->mini, (int)0xCBC9C8, map->y_max);
 		else if ((x / t_case == data->player->pos_x) &&
-				(y / t_case == data->player->pos_y))
-			color_square(i, data->mini, (int)0xFF0000, map->y_max);
+				(y / t_case == data->player->pos_y) &&
+				data->player->position == 0)
+		{
+			//color_square(i, data->mini, (int)0xFF0000, map->y_max);
+			data->player->position = i + (t_case / 2) + (map->y_max * t_case / 2);
+	printf("position joueur = %d\n", data->player->position);
+		}
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->y_max);
 	}

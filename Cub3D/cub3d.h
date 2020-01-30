@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/30 03:54:46 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/30 07:01:58 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ typedef struct			s_player
 	double				pos_y;
 	double				angle;
 	double				vitess;
+	int					position;
+	int					move_up;
+	int					move_down;
+	int					move_left;
+	int					move_right;
 }						t_player;
 
 typedef struct			s_elem
@@ -105,6 +110,7 @@ typedef struct			s_data
 	t_mini				*mini;
 	t_map				*map;
 	t_player			*player;
+	t_key				*key;
 }						t_data;
 
 /* 
