@@ -11,21 +11,21 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-void		color_player(int t_case, t_map *map, t_player *player)
-{
-	i = player->pos_x * t_case + 
-	((y / t_case == player->pos_y) &&
-				(x / t_case == data->player->pos_x) &&
-				data->player->position == 0)
-		{
-			color_square(i, data->mini, (int)0xFF0000, map->x_max);
-	printf("la couleur est la = %x\n", (int)0xFF0000);
-			printf("player = %d\n", i);
-			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
-	//printf("position joueur = %d\n", data->player->position);
-		}
-
-}
+//void		color_player(int t_case, t_map *map, t_player *player)
+//{
+//	i = player->pos_x * t_case + 
+//	((y / t_case == player->pos_y) &&
+//				(x / t_case == data->player->pos_x) &&
+//				data->player->position == 0)
+//		{
+//			color_square(i, data->mini, (int)0xFF0000, map->x_max);
+//	printf("la couleur est la = %x\n", (int)0xFF0000);
+//			printf("player = %d\n", i);
+//			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
+//	//printf("position joueur = %d\n", data->player->position);
+//		}
+//
+//}
 void		color_square(int i, t_mini *mini, int color, int mult)
 {
 	int x;
@@ -44,8 +44,6 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 {
 	t_map	*map;
 	int		i;
-	int 		(*pixel_array)[data->map->x_max][1];
-	pixel_array = (void *)data->mini->img->buffer;
 
 	i = x + (y * (data->map->x_max * t_case));
 		map = data->map;
@@ -56,35 +54,38 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 		if (map->tab_map[y / t_case][x / t_case] == '1' ||
 				(x / t_case) >= ft_strlen(map->tab_map[y / t_case]))
 			color_square(i, data->mini, (int)0xCBC9C8, map->x_max);
-		else if ((y / t_case == data->player->pos_y) &&
-				(x / t_case == data->player->pos_x) &&
-				data->player->position == 0)
-		{
-			data->player->position = i + t_case / 2 + (map->x_max * t_case / 2);
-			color_square(i, data->mini, (int)0xFF0000, map->x_max);
-	printf("la couleur est la = %x\n", (int)0xFF0000);
-			printf("player = %d\n", i);
+		//else if ((y / t_case == data->player->pos_y) &&
+		//		(x / t_case == data->player->pos_x) &&
+		//		data->player->position == 0)
+		//{
+		//	color_square(i, data->mini, (int)0xFF0000, map->x_max);
+	//printf("la couleur est la = %x\n", (int)0xFF0000);
+	//		printf("player = %d\n", i);
 			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
 	//printf("position joueur = %d\n", data->player->position);
-		}
+	//	}
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
 	}
+	color_square(data->player->position, data->mini, (int)0xFF0000, map->x_max);
 }
 
 void		display_map(t_data *data, t_map *map, int t_case)
 {
 	int			x;
 	int			y;
+	int			ligne;
 	t_image		*img;
 
-
+	ligne = t_case * map->x_max;
 	y = t_case * map->y_max;
 	x = t_case * map->x_max;
 	img = data->mini->img;
 	img->image = mlx_new_image(data->mlx_ptr, x, y);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
+	if (data->player->position == 0)
+	data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + (data->player->pos_y * ligne * t_case));
 	
 	y = 1;
 	while (y <= (map->y_max * t_case))

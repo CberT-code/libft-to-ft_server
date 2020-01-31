@@ -25,13 +25,13 @@ int		refresh_img(t_data *data)
 int		move(t_data *data)
 {
 	if (data->player->move_up == 1)
-		data->player->pos_y--;
+		data->player->position -= (data->map->x_max * data->mini->t_case * VITESSE);
 	if (data->player->move_down == 1)
-		data->player->pos_y++;
+		data->player->position += (data->map->x_max * data->mini->t_case * VITESSE);
 	if (data->player->move_left == 1)
-		data->player->pos_x--;
+		data->player->position -= (1 * VITESSE);
 	if (data->player->move_right == 1)
-		data->player->pos_x++;
+		data->player->position += (1 * VITESSE);
 	refresh_img(data);
 
 	return (0);
