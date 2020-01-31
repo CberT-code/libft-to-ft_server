@@ -6,7 +6,7 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/31 15:01:36 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/31 15:17:03 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,12 @@ ${NAME}:
 			./$(NAME) test.cub
 
 libft:
-		make re -C libft
-		make clean -C libft
+			make re -C libft
+			make clean -C libft
 
 clean:      
-		make clean -C libft
-		rm -f $(NAME)
+			make clean -C libft
+			rm -f $(NAME)
 
 fclean:
 			make fclean -C libft
@@ -53,6 +53,8 @@ git:		fclean
 
 all:		${NAME}
 
-re:			clean all
+re:			clean
+			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+			./$(NAME) test.cub
 
 .PHONY:		all clean fclean re libft
