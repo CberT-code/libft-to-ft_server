@@ -11,7 +11,21 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+void		color_player(int t_case, t_map *map, t_player *player)
+{
+	i = player->pos_x * t_case + 
+	((y / t_case == player->pos_y) &&
+				(x / t_case == data->player->pos_x) &&
+				data->player->position == 0)
+		{
+			color_square(i, data->mini, (int)0xFF0000, map->x_max);
+	printf("la couleur est la = %x\n", (int)0xFF0000);
+			printf("player = %d\n", i);
+			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
+	//printf("position joueur = %d\n", data->player->position);
+		}
 
+}
 void		color_square(int i, t_mini *mini, int color, int mult)
 {
 	int x;
@@ -46,6 +60,7 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 				(x / t_case == data->player->pos_x) &&
 				data->player->position == 0)
 		{
+			data->player->position = i + t_case / 2 + (map->x_max * t_case / 2);
 			color_square(i, data->mini, (int)0xFF0000, map->x_max);
 	printf("la couleur est la = %x\n", (int)0xFF0000);
 			printf("player = %d\n", i);
