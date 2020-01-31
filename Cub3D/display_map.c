@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/31 17:36:28 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/31 20:37:04 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		color_square(int i, t_mini *mini, int color, int mult)
 	}
 }
 
-void		map_color_case(t_data *data, int y, int x, int t_case)
+void		map_color_case(t_data *data, int y, int x, int t_case )
 {
 	t_map	*map;
 	int		i;
@@ -70,7 +70,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 			&img->size_l, &img->endian);
 	pixel_array = (void *)img->buffer;
 	y = 1;
-	while (y <= (t_case * map->y_max))
+	while (y <= (map->y_max * t_case))
 	{
 		x = 1;
 		while (x <= (t_case * map->x_max))
