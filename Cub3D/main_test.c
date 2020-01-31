@@ -98,7 +98,8 @@ int main(int argc, char **argv)
 	key.next = NULL;
 	data.key = &key;
 	data.key->key = 0;
-	(void)argc;
+	if (argc != 2)
+		return (dprintf(1, "cc\n"));
 	parsing(argv[1], &data);
 	data.mlx_ptr = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx_ptr, data.elem->R[0], data.elem->R[1], "CUB3D");
