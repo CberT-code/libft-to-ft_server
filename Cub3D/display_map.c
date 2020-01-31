@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/31 15:29:56 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/01/31 17:36:28 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ void		map_color_case(t_data *data, int y, int x, int t_case)
 				(x / t_case == data->player->pos_x) &&
 				data->player->position == 0)
 		{
-			//color_square(i, data->mini, (int)0xFF0000, map->x_max);
-			data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
-	printf("position joueur = %d\n", data->player->position);
+			color_square(i, data->mini, (int)0xFF0000, map->x_max);
+	printf("la couleur est la = %x\n", (int)0xFF0000);
+			printf("player = %d\n", i);
+			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
+	//printf("position joueur = %d\n", data->player->position);
 		}
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
@@ -55,9 +57,10 @@ void		map_color_case(t_data *data, int y, int x, int t_case)
 
 void		display_map(t_data *data, t_map *map, int t_case)
 {
-	int		x;
-	int		y;
-	t_image	*img;
+	int			x;
+	int			y;
+	t_image		*img;
+	int 		(*pixel_array)[map->x_max][1];
 
 	y = t_case * map->y_max;
 	x = t_case * map->x_max;
@@ -65,6 +68,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	img->image = mlx_new_image(data->mlx_ptr, x, y);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
+	pixel_array = (void *)img->buffer;
 	y = 1;
 	while (y <= (t_case * map->y_max))
 	{
@@ -76,6 +80,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 		}
 		y += t_case;
 	}
+	printf("la couleur est = %x\n", pixel_array[26991/map->x_max][26991 % map->x_max][0]);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->image, 0, 0);
 }
 
