@@ -6,7 +6,7 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/31 13:43:19 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/31 15:01:36 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ MLXFLAGS	= -lmlx -framework OpenGL -framework Appkit
 
 LOGFILE		= $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
 
-${NAME}:	$(LIBFT)
+${NAME}:	
+			make re -C libft
+			make clean -C libft
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 			./$(NAME) test.cub
 
