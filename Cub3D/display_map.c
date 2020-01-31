@@ -30,6 +30,8 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 {
 	t_map	*map;
 	int		i;
+	int 		(*pixel_array)[data->map->x_max][1];
+	pixel_array = (void *)data->mini->img->buffer;
 
 	i = x + (y * (data->map->x_max * t_case));
 		map = data->map;
@@ -60,7 +62,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	int			x;
 	int			y;
 	t_image		*img;
-	int 		(*pixel_array)[map->x_max][1];
+
 
 	y = t_case * map->y_max;
 	x = t_case * map->x_max;
@@ -68,7 +70,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	img->image = mlx_new_image(data->mlx_ptr, x, y);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
-	pixel_array = (void *)img->buffer;
+	
 	y = 1;
 	while (y <= (map->y_max * t_case))
 	{
@@ -80,7 +82,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 		}
 		y += t_case;
 	}
-	printf("la couleur est = %x\n", pixel_array[26991/map->x_max][26991 % map->x_max][0]);
+//	printf("la couleur est = %x\n", pixel_array[26991/map->x_max][26991 % map->x_max][0]);
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->image, 0, 0);
 }
 
@@ -93,7 +95,7 @@ void		mini_map(t_data *data, t_elem *elem)
 	mini->img = malloc(sizeof(t_image));
 	mini->t_case = elem->R[0] / 3 / data->map->x_max;
 	while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
-			(mini->t_case * data->map->x_max) > (elem->R[1] / 3))
+			(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
 		mini->t_case--;
 	if (mini->t_case < 10)
 		printf("Map too big to be displayed %d\n", mini->t_case);
