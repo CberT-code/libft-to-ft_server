@@ -6,10 +6,12 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/29 19:10:22 by cbertola         ###   ########.fr        #
+#    Updated: 2020/01/31 15:17:03 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRCS		= main_test.c display_map.c parsing/parsing.c parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c
+
+SRCS		= main_test.c display_map.c parsing/parsing.c \
+			  parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c
 
 LIBFT		= libft/libft.a
 
@@ -25,17 +27,19 @@ MLXFLAGS	= -lmlx -framework OpenGL -framework Appkit
 
 LOGFILE		= $(LOGPATH) `date +'%y.%m.%d %H:%M:%S'`
 
-${NAME}:	$(LIBFT)
+${NAME}:	
+			make re -C libft
+			make clean -C libft
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 			./$(NAME) test.cub
 
 libft:
-		make re -C libft
-		make clean -C libft
+			make re -C libft
+			make clean -C libft
 
 clean:      
-		make clean -C libft
-		rm -f $(NAME)
+			make clean -C libft
+			rm -f $(NAME)
 
 fclean:
 			make fclean -C libft
@@ -49,6 +53,8 @@ git:		fclean
 
 all:		${NAME}
 
-re:			clean all
+re:			clean
+			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+			./$(NAME) test.cub
 
 .PHONY:		all clean fclean re libft

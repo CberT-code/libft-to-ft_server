@@ -25,13 +25,13 @@ int		refresh_img(t_data *data)
 int		move(t_data *data)
 {
 	if (data->player->move_up == 1)
-		data->player->pos_x--;
+		data->player->position -= (data->map->x_max * data->mini->t_case * VITESSE);
 	if (data->player->move_down == 1)
-		data->player->pos_x++;
+		data->player->position += (data->map->x_max * data->mini->t_case * VITESSE);
 	if (data->player->move_left == 1)
-		data->player->pos_y--;
+		data->player->position -= (1 * VITESSE);
 	if (data->player->move_right == 1)
-		data->player->pos_y++;
+		data->player->position += (1 * VITESSE);
 	refresh_img(data);
 
 	return (0);
@@ -98,7 +98,8 @@ int main(int argc, char **argv)
 	key.next = NULL;
 	data.key = &key;
 	data.key->key = 0;
-	(void)argc;
+	if (argc != 2)
+		return (dprintf(1, "cc\n"));
 	parsing(argv[1], &data);
 	data.mlx_ptr = mlx_init();
 	data.mlx_win = mlx_new_window(data.mlx_ptr, data.elem->R[0], data.elem->R[1], "CUB3D");
