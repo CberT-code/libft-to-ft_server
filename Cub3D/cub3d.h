@@ -38,7 +38,7 @@
 # define ERROR_PLAYER_EX_POS "Error\nTOO MANY PLAYER POSITION FOUND\n"
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
-# define VITESSE 4
+# define VITESSE 0.25
 
 typedef struct			s_key
 {
@@ -76,8 +76,8 @@ typedef struct			s_map
 
 typedef struct			s_player
 {
-	float				pos_x;
-	float				pos_y;
+	double				pos_x;
+	double				pos_y;
 	double				angle;
 	double				vitess;
 	int					position;
