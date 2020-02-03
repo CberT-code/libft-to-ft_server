@@ -11,21 +11,56 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-//void		color_player(int t_case, t_map *map, t_player *player)
-//{
-//	i = player->pos_x * t_case + 
-//	((y / t_case == player->pos_y) &&
-//				(x / t_case == data->player->pos_x) &&
-//				data->player->position == 0)
-//		{
-//			color_square(i, data->mini, (int)0xFF0000, map->x_max);
-//	printf("la couleur est la = %x\n", (int)0xFF0000);
-//			printf("player = %d\n", i);
-//			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
-//	//printf("position joueur = %d\n", data->player->position);
-//		}
-//
-//}
+
+
+void AffichePixel(t_data *data, int x, int y, int x_centre, int y_centre) {
+/* (x,y) les coordonnes du pixel a dessiner, (x_centre,x_centre) les coordonnees du centre du cercle */
+/* d'apres les symetries d'un cercle, on peut un pixel dessiner a 8 endroits en meme temps */
+   data->mini->img->buffer[x_centre+x * y_centre+y] = (int)0xFF0000;
+   data->mini->img->buffer[x_centre-x * y_centre+y] = (int)0xFF0000;
+   data->mini->img->buffer[x_centre-x * y_centre-y] = (int)0xFF0000;
+   data->mini->img->buffer[x_centre+y * y_centre+x] = (int)0xFF0000;
+   data->mini->img->buffer[x_centre+y * y_centre-x] = (int)0xFF0000;
+   data->mini->img->buffer[x_centre-y * y_centre+x] = (int)0xFF0000;
+   data->mini->img->buffer[x_centre-y * y_centre-x] = (int)0xFF0000;
+
+ //  XDrawPoint(display,win,gc, x_centre+x, y_centre-y);
+  // XDrawPoint(display,win,gc, x_centre-x, y_centre+y);
+  // XDrawPoint(display,win,gc, x_centre-x, y_centre-y);
+  // XDrawPoint(display,win,gc, x_centre+y, y_centre+x);
+  // XDrawPoint(display,win,gc, x_centre+y, y_centre-x);
+  // XDrawPoint(display,win,gc, x_centre-y, y_centre+x);
+  // XDrawPoint(display,win,gc, x_centre-y, y_centre-x);
+} 
+
+void BrensenhamCercle(t_data *data, int r, int x_centre,int y_centre) {
+/* r est le rayon du cercle. (x_centre,x_centre) les coordonnees du centre du cercle  */
+ int    x;
+ int    y;
+ int    d;
+
+ x = 0;
+ y = r;
+ d = (5 - r) / 4;
+ AffichePixel(data, x, y, x_centre, y_centre);
+
+ while (y > x)
+ {
+	if (d < 0)
+		d += x + x + 3;
+	else {
+		d += x+ x- y- y + 5;
+		y--;
+	}
+	x++;
+	AffichePixel(data, x, y, x_centre, y_centre);
+ }
+
+}
+
+/* ******************************************************************** */
+
+
 void		color_square(int i, t_mini *mini, int color, int mult)
 {
 	int x;
@@ -40,10 +75,13 @@ void		color_square(int i, t_mini *mini, int color, int mult)
 	}
 }
 
+
 void		map_color_case(t_data *data, int y, int x, int t_case )
 {
 	t_map	*map;
 	int		i;
+	int		centre_x;
+	int		centre_y;
 
 	i = x + (y * (data->map->x_max * t_case));
 		map = data->map;
@@ -67,7 +105,7 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
 	}
-	color_square(data->player->position, data->mini, (int)0xFF0000, map->x_max);
+	BrensenhamCercle(data, 10, 500, 29000);
 }
 
 void		display_map(t_data *data, t_map *map, int t_case)
@@ -85,7 +123,7 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
 	if (data->player->position == 0)
-	data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + (data->player->pos_y * ligne * t_case));
+	    data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + (data->player->pos_y * ligne * t_case));
 	
 	y = 1;
 	while (y <= (map->y_max * t_case))
