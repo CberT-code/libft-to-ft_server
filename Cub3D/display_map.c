@@ -6,60 +6,44 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/31 20:37:04 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/03 13:36:38 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 
-void AffichePixel(t_data *data, int x, int y, int x_centre, int y_centre) {
-/* (x,y) les coordonnes du pixel a dessiner, (x_centre,x_centre) les coordonnees du centre du cercle */
-/* d'apres les symetries d'un cercle, on peut un pixel dessiner a 8 endroits en meme temps */
-   data->mini->img->buffer[x_centre+x * y_centre+y] = (int)0xFF0000;
-   data->mini->img->buffer[x_centre-x * y_centre+y] = (int)0xFF0000;
-   data->mini->img->buffer[x_centre-x * y_centre-y] = (int)0xFF0000;
-   data->mini->img->buffer[x_centre+y * y_centre+x] = (int)0xFF0000;
-   data->mini->img->buffer[x_centre+y * y_centre-x] = (int)0xFF0000;
-   data->mini->img->buffer[x_centre-y * y_centre+x] = (int)0xFF0000;
-   data->mini->img->buffer[x_centre-y * y_centre-x] = (int)0xFF0000;
+int			calc_distance_vector(t_player *player, int actual_x, int actual_y)
+{
+	int distance;
 
- //  XDrawPoint(display,win,gc, x_centre+x, y_centre-y);
-  // XDrawPoint(display,win,gc, x_centre-x, y_centre+y);
-  // XDrawPoint(display,win,gc, x_centre-x, y_centre-y);
-  // XDrawPoint(display,win,gc, x_centre+y, y_centre+x);
-  // XDrawPoint(display,win,gc, x_centre+y, y_centre-x);
-  // XDrawPoint(display,win,gc, x_centre-y, y_centre+x);
-  // XDrawPoint(display,win,gc, x_centre-y, y_centre-x);
-} 
-
-void BrensenhamCercle(t_data *data, int r, int x_centre,int y_centre) {
-/* r est le rayon du cercle. (x_centre,x_centre) les coordonnees du centre du cercle  */
- int    x;
- int    y;
- int    d;
-
- x = 0;
- y = r;
- d = (5 - r) / 4;
- AffichePixel(data, x, y, x_centre, y_centre);
-
- while (y > x)
- {
-	if (d < 0)
-		d += x + x + 3;
-	else {
-		d += x+ x- y- y + 5;
-		y--;
-	}
-	x++;
-	AffichePixel(data, x, y, x_centre, y_centre);
- }
-
+	distance = sqrt(pow(player->coord_x - actual_x, 2) + pow(player->coord_y - actual_y, 2));
+	return (distance);
 }
 
-/* ******************************************************************** */
+void		draw_circle(int ligne, t_image *img, t_player *player, int radius, int color)
+{
+	int		target_x;
+	int		target_y;
+	int		actual_x;
+	int		actual_y;
 
+	target_x = player->coord_x + radius;
+	target_y = player->coord_y + radius;
+	actual_x = player->coord_x - radius;
+	while (actual_x < target_x)
+	{
+		actual_y = player->coord_y - radius;
+		while (actual_y < target_y)
+		{
+			if (calc_distance_vector(player, actual_x, actual_y) <= radius)
+				img->buffer[actual_x + actual_y ] = (int)0xFF0000;
+			actual_y++;
+		}
+		actual_x++;
+	}
+
+}
 
 void		color_square(int i, t_mini *mini, int color, int mult)
 {
@@ -92,20 +76,10 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 		if (map->tab_map[y / t_case][x / t_case] == '1' ||
 				(x / t_case) >= ft_strlen(map->tab_map[y / t_case]))
 			color_square(i, data->mini, (int)0xCBC9C8, map->x_max);
-		//else if ((y / t_case == data->player->pos_y) &&
-		//		(x / t_case == data->player->pos_x) &&
-		//		data->player->position == 0)
-		//{
-		//	color_square(i, data->mini, (int)0xFF0000, map->x_max);
-	//printf("la couleur est la = %x\n", (int)0xFF0000);
-	//		printf("player = %d\n", i);
-			//data->player->position = i + (t_case / 2) + (map->x_max * t_case / 2);
-	//printf("position joueur = %d\n", data->player->position);
-	//	}
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
 	}
-	BrensenhamCercle(data, 10, 500, 29000);
+	draw_circle((data->map->x_max * t_case),data->mini->img, data->player, 10, (int)0xFF0000);
 }
 
 void		display_map(t_data *data, t_map *map, int t_case)
@@ -122,8 +96,8 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	img->image = mlx_new_image(data->mlx_ptr, x, y);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
-	if (data->player->position == 0)
-	    data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + (data->player->pos_y * ligne * t_case));
+
+	data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + (data->player->pos_y * ligne * t_case));
 	
 	y = 1;
 	while (y <= (map->y_max * t_case))
@@ -140,6 +114,13 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->image, 0, 0);
 }
 
+void		calcul_coord(t_player *player, t_map *map, int t_case)
+{
+	player->coord_x = (player->pos_x * t_case) + t_case / 2;
+	player->coord_y = ((player->pos_y * t_case) * (map->x_max * t_case)) + ( (map->x_max * t_case) * t_case / 2);
+	printf("coord y : %d\n",player->coord_y);
+}
+
 void		mini_map(t_data *data, t_elem *elem)
 {
 	t_mini			*mini;
@@ -154,5 +135,8 @@ void		mini_map(t_data *data, t_elem *elem)
 	if (mini->t_case < 10)
 		printf("Map too big to be displayed %d\n", mini->t_case);
 	else
+	{
+		calcul_coord(data->player, data->map, mini->t_case);
 		display_map(data, data->map, mini->t_case);
+	}
 }
