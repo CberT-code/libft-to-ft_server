@@ -29,16 +29,40 @@ void		draw_circle(int ligne, t_image *img, t_player *player, int radius, int col
 	int		actual_y;
 
 	target_x = player->coord_x + radius;
-	target_y = player->coord_y + (radius * ligne) ;
+	target_y = player->coord_y + radius;
 	actual_x = player->coord_x - radius;
+
+    if (img->buffer[target_x + (player->coord_y * ligne)] == (int)0xCBC9C8)
+    {
+        player->coord_x -= VITESSE;
+        return;
+    }
+    if (img->buffer[player->coord_x + (target_y * ligne)] == (int)0xCBC9C8)
+    {
+        player->coord_y -= VITESSE;
+        return;
+    }
+    if (img->buffer[actual_x + (player->coord_y * ligne)] == (int)0xCBC9C8)
+    {
+        player->coord_x += VITESSE;
+        return;
+    }
+    if (img->buffer[ player->coord_x  + ((player->coord_y - radius) * ligne)] == (int)0xCBC9C8)
+    {
+        player->coord_x += VITESSE;
+        return;
+    }
+
+
 	while (actual_x < target_x)
 	{
-		actual_y = player->coord_y - (radius * ligne);
+		actual_y = player->coord_y - radius;
 		while (actual_y < target_y)
 		{
-			if (calc_distance_vector(player, actual_x, actual_y) <= radius)
-				img->buffer[actual_x + actual_y ] = (int)0xFF0000;
-			actual_y *= ligne;
+			if (calc_distance_vector(player, actual_x, actual_y) < radius)
+				img->buffer[actual_x + (actual_y * ligne) ] = (int)0xFF0000;
+			actual_y++;
+            
 		}
 		actual_x++;
 	}
@@ -79,7 +103,7 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
 	}
-	draw_circle((data->map->x_max * t_case),data->mini->img, data->player, 10, (int)0xFF0000);
+	draw_circle((data->map->x_max * t_case),data->mini->img, data->player, t_case / 4, (int)0xFF0000);
 }
 
 void		display_map(t_data *data, t_map *map, int t_case)
@@ -116,8 +140,8 @@ void		display_map(t_data *data, t_map *map, int t_case)
 
 void		calcul_coord(t_player *player, t_map *map, int t_case)
 {
-	player->coord_x = (player->pos_x * t_case) + t_case / 2;
-	player->coord_y = ((player->pos_y * t_case) * (map->x_max * t_case)) + ( (map->x_max * t_case) * t_case / 2);
+	player->coord_x = (player->pos_x * t_case) + (t_case / 2);
+	player->coord_y = (player->pos_y * t_case) + (t_case / 2);
 	printf("coord y : %d\n",player->coord_y);
 }
 
@@ -136,6 +160,7 @@ void		mini_map(t_data *data, t_elem *elem)
 		printf("Map too big to be displayed %d\n", mini->t_case);
 	else
 	{
+        if (!data->player->coord_x)
 		calcul_coord(data->player, data->map, mini->t_case);
 		display_map(data, data->map, mini->t_case);
 	}
