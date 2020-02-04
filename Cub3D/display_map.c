@@ -29,16 +29,16 @@ void		draw_circle(int ligne, t_image *img, t_player *player, int radius, int col
 	int		actual_y;
 
 	target_x = player->coord_x + radius;
-	target_y = player->coord_y + radius;
+	target_y = player->coord_y + (radius * ligne) ;
 	actual_x = player->coord_x - radius;
 	while (actual_x < target_x)
 	{
-		actual_y = player->coord_y - radius;
+		actual_y = player->coord_y - (radius * ligne);
 		while (actual_y < target_y)
 		{
 			if (calc_distance_vector(player, actual_x, actual_y) <= radius)
 				img->buffer[actual_x + actual_y ] = (int)0xFF0000;
-			actual_y++;
+			actual_y *= ligne;
 		}
 		actual_x++;
 	}
