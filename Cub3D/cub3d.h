@@ -47,6 +47,12 @@ typedef struct			s_key
 	struct s_key		*next;
 }						t_key;
 
+typedef struct			s_coord
+{
+	int					y;
+	int					x;
+}						t_coord;
+
 typedef struct			s_lmap
 {
 	int					size;
@@ -79,8 +85,7 @@ typedef struct			s_player
 {
 	int					pos_x;
 	int					pos_y;
-	int					coord_x;				
-	int					coord_y;				
+	t_coord				*coord;				
 	double				angle;
 	double				vitess;
 	int					position;
@@ -107,8 +112,8 @@ typedef struct			s_mini
 
 typedef struct			s_data
 {
-	void				*mlx_ptr;
-	void				*mlx_win;
+	void				*ptr;
+	void				*win;
 	t_elem				*elem;
 	t_image				*img;
 	t_mini				*mini;
@@ -142,7 +147,9 @@ void		full_map(t_map *map);
 void		map_color_case(t_data *data, int x, int y, int t_case);
 void		display_map(t_data *data, t_map *map,int  t_case);
 void		mini_map(t_data *data, t_elem *elem);
+void		mini_map2(t_data *data, t_elem *elem);
 void		parsing(char *doc_map, t_data *data);
 void		color_square(int i, t_mini *mini, int color, int mult);
+void		draw_circle(int ligne, t_image *img, t_player *player, int radius);
 
 # endif

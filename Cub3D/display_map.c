@@ -13,60 +13,33 @@
 #include "cub3d.h"
 
 
-int			calc_distance_vector(t_player *player, int actual_x, int actual_y)
+int			calc_distance_vector(t_coord *coord, int actual_x, int actual_y)
 {
-	int distance;
+	int dst;
 
-	distance = sqrt(pow(player->coord_x - actual_x, 2) + pow(player->coord_y - actual_y, 2));
-	return (distance);
+	dst = sqrt(pow(coord->x - actual_x, 2) + pow(coord->y - actual_y, 2));
+	return (dst);
 }
 
-void		draw_circle(int ligne, t_image *img, t_player *player, int radius, int color)
+void		draw_circle(int ligne, t_image *img, t_player *player, int radius)
 {
-	int		target_x;
-	int		target_y;
-	int		actual_x;
-	int		actual_y;
+	t_coord		target;
+	t_coord		actual;
 
-	target_x = player->coord_x + radius;
-	target_y = player->coord_y + radius;
-	actual_x = player->coord_x - radius;
-
-    if (img->buffer[target_x + (player->coord_y * ligne)] == (int)0xCBC9C8)
-    {
-        player->coord_x -= VITESSE;
-        return;
-    }
-    if (img->buffer[player->coord_x + (target_y * ligne)] == (int)0xCBC9C8)
-    {
-        player->coord_y -= VITESSE;
-        return;
-    }
-    if (img->buffer[actual_x + (player->coord_y * ligne)] == (int)0xCBC9C8)
-    {
-        player->coord_x += VITESSE;
-        return;
-    }
-    if (img->buffer[ player->coord_x  + ((player->coord_y - radius) * ligne)] == (int)0xCBC9C8)
-    {
-        player->coord_x += VITESSE;
-        return;
-    }
-
-
-	while (actual_x < target_x)
+	target.x = player->coord->x + radius;
+	target.y = player->coord->y + radius;
+	actual.x = player->coord->x - radius;
+	while (actual.x < target.x)
 	{
-		actual_y = player->coord_y - radius;
-		while (actual_y < target_y)
+		actual.y = player->coord->y - radius;
+		while (actual.y < target.y)
 		{
-			if (calc_distance_vector(player, actual_x, actual_y) < radius)
-				img->buffer[actual_x + (actual_y * ligne) ] = (int)0xFF0000;
-			actual_y++;
-            
+			if (calc_distance_vector(player->coord, actual.x, actual.y) < radius)
+				img->buffer[actual.x + (actual.y * ligne) ] = (int)0xFF0000;
+			actual.y++;
 		}
-		actual_x++;
+		actual.x++;
 	}
-
 }
 
 void		color_square(int i, t_mini *mini, int color, int mult)
@@ -103,7 +76,8 @@ void		map_color_case(t_data *data, int y, int x, int t_case )
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
 	}
-	draw_circle((data->map->x_max * t_case),data->mini->img, data->player, t_case / 4, (int)0xFF0000);
+		
+
 }
 
 void		display_map(t_data *data, t_map *map, int t_case)
@@ -117,12 +91,10 @@ void		display_map(t_data *data, t_map *map, int t_case)
 	y = t_case * map->y_max;
 	x = t_case * map->x_max;
 	img = data->mini->img;
-	img->image = mlx_new_image(data->mlx_ptr, x, y);
+	img->image = mlx_new_image(data->ptr, x, y);
 	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
 			&img->size_l, &img->endian);
-
 	data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + (data->player->pos_y * ligne * t_case));
-	
 	y = 1;
 	while (y <= (map->y_max * t_case))
 	{
@@ -134,34 +106,68 @@ void		display_map(t_data *data, t_map *map, int t_case)
 		}
 		y += t_case;
 	}
-//	printf("la couleur est = %x\n", pixel_array[26991/map->x_max][26991 % map->x_max][0]);
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, img->image, 0, 0);
 }
 
 void		calcul_coord(t_player *player, t_map *map, int t_case)
 {
-	player->coord_x = (player->pos_x * t_case) + (t_case / 2);
-	player->coord_y = (player->pos_y * t_case) + (t_case / 2);
-	printf("coord y : %d\n",player->coord_y);
+	if (!(player->coord = ft_calloc(sizeof(t_coord), 1)))
+		return ;
+	player->coord->x = (player->pos_x * t_case) + (t_case / 2);
+	player->coord->y = (player->pos_y * t_case) + (t_case / 2);
+	printf("coord y : %d\n",player->coord->y);
 }
 
 void		mini_map(t_data *data, t_elem *elem)
 {
-	t_mini			*mini;
+	t_mini *mini;
 
-	mini = malloc(sizeof(t_mini));
-	data->mini = mini;
-	mini->img = malloc(sizeof(t_image));
-	mini->t_case = elem->R[0] / 3 / data->map->x_max;
-	while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
-			(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
-		mini->t_case--;
-	if (mini->t_case < 10)
-		printf("Map too big to be displayed %d\n", mini->t_case);
-	else
+
+	if (!data->mini)
 	{
-        if (!data->player->coord_x)
-		calcul_coord(data->player, data->map, mini->t_case);
-		display_map(data, data->map, mini->t_case);
+		if (!(data->mini = ft_calloc(sizeof(t_mini), 1)))
+			return ;
+		mini = data->mini;
+		if (!(mini->img = ft_calloc(sizeof(t_image), 1)))
+			return ;
+		mini->t_case = elem->R[0] / 3 / data->map->x_max;
+		while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
+			(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
+			mini->t_case--;
+		if (mini->t_case < 10)
+		printf("Map too big to be displayed %d\n", mini->t_case);
 	}
+	if (mini->t_case >= 10)
+	{
+		mini = data->mini;
+        if (!data->player->coord)
+			calcul_coord(data->player, data->map, mini->t_case);
+		display_map(data, data->map, mini->t_case);
+		draw_circle((data->map->x_max * mini->t_case),mini->img, data->player, mini->t_case / 3);
+		mlx_put_image_to_window(data->ptr, data->win, mini->img->image, 0, 0);
+	}
+}
+
+void		mini_map2(t_data *data, t_elem *elem)
+{
+	t_mini *mini;
+
+//	if (!(data->mini = ft_calloc(sizeof(t_mini), 1)))
+//		return ;
+	mini = data->mini;
+//	if (!(mini->img = ft_calloc(sizeof(t_image), 1)))
+//		return ;
+//	mini->t_case = elem->R[0] / 3 / data->map->x_max;
+//	while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
+	//		(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
+	//	mini->t_case--;
+//	if (mini->t_case < 10)
+//		printf("Map too big to be displayed %d\n", mini->t_case);
+//	else
+//	{
+        if (!data->player->coord)
+			calcul_coord(data->player, data->map, mini->t_case);
+		display_map(data, data->map, mini->t_case);
+//	}
+	draw_circle((data->map->x_max * mini->t_case),mini->img, data->player, mini->t_case / 3);
+	mlx_put_image_to_window(data->ptr, data->win, mini->img->image, 0, 0);
 }
