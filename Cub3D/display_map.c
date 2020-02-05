@@ -132,9 +132,9 @@ void		mini_map(t_data *data, t_elem *elem)
 		while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
 			(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
 			mini->t_case--;
-		if (mini->t_case < 10)
-		printf("Map too big to be displayed %d\n", mini->t_case);
 	}
+	if (mini->t_case < 10)
+		printf("Map too big to be displayed %d\n", mini->t_case);
 	if (data->mini->t_case >= 10)
 	{
 		mini = data->mini;
