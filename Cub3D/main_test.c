@@ -17,25 +17,30 @@ int		destroy(t_data *data)
 
 int		refresh_img(t_data *data)
 {
-	mlx_destroy_image(data->ptr, data->mini->img->image);
-	mini_map(data, data->elem);
+	mlx_destroy_image(data->ptr, data->player->img->image);
+	display_player(data, data->map, data->mini->t_case);
 	return (0);
 }
 
 int		move(t_data *data)
 {
 	int	t_case;
+	int i;
 
+	i = VITESSE;
 	t_case = data->mini->t_case;
-	if (data->player->move_up == 1)
-		data->player->coord->y -= VITESSE;
-	if (data->player->move_down == 1)
-		data->player->coord->y += VITESSE;
-	if (data->player->move_left == 1)
-		data->player->coord->x -= VITESSE;
-	if (data->player->move_right == 1)
-		data->player->coord->x += VITESSE;
-	refresh_img(data);
+	while (i--)
+	{
+		if (data->player->move_up == 1)
+			data->player->coord->y--;
+		if (data->player->move_down == 1)
+			data->player->coord->y++;
+		if (data->player->move_left == 1)
+			data->player->coord->x--;
+		if (data->player->move_right == 1)
+			data->player->coord->x++;
+		refresh_img(data);
+	}
 
 	return (0);
 }
@@ -96,6 +101,7 @@ int main(int argc, char **argv)
 	data.ptr = mlx_init();
 	data.win = mlx_new_window(data.ptr, data.elem->R[0], data.elem->R[1], "CUB3D");
 	mini_map(&data, data.elem);
+	display_player(&data, data.map, data.mini->t_case);
 	mlx_loop_hook(data.ptr, loop_game, &data);
 	mlx_loop(data.ptr);
 }

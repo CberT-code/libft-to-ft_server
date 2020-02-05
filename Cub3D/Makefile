@@ -1,17 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/01/31 15:17:03 by cbertola         ###   ########.fr        #
+#    Updated: 2020/02/05 19:17:25 by cyrillebe        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= main_test.c display_map.c parsing/parsing.c \
-			  parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c
+			  parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c \
+			  color_map.c
 
 LIBFT		= libft/libft.a
 
@@ -57,4 +58,13 @@ re:			clean
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 			./$(NAME) test.cub
 
-.PHONY:		all clean fclean re libft
+re2:		clean
+			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+			./$(NAME) test2.cub
+
+re3:			clean
+			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+			./$(NAME) test3.cub
+
+
+.PHONY:		all clean fclean re re2 re3 libft

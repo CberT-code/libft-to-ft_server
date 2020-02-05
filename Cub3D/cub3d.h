@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/30 07:01:58 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:14:43 by cyrillebe        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define ERROR_PLAYER_EX_POS "Error\nTOO MANY PLAYER POSITION FOUND\n"
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
-# define VITESSE 3
+# define VITESSE 4
 
 typedef struct			s_key
 {
@@ -85,7 +85,8 @@ typedef struct			s_player
 {
 	int					pos_x;
 	int					pos_y;
-	t_coord				*coord;				
+	t_coord				*coord;
+	t_image				*img;
 	double				angle;
 	double				vitess;
 	int					position;
@@ -108,6 +109,7 @@ typedef struct			s_mini
 {
 	t_image				*img;
 	int					t_case;
+	int					ligne;
 }						t_mini;
 
 typedef struct			s_data
@@ -132,6 +134,7 @@ int			num_player2(t_data *data, int j, int h);
 int			fill_int(int bit, char *str, int *tab, short *bit_elem);
 int			fill_int_rgb(int bit, char *str, int *tab, short *bit_elem);
 int			check_elem(char *str, t_elem *elem, t_data *data);
+int			calc_dst_vector(t_coord *coord, int actual_x, int actual_y);
 void		full_map(t_map *map);
 void		fill_str(int bit, char *str, t_elem *elem);
 void		parsing_elem(char *str, t_elem *elem);
@@ -144,12 +147,14 @@ void		map_str(char *str, t_map *map);
 void		*check_map(t_data *data);
 void		check_map2(t_data *data, int j);
 void		full_map(t_map *map);
-void		map_color_case(t_data *data, int x, int y, int t_case);
-void		display_map(t_data *data, t_map *map,int  t_case);
-void		mini_map(t_data *data, t_elem *elem);
 void		parsing(char *doc_map, t_data *data);
+void		mini_map(t_data *data, t_elem *elem);
+void		init_mini(t_data *data, t_elem *elem, t_mini *mini);
+void		calcul_coord(t_player *player, t_map *map, int t_case);
+void		display_map(t_data *data, t_map *map, int t_case);
+void		map_color_case(t_data *data, int y, int x, int t_case);
 void		color_square(int i, t_mini *mini, int color, int mult);
-void		draw_circle(int ligne, t_image *img, t_player *player, int radius);
-void		color_square(int i, t_mini *mini, int color, int mult);
+void		draw_circle(int ligne, t_image *img, t_data *data, int radius);
+void		display_player(t_data *data, t_map *map, int t_case);
 
 # endif
