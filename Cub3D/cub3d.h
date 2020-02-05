@@ -147,9 +147,9 @@ void		full_map(t_map *map);
 void		map_color_case(t_data *data, int x, int y, int t_case);
 void		display_map(t_data *data, t_map *map,int  t_case);
 void		mini_map(t_data *data, t_elem *elem);
-void		mini_map2(t_data *data, t_elem *elem);
 void		parsing(char *doc_map, t_data *data);
 void		color_square(int i, t_mini *mini, int color, int mult);
 void		draw_circle(int ligne, t_image *img, t_player *player, int radius);
+void		color_square(int i, t_mini *mini, int color, int mult);
 
 # endif

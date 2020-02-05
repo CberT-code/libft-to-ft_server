@@ -121,7 +121,6 @@ void		mini_map(t_data *data, t_elem *elem)
 {
 	t_mini *mini;
 
-
 	if (!data->mini)
 	{
 		if (!(data->mini = ft_calloc(sizeof(t_mini), 1)))
@@ -136,7 +135,7 @@ void		mini_map(t_data *data, t_elem *elem)
 		if (mini->t_case < 10)
 		printf("Map too big to be displayed %d\n", mini->t_case);
 	}
-	if (mini->t_case >= 10)
+	if (data->mini->t_case >= 10)
 	{
 		mini = data->mini;
         if (!data->player->coord)
@@ -145,29 +144,4 @@ void		mini_map(t_data *data, t_elem *elem)
 		draw_circle((data->map->x_max * mini->t_case),mini->img, data->player, mini->t_case / 3);
 		mlx_put_image_to_window(data->ptr, data->win, mini->img->image, 0, 0);
 	}
-}
-
-void		mini_map2(t_data *data, t_elem *elem)
-{
-	t_mini *mini;
-
-//	if (!(data->mini = ft_calloc(sizeof(t_mini), 1)))
-//		return ;
-	mini = data->mini;
-//	if (!(mini->img = ft_calloc(sizeof(t_image), 1)))
-//		return ;
-//	mini->t_case = elem->R[0] / 3 / data->map->x_max;
-//	while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
-	//		(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
-	//	mini->t_case--;
-//	if (mini->t_case < 10)
-//		printf("Map too big to be displayed %d\n", mini->t_case);
-//	else
-//	{
-        if (!data->player->coord)
-			calcul_coord(data->player, data->map, mini->t_case);
-		display_map(data, data->map, mini->t_case);
-//	}
-	draw_circle((data->map->x_max * mini->t_case),mini->img, data->player, mini->t_case / 3);
-	mlx_put_image_to_window(data->ptr, data->win, mini->img->image, 0, 0);
 }
