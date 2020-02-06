@@ -1,3 +1,5 @@
+
+
 #include "cub3d.h"
 
 int		click_mouse(int key)

@@ -50,16 +50,16 @@ void		calcul_coord(t_player *player, t_map *map, int t_case)
 
 void		init_mini(t_data *data, t_elem *elem, t_mini *mini)
 {
-		if (!(data->mini = ft_calloc(sizeof(t_mini), 1)))
-			return ;
-		mini = data->mini;
-		if (!(mini->img = ft_calloc(sizeof(t_image), 1)))
-			return ;
-		mini->t_case = elem->R[0] / 3 / data->map->x_max;
-		while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
-			(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
-			mini->t_case--;
-		data->mini->ligne = mini->t_case * data->map->x_max;
+	if (!(data->mini = ft_calloc(sizeof(t_mini), 1)))
+		return ;
+	mini = data->mini;
+	if (!(mini->img = ft_calloc(sizeof(t_image), 1)))
+		return ;
+	mini->t_case = elem->R[0] / 3 / data->map->x_max;
+	while ((mini->t_case * data->map->y_max) > (elem->R[0] / 3) ||
+		(mini->t_case * data->map->x_max) > (elem->R[1] / 2))
+		mini->t_case--;
+	data->mini->ligne = mini->t_case * data->map->x_max;
 
 }
 
