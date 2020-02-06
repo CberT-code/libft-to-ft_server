@@ -19,13 +19,13 @@ void		check_wall(t_data *data, t_coord *target, int radius)
 	map = data->map;
 	actual = data->player->coord;
 	t_case = data->mini->t_case;
-	if (map->tab_map[target->y / t_case][actual->x / t_case] == '1')
+	if (map->tab_map[(target->y - 1) / t_case][(actual->x) / t_case] == '1')
 		actual->y--;
 	if (map->tab_map[(actual->y - radius) / t_case][(actual->x) / t_case] == '1')
 		actual->y++;
 	if (map->tab_map[(actual->y) / t_case][(actual->x - radius) / t_case] == '1')
 		actual->x++;
-	if (map->tab_map[(actual->y - radius) / t_case][(target->x) / t_case] == '1')
+	if (map->tab_map[(actual->y - radius) / t_case][(target->x - 1) / t_case] == '1')
 		actual->x--;
 }
 
