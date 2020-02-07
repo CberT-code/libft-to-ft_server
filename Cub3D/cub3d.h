@@ -6,10 +6,9 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/06 12:47:01 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:29:00 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -39,7 +38,7 @@
 # define ERROR_PLAYER_EX_POS "Error\nTOO MANY PLAYER POSITION FOUND\n"
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
-# define VITESSE 1
+# define VITESSE 4
 
 typedef struct			s_key
 {
@@ -156,5 +155,6 @@ void		map_color_case(t_data *data, int y, int x, int t_case);
 void		color_square(int i, t_mini *mini, int color, int mult);
 void		draw_circle(int ligne, t_image *img, t_data *data, int radius);
 void		display_player(t_data *data, t_map *map, int t_case);
+void		vision(t_data *data);
 
 # endif

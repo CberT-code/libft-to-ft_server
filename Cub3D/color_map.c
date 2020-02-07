@@ -23,7 +23,7 @@ void		check_wall(t_data *data, t_coord *target, int radius)
 		actual->y--;
 	if (map->tab_map[(actual->y - radius) / t_case][(actual->x) / t_case] == '1')
 		actual->y++;
-	if (map->tab_map[(actual->y) / t_case][(actual->x - radius) / t_case] == '1')
+	if (map->tab_map[actual->y / t_case][(actual->x - radius) / t_case] == '1')
 		actual->x++;
 	if (map->tab_map[(actual->y - radius) / t_case][(target->x - 1) / t_case] == '1')
 		actual->x--;
@@ -86,4 +86,34 @@ void		map_color_case(t_data *data, int y, int x, int t_case)
 	}
 		
 
+}
+
+void		vision(t_data *data)
+{
+	float b;
+	float i;
+	float y;
+	float x;
+	float t;
+	float	v;
+
+	t = tan(data->player->angle);
+	y = data->player->coord->y;
+	x = data->player->coord->x;
+	i = 5;
+	v = 0;
+	b = data->player->coord->y - t * data->player->coord->x;
+	while (i--)
+	{	printf("t = %d\n", t);
+		printf("v = %d\n", v);
+		printf("b = %d\n", b);
+		printf("x = %d\n", x);
+		v = v + 1;
+		y = t * (x + v) + b;
+		printf("y = %f\n", y);
+
+		data->mini->img->buffer[(int)y * (int)data->mini->ligne + (int)x] = (int)0xFF0000;
+
+	}
+		
 }

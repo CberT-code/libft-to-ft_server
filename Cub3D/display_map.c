@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/05 18:41:10 by cyrillebe        ###   ########.fr       */
+/*   Updated: 2020/02/06 18:23:57 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		calcul_coord(t_player *player, t_map *map, int t_case)
 		return ;
 	player->coord->x = (player->pos_x * t_case) + (t_case / 2);
 	player->coord->y = (player->pos_y * t_case) + (t_case / 2);
-	printf("coord y : %d\n",player->coord->y);
 }
 
 void		init_mini(t_data *data, t_elem *elem, t_mini *mini)
@@ -104,5 +103,6 @@ void		display_player(t_data *data, t_map *map, int t_case)
 	data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + 
 			(data->player->pos_y * x * t_case));
 	draw_circle(mini->ligne, data->player->img, data, mini->t_case / 3);
+	vision(data);
 	mlx_put_image_to_window(data->ptr, data->win, data->player->img->image, 0, 0);
 }

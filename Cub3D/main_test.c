@@ -49,8 +49,6 @@ int		move(t_data *data)
 
 int	key_press(int key, t_data *data)
 {
-	printf("|%d|\n", key);
-	
 	if (key == 13)
 		data->player->move_up = 1;
 	if (key == 0)
@@ -98,7 +96,7 @@ int main(int argc, char **argv)
 	data.key = &key;
 	data.key->key = 0;
 	if (argc != 2)
-		return (dprintf(1, "cc\n"));
+		return (ft_printf("cc\n"));
 	parsing(argv[1], &data);
 	data.ptr = mlx_init();
 	data.win = mlx_new_window(data.ptr, data.elem->R[0], data.elem->R[1], "CUB3D");

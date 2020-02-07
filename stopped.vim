@@ -46,6 +46,7 @@ set autoindent
 set background=dark
 set backspace=indent,eol,start
 set backupdir=~/.cache/vim
+set balloonexpr=SyntasticBalloonsExprNotifier()
 set confirm
 set directory=~/.cache/vim
 set fileencodings=ucs-bom,utf-8,default,latin1
@@ -71,19 +72,20 @@ set switchbuf=usetab
 set tabpagemax=64
 set tabstop=4
 set wildmenu
+set window=82
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/42Perso/Cub3D
+cd ~/42Perso/libft
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-$argadd display_map.c
-edit display_map.c
+$argadd ft_cs.c
+edit ft_cs.c
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -219,14 +221,16 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 10 - ((0 * winheight(0) + 41) / 82)
+let s:l = 71 - ((62 * winheight(0) + 40) / 81)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 0
+71
+normal! 08|
 tabnext 1
-badd +0 display_map.c
+badd +0 ft_cs.c
+badd +35 ft_diu.c
+badd +54 ft_p.c
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
