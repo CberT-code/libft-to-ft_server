@@ -95,25 +95,41 @@ void		vision(t_data *data)
 	float y;
 	float x;
 	float t;
-	float	v;
+	float v;
+	float angle;
+	int a = 2;
+	
+	
+		
+		while (a--)
+	{
+		y = (float)data->player->coord->y;
+		x = (float)data->player->coord->x;
+		v = 0;
+		
+			
 
-	t = tan(data->player->angle);
-	y = data->player->coord->y;
-	x = data->player->coord->x;
-	i = 5;
-	v = 0;
-	b = data->player->coord->y - t * data->player->coord->x;
-	while (i--)
-	{	printf("t = %d\n", t);
-		printf("v = %d\n", v);
-		printf("b = %d\n", b);
-		printf("x = %d\n", x);
-		v = v + 1;
-		y = t * (x + v) + b;
-		printf("y = %f\n", y);
+		t = (float)tan((int)data->player->angle);
 
-		data->mini->img->buffer[(int)y * (int)data->mini->ligne + (int)x] = (int)0xFF0000;
+		printf("x = %f\n", x);
+			printf("y = %f\n", y);
+			printf("b = %f\n", b);
+			printf("t = %f\n", t);
+		data->player->angle -= M_PI / 2 / 2;
+		b = y - t * x;
+		i = 500;
+		while (i--)
+		{	
+			v = v + 1;
+			
+			y = t * (x + v) + b;
+			
+			if (a == 1)
+			data->player->img->buffer[(int)y * (int)data->mini->ligne + (int)x] = (int)0xFF0000;
+			else 
+			data->player->img->buffer[(int)y * (int)data->mini->ligne + (int)x] = (int)0xFFFF00;
 
+		}
 	}
 		
 }
