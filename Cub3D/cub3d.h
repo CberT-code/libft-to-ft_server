@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 14:50:55 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:28:29 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,16 @@ typedef struct			s_data
 	t_key				*key;
 }						t_data;
 
+typedef struct			s_radar
+{
+	float				b;
+	float				y;
+	float				x;
+	float				t;
+	float				angle;
+	float				width;
+}						t_radar;
+
 /* 
 ** Position :
 ** 1 = N , 2 = E , 4 = S , 8 = W
@@ -159,5 +169,7 @@ void		color_square(int i, t_mini *mini, int color, int mult);
 void		draw_circle(int ligne, t_image *img, t_data *data, int radius);
 void		display_player(t_data *data, t_map *map, int t_case);
 void		vision(t_data *data);
+void		init_radar(t_radar *R, t_data *data);
+void		radar(t_data *data);
 
 # endif

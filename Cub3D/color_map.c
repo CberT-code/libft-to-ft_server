@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/13 17:23:52 by cbertola          #+#    #+#             */
+/*   Updated: 2020/02/13 17:28:42 by cbertola         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -44,7 +54,7 @@ void		draw_circle(int ligne, t_image *img, t_data *data, int radius)
 		while (actual.y <= target.y)
 		{
 			if (calc_dst_vector(data->player->coord, actual.x, actual.y) < radius)
-				img->buffer[actual.x + (actual.y * ligne) ] = (int)0xFF0000;
+				img->buffer[actual.x + (actual.y * ligne) ] = (int)0x318CE7;
 			actual.y++;
 		}
 		actual.x++;
@@ -83,42 +93,5 @@ void		map_color_case(t_data *data, int y, int x, int t_case)
 			color_square(i, data->mini, (int)0xCBC9C8, map->x_max);
 		else
 			color_square(i, data->mini, (int)0xFFFFFF, map->x_max);
-	}
-		
-
-}
-
-void		vision(t_data *data)
-{
-	float b;
-	float y;
-	float x;
-	float t;
-	float angle;
-	int width;
-
-	angle = data->player->angle - M_PI / 6;
-	while (angle < data->player->angle + M_PI / 6)
-	{
-		y = (float)data->player->coord->y;
-		x = (float)data->player->coord->x;
-		t = (float)-tan(angle);
-		b = y - t * x;
-		width = data->map->x_max * data->mini->t_case;
-		while (width--)
-		{	
-			if (angle - M_PI_2 < 0.000001 && angle - M_PI_2 > 0.000001)
-				y = y - sin(angle);
-			else
-			{
-				x = x + cos(angle);
-				y = t * x + b;
-			}
-			if (data->map->tab_map[(int)y / data->mini->t_case][(int)x / data->mini->t_case] != '1')
-				data->player->img->buffer[(int)y * (int)data->mini->ligne + (int)(x)] = (int)0xFF0000;
-			else 
-				width = 0;
-		}
-		angle += M_PI / 3 / 1920;
 	}
 }
