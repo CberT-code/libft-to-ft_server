@@ -91,13 +91,10 @@ void		map_color_case(t_data *data, int y, int x, int t_case)
 void		vision(t_data *data)
 {
 	float b;
-	float i;
 	float y;
 	float x;
 	float t;
-	float m;
 	float angle;
-	int a = 2;
 	int width;
 
 	angle = data->player->angle - M_PI / 6;
@@ -107,7 +104,6 @@ void		vision(t_data *data)
 		x = (float)data->player->coord->x;
 		t = (float)-tan(angle);
 		b = y - t * x;
-		i = 100;
 		width = data->map->x_max * data->mini->t_case;
 		while (width--)
 		{	
@@ -125,5 +121,4 @@ void		vision(t_data *data)
 		}
 		angle += M_PI / 3 / 1920;
 	}
-		
 }
