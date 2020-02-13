@@ -41,6 +41,10 @@ int		move(t_data *data)
 			data->player->coord->x--;
 		if (data->player->move_right == 1)
 			data->player->coord->x++;
+		if (data->player->watch_right == 1)
+			data->player->angle += VITESSEROTATION;
+		if (data->player->watch_left == 1)
+			data->player->angle -= VITESSEROTATION;
 		refresh_img(data);
 	}
 
@@ -49,6 +53,7 @@ int		move(t_data *data)
 
 int	key_press(int key, t_data *data)
 {
+	printf("key = %d\n", key);
 	if (key == 13)
 		data->player->move_up = 1;
 	if (key == 0)
@@ -57,6 +62,10 @@ int	key_press(int key, t_data *data)
 		data->player->move_down = 1;
 	if (key == 2)
 		data->player->move_right = 1;
+	if (key == 123)
+		data->player->watch_right = 1;
+	if (key == 124)
+		data->player->watch_left = 1;
 	if (key == 53)
 		destroy(data);
 	move(data);
@@ -73,8 +82,13 @@ int		key_release(int key, t_data *data)
 		data->player->move_down = 0;
 	if (key == 2)
 		data->player->move_right = 0;
+	if (key == 123)
+		data->player->watch_right = 0;
+	if (key == 124)
+		data->player->watch_left = 0;
 	if (key == 53)
 		destroy(data);
+
 	return (0);
 }
 

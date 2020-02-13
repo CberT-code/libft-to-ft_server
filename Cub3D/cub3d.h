@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/10 14:55:19 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 14:50:55 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
 # define VITESSE 4
+# define VITESSEROTATION (M_PI_2 / 50)
 
 typedef struct			s_key
 {
@@ -86,13 +87,15 @@ typedef struct			s_player
 	int					pos_y;
 	t_coord				*coord;
 	t_image				*img;
-	double				angle;
-	double				vitess;
+	float				angle;
+	float				vitess;
 	int					position;
 	int					move_up;
 	int					move_down;
 	int					move_left;
 	int					move_right;
+	int					watch_right;
+	int					watch_left;
 }						t_player;
 
 typedef struct			s_elem

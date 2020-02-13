@@ -95,41 +95,35 @@ void		vision(t_data *data)
 	float y;
 	float x;
 	float t;
-	float v;
+	float m;
 	float angle;
 	int a = 2;
-	
-	
-		
-		while (a--)
+	int width;
+
+	angle = data->player->angle - M_PI / 6;
+	while (angle < data->player->angle + M_PI / 6)
 	{
 		y = (float)data->player->coord->y;
 		x = (float)data->player->coord->x;
-		v = 0;
-		
-			
-
-		t = (float)tan((int)data->player->angle);
-
-		printf("x = %f\n", x);
-			printf("y = %f\n", y);
-			printf("b = %f\n", b);
-			printf("t = %f\n", t);
-		data->player->angle -= M_PI / 2 / 2;
+		t = (float)-tan(angle);
 		b = y - t * x;
-		i = 500;
-		while (i--)
+		i = 100;
+		width = data->map->x_max * data->mini->t_case;
+		while (width--)
 		{	
-			v = v + 1;
-			
-			y = t * (x + v) + b;
-			
-			if (a == 1)
-			data->player->img->buffer[(int)y * (int)data->mini->ligne + (int)x] = (int)0xFF0000;
+			if (angle - M_PI_2 < 0.000001 && angle - M_PI_2 > 0.000001)
+				y = y - sin(angle);
+			else
+			{
+				x = x + cos(angle);
+				y = t * x + b;
+			}
+			if (data->map->tab_map[(int)y / data->mini->t_case][(int)x / data->mini->t_case] != '1')
+				data->player->img->buffer[(int)y * (int)data->mini->ligne + (int)(x)] = (int)0xFF0000;
 			else 
-			data->player->img->buffer[(int)y * (int)data->mini->ligne + (int)x] = (int)0xFFFF00;
-
+				width = 0;
 		}
+		angle += M_PI / 3 / 1920;
 	}
 		
 }

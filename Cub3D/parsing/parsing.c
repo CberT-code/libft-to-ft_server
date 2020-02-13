@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/06 18:26:40 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 12:43:21 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			num_player2(t_data *data, int j, int h)
 		data->player->pos_y = j;
 		data->player->pos_x = h;
 		if (data->map->tab_map[j][h] == 'N')
-			data->player->angle = M_PI;
+			data->player->angle = M_PI_2;
 		if (data->map->tab_map[j][h] == 'S')
 			data->player->angle = M_PI_2 * 3;
 		if (data->map->tab_map[j][h] == 'E')

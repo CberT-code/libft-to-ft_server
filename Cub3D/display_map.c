@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/10 14:31:56 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 15:24:32 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void		calcul_coord(t_player *player, t_map *map, int t_case)
 	if (!(player->coord = ft_calloc(sizeof(t_coord), 1)))
 		return ;
 	player->coord->x = (player->pos_x * t_case) + (t_case / 2);
-	printf("data->playerX = %d\n", player->coord->x);
 	player->coord->y = (player->pos_y * t_case) + (t_case / 2);
 }
 
