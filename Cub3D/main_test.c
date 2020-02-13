@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:24:01 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 20:44:55 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 21:24:50 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,9 @@ int main(int argc, char **argv)
 	parsing(argv[1], &data);
 	data.ptr = mlx_init();
 	data.win = mlx_new_window(data.ptr, data.elem->R[0], data.elem->R[1], "CUB3D");
-	data.img->buffer = (int *)mlx_get_data_addr(data.img->image, &data.img->bpp, &data.img->size_l, &data.img->endian);
 	mini_map(&data, data.elem);
 	display_player(&data, data.map, data.mini->t_case);
+	raycast(&data);
 	mlx_loop_hook(data.ptr, loop_game, &data);
 	mlx_loop(data.ptr);
 }

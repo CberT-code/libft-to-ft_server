@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 18:48:16 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 21:08:36 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct			s_radar
 	float				t;
 	float				angle;
 	float				width;
+	int					inc;
 }						t_radar;
 
 /* 
@@ -172,5 +173,7 @@ void		display_player(t_data *data, t_map *map, int t_case);
 void		vision(t_data *data);
 void		init_radar(t_radar *R, t_data *data);
 void		radar(t_data *data);
+void        raycast(t_data *data);
+void        display_raycast(t_data *data, t_radar *R);
 
 # endif
