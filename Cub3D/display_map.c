@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 15:24:32 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 17:31:44 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,6 @@ void		display_player(t_data *data, t_map *map, int t_case)
 	data->player->position = (t_case / 2) + ((data->player->pos_x * t_case) + 
 			(data->player->pos_y * x * t_case));
 	draw_circle(mini->ligne, data->player->img, data, mini->t_case / 3);
-	vision(data);
+	radar(data);
 	mlx_put_image_to_window(data->ptr, data->win, data->player->img->image, 0, 0);
 }
