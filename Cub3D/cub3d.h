@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 17:28:29 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:48:16 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct			s_mini
 	t_image				*img;
 	int					t_case;
 	int					ligne;
+	int					display;
 }						t_mini;
 
 typedef struct			s_data

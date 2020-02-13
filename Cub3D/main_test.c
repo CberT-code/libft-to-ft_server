@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:24:01 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 17:25:23 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/13 18:42:28 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int		move(t_data *data)
 			data->player->angle += VITESSEROTATION;
 		if (data->player->watch_left == 1)
 			data->player->angle -= VITESSEROTATION;
-		refresh_img(data);
+		if (data->mini->display == 0)
+			refresh_img(data);
 	}
-
 	return (0);
 }
 
@@ -76,6 +76,12 @@ int	key_press(int key, t_data *data)
 		data->player->watch_right = 1;
 	if (key == 124)
 		data->player->watch_left = 1;
+	if (key == 46)
+	{
+		data->mini->display = !data->mini->display;
+		if (data->mini->display == 1)
+			mlx_destroy_image(data->ptr, data->player->img->image);
+	}
 	if (key == 53)
 		destroy(data);
 	move(data);
@@ -98,7 +104,6 @@ int		key_release(int key, t_data *data)
 		data->player->watch_left = 0;
 	if (key == 53)
 		destroy(data);
-
 	return (0);
 }
 
