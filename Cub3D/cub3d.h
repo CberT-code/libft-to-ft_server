@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 21:08:36 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:09:06 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,6 @@ void		vision(t_data *data);
 void		init_radar(t_radar *R, t_data *data);
 void		radar(t_data *data);
 void        raycast(t_data *data);
-void        display_raycast(t_data *data, t_radar *R);
+void        display_raycast(t_data *data, t_radar *R, int *i);
 
 # endif
