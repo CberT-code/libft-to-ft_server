@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:59:15 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 11:46:22 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:38:14 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void		display_P(t_data *D, t_map *map, int t_case)
 			&img->size_l, &img->endian);
 	while (i--)
 	img->buffer[i] = mini->img->buffer[i];
+	move_fb(D);
 	D->P->position = (t_case / 2) + ((D->P->pos_x * t_case) + 
 			(D->P->pos_y * x * t_case));
 	draw_circle(mini->ligne, D->P->img, D, mini->t_case / 3);

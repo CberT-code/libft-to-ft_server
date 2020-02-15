@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:46:48 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 13:00:27 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/15 22:22:51 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void        display_raycast(t_data *D, t_radar *R, int *i)
 	op = D->elem->R[1] / h * 6 ;
 	
     height = D->elem->R[1] / 2;
-	if (*i  == 1)
-	printf("cote oppose = %d\n", op);
-	if (*i  == 960)
-	printf("cote oppose = %d\n", op);
-	if (*i == 1920)
-	printf("cote oppose = %d\n", op);
-	//printf("%d\n",*i);
-	//op /= 2;
     while (op--)
         D->img->buffer[height-- * D->elem->R[0] + *i] = 0xFF00FF;
 
@@ -100,26 +92,48 @@ void        raycast(t_data *D)
 	mlx_put_image_to_window(D->ptr, D->win, D->img->image, 0, 0);
 }
 
+void		init_way(t_data *D)
+{
+	if (D->P->move == 1)
+		D->P->move = M_PI * 2;
+	if (D->P->move == 3)
+		D->P->move = M_PI_2 / 2 * 7;
+	if (D->P->move == 2)
+		D->P->move = M_PI_2 * 3;
+	if (D->P->move == 6)
+		D->P->move = M_PI_2 / 2 * 5;
+	if (D->P->move == 4)
+		D->P->move = M_PI;
+	if (D->P->move == 12)
+		D->P->move = M_PI_2 / 2 * 3;
+	if (D->P->move == 8)
+		D->P->move = M_PI_2;
+	if (D->P->move == 9)
+		D->P->move = M_PI_2 / 2;
+}
+
 void        move_fb(t_data *D)
 {
     t_radar	R;
 	int i;
-    
+
 	i = 0;	
-
+	init_way(D);
+	if (D->P->move > 0)
+	{
+		R.alpha = D->P->alpha + D->P->move;
 		init_radar_r(&R, D);
-		while (i < VITESSE)
+		if (R.alpha< 0.0001 && R.alpha > 0.000001)
+			R.y = R.y - sin(R.alpha);
+		else
 		{
-
-				R.x = R.x + cos(R.alpha);
-				R.y = R.t * R.x + R.b;
-			
-			
-			if (D->map->tab_map[(int)R.y / D->mini->t_case][(int)R.x / D->mini->t_case] != '1')
-			{
-				D->P->coord->y = R.y;
-				D->P->coord->x = R.x;
-			}
-			i++;
+			R.x = R.x + cos(R.alpha);
+			R.y = R.t * R.x + R.b;
 		}
+		if (D->map->tab_map[(int)R.y / D->mini->t_case][(int)R.x / D->mini->t_case] != '1')
+		{
+			D->P->coord->y = R.y + 0.5;
+			D->P->coord->x = R.x + 0.5;
+		}
+	}
 }

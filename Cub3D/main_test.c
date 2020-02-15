@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:24:01 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 12:57:31 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/15 22:09:45 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		click_mouse(int key)
 	char  i;
 
 	i = key + '0';
-	write(1,&i,1);
+	write(1, &i, 1);
 	return (0);
 }
 
@@ -29,10 +29,8 @@ int		destroy(t_data *D)
 
 int		refresh_img(t_data *D)
 {
-	mlx_destroy_image(D->ptr, D->P->img->image);
 	mlx_destroy_image(D->ptr, D->img->image);
-	free(D->img);
-	
+	mlx_destroy_image(D->ptr, D->P->img->image);
 	raycast(D);
 	display_P(D, D->map, D->mini->t_case);
 	
@@ -48,14 +46,15 @@ int		move(t_data *D)
 	t_case = D->mini->t_case;
 	while (i--)
 	{
+		D->P->move = 0;
 		if (D->P->move_up == 1)
-			move_fb(D);
-		if (D->P->move_down == 1)
-			D->P->coord->y++;
-		if (D->P->move_left == 1)
-			D->P->coord->x--;
+			D->P->move += 1;
 		if (D->P->move_right == 1)
-			D->P->coord->x++;
+			D->P->move += 2;
+		if (D->P->move_down == 1)
+			D->P->move += 4;
+		if (D->P->move_left == 1)
+			D->P->move += 8;
 		if (D->P->watch_right == 1)
 			D->P->alpha += VITESSEROTATION;
 		if (D->P->watch_left == 1)

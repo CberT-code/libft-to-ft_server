@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 12:58:15 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/15 21:54:48 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct			s_P
 	float				alpha;
 	float				vitess;
 	int					position;
+	double				move;
 	int					move_up;
 	int					move_down;
 	int					move_left;
