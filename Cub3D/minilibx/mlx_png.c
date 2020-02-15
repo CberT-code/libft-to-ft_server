@@ -46,7 +46,7 @@ char *(mipng_err[]) =
   "Non consecutive dat chunks",
   "Missing header/dat/end chunk(s)",
   "Zlib inflate error",
-  "Inflated data size mismatch",
+  "Inflated D size mismatch",
   "Unknown scanline filter"
 };
 

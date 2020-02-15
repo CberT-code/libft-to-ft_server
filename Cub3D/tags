@@ -103,8 +103,8 @@ ERROR_MAP_N_WALL	cub3d.h	/^# define ERROR_MAP_N_WALL /;"	d
 ERROR_MAP_S_WALL	cub3d.h	/^# define ERROR_MAP_S_WALL /;"	d
 ERROR_MAP_W_WALL	cub3d.h	/^# define ERROR_MAP_W_WALL /;"	d
 ERROR_NO_FILE	cub3d.h	/^# define ERROR_NO_FILE /;"	d
-ERROR_PLAYER_EX_POS	cub3d.h	/^# define ERROR_PLAYER_EX_POS /;"	d
-ERROR_PLAYER_NO_POS	cub3d.h	/^# define ERROR_PLAYER_NO_POS /;"	d
+ERROR_P_EX_POS	cub3d.h	/^# define ERROR_P_EX_POS /;"	d
+ERROR_P_NO_POS	cub3d.h	/^# define ERROR_P_NO_POS /;"	d
 ERR_DATA_FILTER	minilibx/mlx_png.c	/^#define	ERR_DATA_FILTER	/;"	d	file:
 ERR_DATA_MISMATCH	minilibx/mlx_png.c	/^#define	ERR_DATA_MISMATCH	/;"	d	file:
 ERR_MAGIC_SIZE	minilibx/mlx_png.c	/^#define	ERR_MAGIC_SIZE	/;"	d	file:
@@ -166,7 +166,7 @@ Z_CHUNK	minilibx/mlx_png.c	/^#define	Z_CHUNK	/;"	d	file:
 \tc	minilibx/recherche.vim	/^nmap \\tc <Plug>Colorizer$/;"	m
 \tc	parsing/!parsing.vim	/^nmap \\tc <Plug>Colorizer$/;"	m
 \tc	parsing/parsing.vim	/^nmap \\tc <Plug>Colorizer$/;"	m
-angle	cub3d.h	/^	double				angle;$/;"	m	struct:s_player
+alpha	cub3d.h	/^	double				alpha;$/;"	m	struct:s_P
 appid	minilibx/mlx_int.h	/^  void			*appid;$/;"	m	struct:mlx_ptr_s
 arg	libft/ft_printf.h	/^	char		arg;$/;"	m	struct:s_flags
 bit_elem	cub3d.h	/^	short				bit_elem;$/;"	m	struct:s_elem
@@ -381,7 +381,7 @@ mlx_int_static_line	minilibx/mlx_xpm.c	/^char	*mlx_int_static_line(char **xpm_da
 mlx_int_str_str	minilibx/mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str(char *str,char *find,int len)$/;"	f
 mlx_int_str_str_cote	minilibx/mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str_cote(char *str,char *find,int len)$/;"	f
 mlx_int_str_to_wordtab	minilibx/mlx_int_str_to_wordtab.c	/^char	**mlx_int_str_to_wordtab(char *str)$/;"	f
-mlx_int_xpm_set_pixel	minilibx/mlx_xpm.c	/^void	mlx_int_xpm_set_pixel(mlx_img_list_t *img, char *data, int opp, int col, int x)$/;"	f
+mlx_int_xpm_set_pixel	minilibx/mlx_xpm.c	/^void	mlx_int_xpm_set_pixel(mlx_img_list_t *img, char *D, int opp, int col, int x)$/;"	f
 mlx_png_file_to_image	minilibx/mlx_png.c	/^void	*mlx_png_file_to_image(mlx_ptr_t *xvar, char *file, int *width, int *height)$/;"	f
 mlx_ptr	cub3d.h	/^	void				*mlx_ptr;$/;"	m	struct:data_s
 mlx_ptr	minilibx/main_test.c	/^    void          *mlx_ptr;$/;"	m	struct:data_s	file:
@@ -407,8 +407,8 @@ next	libft/libft.h	/^	struct s_list_gnl	*next;$/;"	m	struct:s_list_gnl	typeref:s
 next	minilibx/mlx_int.h	/^  struct mlx_img_ctx_s	*next;$/;"	m	struct:mlx_img_ctx_s	typeref:struct:mlx_img_ctx_s::mlx_img_ctx_s
 next	minilibx/mlx_int.h	/^  struct mlx_img_list_s	*next;$/;"	m	struct:mlx_img_list_s	typeref:struct:mlx_img_list_s::mlx_img_list_s
 next	minilibx/mlx_int.h	/^  struct mlx_win_list_s	*next;$/;"	m	struct:mlx_win_list_s	typeref:struct:mlx_win_list_s::mlx_win_list_s
-num_player	parsing/parsing.c	/^int			num_player(t_elem *elem, t_map *map)$/;"	f
-num_player2	parsing/parsing.c	/^int			num_player2(t_elem *elem, int j, int h)$/;"	f
+num_P	parsing/parsing.c	/^int			num_P(t_elem *elem, t_map *map)$/;"	f
+num_P2	parsing/parsing.c	/^int			num_P2(t_elem *elem, int j, int h)$/;"	f
 parsing	parsing/parsing.c	/^t_elem		*parsing(char *doc_map)$/;"	f
 parsing_elem	parsing/parsing_elem.c	/^void		parsing_elem(char *str, t_elem *elem)$/;"	f
 pixel_data	minilibx/font.c	/^  unsigned char	 pixel_data[1140 * 20 * 4 + 1];$/;"	m	struct:__anon1	file:
@@ -416,11 +416,11 @@ pixel_fshader	minilibx/mlx_int.h	/^  GLuint	pixel_fshader;$/;"	m	struct:glsl_inf
 pixel_program	minilibx/mlx_int.h	/^  GLuint	pixel_program;$/;"	m	struct:glsl_info_s
 pixel_vshader	minilibx/mlx_int.h	/^  GLuint	pixel_vshader;$/;"	m	struct:glsl_info_s
 pixmgt	minilibx/mlx_int.h	/^  int			pixmgt;$/;"	m	struct:mlx_win_list_s
-player	cub3d.h	/^	t_player			*player;$/;"	m	struct:s_elem
+P	cub3d.h	/^	t_player			*P;$/;"	m	struct:s_elem
 png_info_s	minilibx/mlx_png.c	/^typedef struct png_info_s$/;"	s	file:
 png_info_t	minilibx/mlx_png.c	/^} png_info_t;$/;"	t	typeref:struct:png_info_s	file:
-pos_x	cub3d.h	/^	double				pos_x;$/;"	m	struct:s_player
-pos_y	cub3d.h	/^	double				pos_y;$/;"	m	struct:s_player
+pos_x	cub3d.h	/^	double				pos_x;$/;"	m	struct:s_P
+pos_y	cub3d.h	/^	double				pos_y;$/;"	m	struct:s_P
 position	cub3d.h	/^	char				position;$/;"	m	struct:s_map
 precis	libft/ft_printf.h	/^	int			precis;$/;"	m	struct:s_flags
 read	libft/libft.h	/^	int					read;$/;"	m	struct:s_list_gnl
@@ -454,7 +454,7 @@ s_list	libft/libft.h	/^typedef struct			s_list$/;"	s
 s_list_gnl	libft/libft.h	/^typedef struct			s_list_gnl$/;"	s
 s_lmap	cub3d.h	/^typedef struct			s_lmap$/;"	s
 s_map	cub3d.h	/^typedef struct			s_map$/;"	s
-s_player	cub3d.h	/^typedef struct			s_player$/;"	s
+s_P	cub3d.h	/^typedef struct			s_P$/;"	s
 s_xpm_col	minilibx/mlx_xpm.c	/^typedef struct  s_xpm_col$/;"	s	file:
 search_fd	libft/get_next_line.c	/^int			search_fd(t_list_gnl **lst_one, int fd)$/;"	f
 size	cub3d.h	/^	int					size;$/;"	m	struct:s_lmap
@@ -467,7 +467,7 @@ t_list	libft/libft.h	/^}						t_list;$/;"	t	typeref:struct:s_list
 t_list_gnl	libft/libft.h	/^}						t_list_gnl;$/;"	t	typeref:struct:s_list_gnl
 t_lmap	cub3d.h	/^}						t_lmap;$/;"	t	typeref:struct:s_lmap
 t_map	cub3d.h	/^}						t_map;$/;"	t	typeref:struct:s_map
-t_player	cub3d.h	/^}						t_player;$/;"	t	typeref:struct:s_player
+t_player	cub3d.h	/^}						t_player;$/;"	t	typeref:struct:s_P
 t_xpm_col	minilibx/mlx_xpm.c	/^} t_xpm_col;$/;"	t	typeref:struct:s_xpm_col	file:
 tab_line	cub3d.h	/^	int					tab_line;$/;"	m	struct:s_map
 tab_map	cub3d.h	/^	char				**tab_map;$/;"	m	struct:s_map
@@ -475,7 +475,7 @@ texture	cub3d.h	/^	char				**texture;$/;"	m	struct:s_elem
 texture	minilibx/mlx_int.h	/^  GLuint		texture;$/;"	m	struct:mlx_img_ctx_s
 vbuffer	minilibx/mlx_int.h	/^  GLuint		vbuffer;$/;"	m	struct:mlx_img_ctx_s
 vertexes	minilibx/mlx_int.h	/^  GLfloat		vertexes[8];$/;"	m	struct:mlx_img_list_s
-vitess	cub3d.h	/^	double				vitess;$/;"	m	struct:s_player
+vitess	cub3d.h	/^	double				vitess;$/;"	m	struct:s_P
 width	cub3d.h	/^  int			width;$/;"	m	struct:mlx_img_list_s
 width	libft/ft_printf.h	/^	int			width;$/;"	m	struct:s_flags
 width	main_test.c	/^	int		width;$/;"	m	struct:s_image	file:

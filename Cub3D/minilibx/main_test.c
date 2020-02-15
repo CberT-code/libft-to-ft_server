@@ -11,12 +11,12 @@ typedef struct    data_s
 
 int main(void)
 {
-    data_t        data;
+    data_t        D;
 
-    if ((data.mlx_ptr = mlx_init()) == NULL)
+    if ((D.mlx_ptr = mlx_init()) == NULL)
         return (EXIT_FAILURE);
-    if ((data.mlx_win = mlx_new_window(data.mlx_ptr, 640, 480, "Hello world")) == NULL)
+    if ((D.mlx_win = mlx_new_window(D.mlx_ptr, 640, 480, "Hello world")) == NULL)
         return (EXIT_FAILURE);
-    mlx_loop(data.mlx_ptr);
+    mlx_loop(D.mlx_ptr);
     return (EXIT_SUCCESS);
 }

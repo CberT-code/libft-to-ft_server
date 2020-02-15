@@ -110,7 +110,7 @@ mlx_int_static_line	mlx_xpm.c	/^char	*mlx_int_static_line(char **xpm_data,int *p
 mlx_int_str_str	mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str(char *str,char *find,int len)$/;"	f
 mlx_int_str_str_cote	mlx_int_str_to_wordtab.c	/^int	mlx_int_str_str_cote(char *str,char *find,int len)$/;"	f
 mlx_int_str_to_wordtab	mlx_int_str_to_wordtab.c	/^char	**mlx_int_str_to_wordtab(char *str)$/;"	f
-mlx_int_xpm_set_pixel	mlx_xpm.c	/^void	mlx_int_xpm_set_pixel(mlx_img_list_t *img, char *data, int opp, int col, int x)$/;"	f
+mlx_int_xpm_set_pixel	mlx_xpm.c	/^void	mlx_int_xpm_set_pixel(mlx_img_list_t *img, char *D, int opp, int col, int x)$/;"	f
 mlx_png_file_to_image	mlx_png.c	/^void	*mlx_png_file_to_image(mlx_ptr_t *xvar, char *file, int *width, int *height)$/;"	f
 mlx_ptr	main_test.c	/^    void          *mlx_ptr;$/;"	m	struct:data_s	file:
 mlx_ptr_s	mlx_int.h	/^typedef struct		mlx_ptr_s$/;"	s

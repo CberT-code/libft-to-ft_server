@@ -6,33 +6,33 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/13 12:43:21 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/15 11:47:50 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int			num_player2(t_data *data, int j, int h)
+int			num_P2(t_data *D, int j, int h)
 {
-	if (data->map->tab_map[j][h] == 'N' || data->map->tab_map[j][h] == 'S' ||
-			data->map->tab_map[j][h] == 'E' || data->map->tab_map[j][h] == 'W')
+	if (D->map->tab_map[j][h] == 'N' || D->map->tab_map[j][h] == 'S' ||
+			D->map->tab_map[j][h] == 'E' || D->map->tab_map[j][h] == 'W')
 	{
-		data->player->pos_y = j;
-		data->player->pos_x = h;
-		if (data->map->tab_map[j][h] == 'N')
-			data->player->angle = M_PI_2;
-		if (data->map->tab_map[j][h] == 'S')
-			data->player->angle = M_PI_2 * 3;
-		if (data->map->tab_map[j][h] == 'E')
-			data->player->angle = 0;
-		if (data->map->tab_map[j][h] == 'W')
-			data->player->angle = M_PI;
+		D->P->pos_y = j;
+		D->P->pos_x = h;
+		if (D->map->tab_map[j][h] == 'N')
+			D->P->alpha = M_PI_2;
+		if (D->map->tab_map[j][h] == 'S')
+			D->P->alpha = M_PI_2 * 3;
+		if (D->map->tab_map[j][h] == 'E')
+			D->P->alpha = 0;
+		if (D->map->tab_map[j][h] == 'W')
+			D->P->alpha = M_PI;
 		return (1);
 	}
 	return (0);
 }
 
-int			num_player(t_data *data, t_map *map)
+int			num_P(t_data *D, t_map *map)
 {
 	int		i;
 	int		j;
@@ -40,25 +40,25 @@ int			num_player(t_data *data, t_map *map)
 
 	i = 0;
 	j = 0;
-	while (data->map->tab_map[j])
+	while (D->map->tab_map[j])
 	{
 		h = 0;
-		while (data->map->tab_map[j][h])
+		while (D->map->tab_map[j][h])
 		{
-			if (num_player2(data, j, h) == 1)
+			if (num_P2(D, j, h) == 1)
 				i++;
 			h++;
 		}
 		j++;
 	}
 	if (i < 1)
-		ft_error(ERROR_PLAYER_NO_POS, data);
+		ft_error(ERROR_P_NO_POS, D);
 	if (i > 1)
-		ft_error(ERROR_PLAYER_EX_POS, data);
+		ft_error(ERROR_P_EX_POS, D);
 	return (i);
 }
 
-int			check_elem(char *str, t_elem *elem, t_data *data)
+int			check_elem(char *str, t_elem *elem, t_data *D)
 {
 	int		i;
 
@@ -71,7 +71,7 @@ int			check_elem(char *str, t_elem *elem, t_data *data)
 	if (*str == '1')
 	{
 		i = 1;
-		map_str(str, data->map);
+		map_str(str, D->map);
 		return (1);
 	}
 	if (!i)
@@ -79,7 +79,7 @@ int			check_elem(char *str, t_elem *elem, t_data *data)
 	return (0);
 }
 
-void		parsing(char *doc_map, t_data *data)
+void		parsing(char *doc_map, t_data *D)
 {
 	t_elem		*elem;
 	char		*line;
@@ -88,19 +88,19 @@ void		parsing(char *doc_map, t_data *data)
 	if (!doc_map)
 		ft_error(ERROR_NO_FILE, NULL);
 	elem = malloc(sizeof(t_elem));
-	data->elem = elem;
-	init_struct(data);
+	D->elem = elem;
+	init_struct(D);
 	fd = open(doc_map, O_RDONLY);
 	while (get_next_line(fd, &line) != 0)
 	{
-		check_elem(line, elem, data);
+		check_elem(line, elem, D);
 		free(line);
 	}
-	check_elem(line, elem, data);
+	check_elem(line, elem, D);
 	free(line);
 	if (elem->bit_elem < 255)
-		ft_error(ERROR_ELEM, data);
-	full_map(data->map);
-	check_map(data);
-	num_player(data, data->map);
+		ft_error(ERROR_ELEM, D);
+	full_map(D->map);
+	check_map(D);
+	num_P(D, D->map);
 }
