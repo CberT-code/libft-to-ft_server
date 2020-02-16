@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:23:52 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 11:46:22 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/16 22:04:12 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,10 @@ void		map_color_case(t_data *D, int y, int x, int t_case)
 	int		centre_y;
 
 	i = x + (y * (D->map->x_max * t_case));
-		map = D->map;
-	if (x % t_case == 0 || y % t_case == 0)
-		D->mini->img->buffer[i] = (int)0x000000;
+	map = D->map;
+	if (map->tab_map[y / t_case][x / t_case] == '1' ||
+			(x / t_case) > ft_strlen(map->tab_map[y / t_case]))
+		color_square(i, D->mini, (int)0xCBC9C8, map->x_max);
 	else
-	{
-		if (map->tab_map[y / t_case][x / t_case] == '1' ||
-				(x / t_case) >= ft_strlen(map->tab_map[y / t_case]))
-			color_square(i, D->mini, (int)0xCBC9C8, map->x_max);
-		else
-			color_square(i, D->mini, (int)0xFFFFFF, map->x_max);
-	}
+		color_square(i, D->mini, (int)0xFFFFFF, map->x_max);
 }
