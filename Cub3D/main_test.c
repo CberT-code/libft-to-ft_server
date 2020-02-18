@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:24:01 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 22:09:45 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/18 21:57:11 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		destroy(t_data *D)
 
 int		refresh_img(t_data *D)
 {
-	mlx_destroy_image(D->ptr, D->img->image);
-	mlx_destroy_image(D->ptr, D->P->img->image);
-	raycast(D);
+//	mlx_destroy_image(D->ptr, D->img->image);
+	//mlx_destroy_image(D->ptr, D->P->img->image);
+	//raycast(D);
 	display_P(D, D->map, D->mini->t_case);
 	
 	return (0);
@@ -39,25 +39,23 @@ int		refresh_img(t_data *D)
 
 int		move(t_data *D)
 {
-	int	t_case;
 	int i;
 
-	i = VITESSE;
-	t_case = D->mini->t_case;
+	i = VITESSE * 10;
 	while (i--)
 	{
 		D->P->move = 0;
-		if (D->P->move_up == 1)
+		if (D->M->move_up == 1)
 			D->P->move += 1;
-		if (D->P->move_right == 1)
+		if (D->M->move_right == 1)
 			D->P->move += 2;
-		if (D->P->move_down == 1)
+		if (D->M->move_down == 1)
 			D->P->move += 4;
-		if (D->P->move_left == 1)
+		if (D->M->move_left == 1)
 			D->P->move += 8;
-		if (D->P->watch_right == 1)
+		if (D->M->watch_right == 1)
 			D->P->alpha += VITESSEROTATION;
-		if (D->P->watch_left == 1)
+		if (D->M->watch_left == 1)
 			D->P->alpha -= VITESSEROTATION;
 		if (D->mini->display == 0)
 			refresh_img(D);
@@ -69,17 +67,17 @@ int	key_press(int key, t_data *D)
 {
 	printf("key = %d\n", key);
 	if (key == 13)
-		D->P->move_up = 1;
+		D->M->move_up = 1;
 	if (key == 0)
-		D->P->move_left = 1;
+		D->M->move_left = 1;
 	if (key == 1)
-		D->P->move_down = 1;
+		D->M->move_down = 1;
 	if (key == 2)
-		D->P->move_right = 1;
+		D->M->move_right = 1;
 	if (key == 123)
-		D->P->watch_right = 1;
+		D->M->watch_right = 1;
 	if (key == 124)
-		D->P->watch_left = 1;
+		D->M->watch_left = 1;
 	if (key == 46)
 	{
 		D->mini->display = !D->mini->display;
@@ -95,17 +93,17 @@ int	key_press(int key, t_data *D)
 int		key_release(int key, t_data *D)
 {
 	if (key == 13)
-		D->P->move_up = 0;
+		D->M->move_up = 0;
 	if (key == 0)
-		D->P->move_left = 0;
+		D->M->move_left = 0;
 	if (key == 1)
-		D->P->move_down = 0;
+		D->M->move_down = 0;
 	if (key == 2)
-		D->P->move_right = 0;
+		D->M->move_right = 0;
 	if (key == 123)
-		D->P->watch_right = 0;
+		D->M->watch_right = 0;
 	if (key == 124)
-		D->P->watch_left = 0;
+		D->M->watch_left = 0;
 	if (key == 53)
 		destroy(D);
 	return (0);
@@ -123,20 +121,15 @@ int main(int argc, char **argv)
 {
 	t_data			D;
 	unsigned int	c;
-	t_key			key;
 
-	key.next = NULL;
-	D.key = &key;
-	D.key->key = 0;
 	if (argc != 2)
 		return (ft_printf("cc\n"));
 	parsing(argv[1], &D);
 	D.ptr = mlx_init();
 	D.win = mlx_new_window(D.ptr, D.elem->R[0], D.elem->R[1], "CUB3D");
 	mini_map(&D, D.elem);
-	raycast(&D);
+	//raycast(&D);
 	display_P(&D, D.map, D.mini->t_case);
-	
 	mlx_loop_hook(D.ptr, loop_game, &D);
 	mlx_loop(D.ptr);
 }

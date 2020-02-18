@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/17 14:12:21 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/18 17:35:55 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ERROR_P_EX_POS "Error\nTOO MANY P POSITION FOUND\n"
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
-# define VITESSE 4
+# define VITESSE 0.4
 # define VITESSEROTATION (M_PI_2 / 50)
 
 typedef struct			s_key
@@ -46,6 +46,17 @@ typedef struct			s_key
 	int					key;
 	struct s_key		*next;
 }						t_key;
+
+typedef struct			s_move
+{
+	int					move_up;
+	int					move_down;
+	int					move_left;
+	int					move_right;
+	int					watch_right;
+	int					watch_left;
+
+}						t_move;
 
 typedef struct			s_coord
 {
@@ -83,20 +94,10 @@ typedef struct			s_map
 
 typedef struct			s_P
 {
-	int					pos_x;
-	int					pos_y;
 	t_coord				*coord;
 	t_image				*img;
 	float				alpha;
-	float				vitess;
-	int					position;
 	double				move;
-	int					move_up;
-	int					move_down;
-	int					move_left;
-	int					move_right;
-	int					watch_right;
-	int					watch_left;
 }						t_player;
 
 typedef struct			s_elem
@@ -114,6 +115,7 @@ typedef struct			s_mini
 	int					t_case;
 	int					ligne;
 	int					display;
+	t_coord				*coord;
 }						t_mini;
 
 typedef struct			s_data
@@ -125,7 +127,7 @@ typedef struct			s_data
 	t_mini				*mini;
 	t_map				*map;
 	t_player			*P;
-	t_key				*key;
+	t_move				*M;
 }						t_data;
 
 typedef struct			s_radar
@@ -165,7 +167,7 @@ void		full_map(t_map *map);
 void		parsing(char *doc_map, t_data *D);
 void		mini_map(t_data *D, t_elem *elem);
 void		init_mini(t_data *D, t_elem *elem, t_mini *mini);
-void		calcul_coord(t_player *P, t_map *map, int t_case);
+void		calcul_coord(t_player *P, t_mini *mini, int t_case);
 void		display_map(t_data *D, t_map *map, int t_case);
 void		map_color_case(t_data *D, int y, int x, int t_case);
 void		color_square(int i, t_mini *mini, int color, int mult);

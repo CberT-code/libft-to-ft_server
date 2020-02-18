@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:23:40 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 11:47:50 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:14:33 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void		init_radar(t_radar *R, t_data *D)
 {
-	R->y = (float)D->P->coord->y;
-	R->x = (float)D->P->coord->x;
+	R->y = (float)D->mini->coord->y;
+	R->x = (float)D->mini->coord->x;
 	R->t = (float)-tan(R->alpha);
 	R->b = R->y - R->t * R->x;
 	R->width = D->map->x_max * D->mini->t_case;

@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 11:47:50 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/18 17:39:04 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ int			num_P2(t_data *D, int j, int h)
 	if (D->map->tab_map[j][h] == 'N' || D->map->tab_map[j][h] == 'S' ||
 			D->map->tab_map[j][h] == 'E' || D->map->tab_map[j][h] == 'W')
 	{
-		D->P->pos_y = j;
-		D->P->pos_x = h;
+		D->P->coord = ft_calloc(sizeof(t_coord), 1);
+		D->P->coord->y = j;
+		D->P->coord->x = h;
 		if (D->map->tab_map[j][h] == 'N')
 			D->P->alpha = M_PI_2;
 		if (D->map->tab_map[j][h] == 'S')
@@ -81,24 +82,23 @@ int			check_elem(char *str, t_elem *elem, t_data *D)
 
 void		parsing(char *doc_map, t_data *D)
 {
-	t_elem		*elem;
 	char		*line;
 	int			fd;
 
 	if (!doc_map)
 		ft_error(ERROR_NO_FILE, NULL);
-	elem = malloc(sizeof(t_elem));
-	D->elem = elem;
+	D->elem = calloc(sizeof(t_elem), 1);
+	D->M = calloc(sizeof(t_move), 1);
 	init_struct(D);
 	fd = open(doc_map, O_RDONLY);
 	while (get_next_line(fd, &line) != 0)
 	{
-		check_elem(line, elem, D);
+		check_elem(line, D->elem, D);
 		free(line);
 	}
-	check_elem(line, elem, D);
+	check_elem(line, D->elem, D);
 	free(line);
-	if (elem->bit_elem < 255)
+	if (D->elem->bit_elem < 255)
 		ft_error(ERROR_ELEM, D);
 	full_map(D->map);
 	check_map(D);

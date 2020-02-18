@@ -6,13 +6,13 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/02/13 17:48:42 by cbertola         ###   ########.fr        #
+#    Updated: 2020/02/18 13:35:15 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= main_test.c display_map.c parsing/parsing.c \
 			  parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c \
-			  color_map.c radar.c ray_casting.c
+			  color_map.c radar.c ray_casting.c move_player.c
 
 LIBFT		= libft/libft.a
 

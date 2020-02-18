@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:23:52 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/17 13:03:41 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/18 22:42:42 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,19 @@ void		draw_circle(int ligne, t_image *img, t_data *D, int radius)
 	t_coord		target;
 	t_coord		actual;
 
-	target.x = D->P->coord->x + radius;
-	target.y = D->P->coord->y + radius;
-	actual.x = D->P->coord->x - radius;
+
+	target.x = D->mini->coord->x + radius;
+		printf("target%d\n",target.x);
+	target.y = D->mini->coord->y + radius;
+	actual.x = D->mini->coord->x - radius;
+	
 	check_wall(D, &target, radius);
 	while (actual.x <= target.x)
 	{
-		actual.y = D->P->coord->y - radius;
+		actual.y = D->mini->coord->y - radius;
 		while (actual.y <= target.y)
 		{
-			if (calc_dst_vector(D->P->coord, actual.x, actual.y) < radius)
+			if (calc_dst_vector(D->mini->coord, actual.x, actual.y) < radius)
 				img->buffer[actual.x + (actual.y * ligne) ] = (int)0x318CE7;
 			actual.y++;
 		}
