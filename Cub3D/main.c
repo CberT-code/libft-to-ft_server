@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:24:01 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/19 01:22:03 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:48:38 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		refresh_img(t_data *d)
 {
 //	mlx_destroy_image(d->ptr, d->img->image);
 	//mlx_destroy_image(d->ptr, d->p->img->image);
-	//raycast(d);
+	//browse_column(d);
 	display_p(d, d->map, d->mini->t_case);
 	
 	return (0);
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
 	d.ptr = mlx_init();
 	d.win = mlx_new_window(d.ptr, d.elem->r[0], d.elem->r[1], "CUB3D");
 	mini_map(&d, d.elem);
-	//raycast(&d);
+	browse_column(&d);
 	display_p(&d, d.map, d.mini->t_case);
 	mlx_loop_hook(d.ptr, loop_game, &d);
 	mlx_loop(d.ptr);

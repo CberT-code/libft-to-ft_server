@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 14:46:34 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/18 23:53:17 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/19 14:20:03 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ void		move_fb(t_data *d)
 	init_way(d);
 	if (d->p->move > 0)
 	{
+		
 		r.alpha = d->p->alpha + d->p->move;
+		printf("%f\n", d->p->alpha);
+		printf("%f\n", r.alpha);
 		init_radar(&r, d);
-		if (r.alpha < 0.0001 && r.alpha > 0.000001)
+		if (d->p->alpha == M_PI_2)
 			r.y = r.y - sin(r.alpha);
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:51:45 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/19 01:14:25 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/19 19:28:37 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define ERROR_NO_FILE "Error\nNO FILE FOUND\n"
 # define ERROR_ELEM "Error\nELEMENT IS MISSING\n"
 # define VITESSE 0.4
-# define VITESSEROTATION (M_PI_2 / 50)
+# define VITESSEROTATION 0.05
 
 typedef struct			s_key
 {
@@ -94,7 +94,7 @@ typedef struct			s_player
 {
 	t_coord				*coord;
 	t_image				*img;
-	float				alpha;
+	double				alpha;
 	double				move;
 }						t_p;
 
@@ -130,12 +130,12 @@ typedef struct			s_data
 
 typedef struct			s_radar
 {
-	float				b;
-	float				y;
-	float				x;
-	float				t;
-	float				alpha;
-	float				width;
+	double				b;
+	double				y;
+	double				x;
+	double				t;
+	double				alpha;
+	double				width;
 	int					inc;
 }						t_radar;
 
@@ -177,8 +177,7 @@ void					display_p(t_data *d, t_map *map, int t_case);
 void					vision(t_data *d);
 void					init_radar(t_radar *r, t_data *d);
 void					radar(t_data *d);
-void					raycast(t_data *d);
-void					display_raycast(t_data *d, t_radar *r, int *i,
-						unsigned int color);
+void					browse_column(t_data *d);
+void					display_raycast(t_data *d, double vec, int i, unsigned int color);
 void					move_fb(t_data *d);
 #endif
