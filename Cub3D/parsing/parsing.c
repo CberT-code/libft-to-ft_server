@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:39:31 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/19 00:01:41 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/19 01:22:45 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			num_p(t_data *d, t_map *map)
 		h = 0;
 		while (d->map->tab_map[j][h])
 		{
-			if (num_P2(d, j, h) == 1)
+			if (num_p2(d, j, h) == 1)
 				i++;
 			h++;
 		}
@@ -88,7 +88,7 @@ void		parsing(char *doc_map, t_data *d)
 	if (!doc_map)
 		ft_error(ERROR_NO_FILE, NULL);
 	d->elem = calloc(sizeof(t_elem), 1);
-	d->M = calloc(sizeof(t_move), 1);
+	d->m = calloc(sizeof(t_move), 1);
 	init_struct(d);
 	fd = open(doc_map, O_RDONLY);
 	while (get_next_line(fd, &line) != 0)
@@ -102,5 +102,5 @@ void		parsing(char *doc_map, t_data *d)
 		ft_error(ERROR_ELEM, d);
 	full_map(d->map);
 	check_map(d);
-	num_P(d, d->map);
+	num_p(d, d->map);
 }
