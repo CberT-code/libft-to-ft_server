@@ -6,13 +6,16 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/02/18 13:35:15 by cbertola         ###   ########.fr        #
+#    Updated: 2020/02/18 23:42:05 by cbertola         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= main_test.c display_map.c parsing/parsing.c \
+SRCS_MINI	=	mini_map/display_map.c mini_map/color_map.c mini_map/radar.c \
+				 mini_map/player_draw.c mini_map/move_player.c
+
+SRCS		= main.c  parsing/parsing.c \
 			  parsing/parsing_elem.c parsing/error_free.c parsing/full_map.c \
-			  color_map.c radar.c ray_casting.c move_player.c
+			    ray_casting.c $(SRCS_MINI)
 
 LIBFT		= libft/libft.a
 
@@ -22,7 +25,7 @@ RM			= rm -f
 
 CC			= gcc
 
-CFLAGS		= 
+CFLAGS		= -Wall -Werror -Wextra
 
 MLXFLAGS	= -lmlx -framework OpenGL -framework Appkit 
 
@@ -32,7 +35,7 @@ ${NAME}:
 			make re -C libft
 			make clean -C libft
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
-			./$(NAME) test.cub
+			./$(NAME) maps/test.cub
 
 libft:
 			make re -C libft
@@ -56,15 +59,15 @@ all:		${NAME}
 
 re:			clean
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
-			./$(NAME) test.cub
+			./$(NAME) maps/test.cub
 
 re2:		clean
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
-			./$(NAME) test2.cub
+			./$(NAME) maps/test2.cub
 
 re3:			clean
 			gcc $(CLFAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
-			./$(NAME) test3.cub
+			./$(NAME) maps/test3.cub
 
 
 .PHONY:		all clean fclean re re2 re3 libft

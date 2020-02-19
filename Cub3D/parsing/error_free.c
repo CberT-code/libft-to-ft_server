@@ -6,29 +6,29 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 19:46:22 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/15 11:46:22 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/19 01:03:38 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void		free_elem(t_data *D)
+void		free_elem(t_data *d)
 {
 	int i;
 
 	i = 0;
 	while (i < 5)
 	{
-		if (D->elem->bit_elem & (1 << i++))
-			free(D->elem->texture[i - 1]);
+		if (d->elem->bit_elem & (1 << i++))
+			free(d->elem->texture[i - 1]);
 	}
-	free(D->elem->texture);
-	free(D->map);
-	free(D->P);
-	free(D->elem);
+	free(d->elem->texture);
+	free(d->map);
+	free(d->p);
+	free(d->elem);
 }
 
-void		*ft_error_map(char *str, t_data *D, int i)
+void		*ft_error_map(char *str, t_data *d, int i)
 {
 	int j;
 
@@ -36,30 +36,30 @@ void		*ft_error_map(char *str, t_data *D, int i)
 	ft_printf(str);
 	if (i >= 3)
 	{
-		while (D->map->tab_map[j])
-			free(D->map->tab_map[j++]);
+		while (d->map->tab_map[j])
+			free(d->map->tab_map[j++]);
 	}
-	free_elem(D);
+	free_elem(d);
 	exit(0);
 }
 
-void		*ft_error(char *str, t_data *D)
+void		*ft_error(char *str, t_data *d)
 {
 	ft_printf(str);
-	if (D->elem != NULL)
-		free_elem(D);
+	if (d->elem != NULL)
+		free_elem(d);
 	exit(0);
 }
 
-void		init_struct(t_data *D)
+void		init_struct(t_data *d)
 {
-	t_player	*P;
+	t_p			*p;
 	t_map		*map;
 	t_lmap		*line;
 
 	map = ft_calloc(sizeof(t_map), 1);
-	P = ft_calloc(sizeof(t_player), 1);
-	D->elem->texture = (char **)malloc(sizeof(char *) * 5);
-	D->map = map;
-	D->P = P;
+	p = ft_calloc(sizeof(t_p), 1);
+	d->elem->texture = (char **)malloc(sizeof(char *) * 5);
+	d->map = map;
+	d->p = p;
 }

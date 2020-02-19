@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:43:13 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/28 16:47:23 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/19 00:57:57 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ void		parsing_elem(char *str, t_elem *elem)
 		fill_str(3, str + 3, elem);
 	if (ft_start_str("S ", str) > 0)
 		fill_str(4, str + 2, elem);
-	if (ft_start_str("F ", str) > 0)
-		fill_int_rgb(5, str + 2, elem->F, &(elem->bit_elem));
+	if (ft_start_str("f ", str) > 0)
+		fill_int_rgb(5, str + 2, elem->f, &(elem->bit_elem));
 	if (ft_start_str("C ", str) > 0)
 		fill_int_rgb(6, str + 2, elem->C, &(elem->bit_elem));
-	if (ft_start_str("R ", str) > 0)
-		fill_int(7, str + 2, elem->R, &(elem->bit_elem));
+	if (ft_start_str("r ", str) > 0)
+		fill_int(7, str + 2, elem->r, &(elem->bit_elem));
 }
