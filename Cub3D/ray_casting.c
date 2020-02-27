@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:46:48 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/27 13:17:17 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:42:28 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ double			calc_vector(t_radar *r, t_data *d,  int calc)
 	{
 		while (d->map->tab_map[(int)y][(int)x] != '1')
 		{
-			x += 1;
+			x -= 1;
 			x = (y - r->b) / r->t;
 		}
 		return (x);
