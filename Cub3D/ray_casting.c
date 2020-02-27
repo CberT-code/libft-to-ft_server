@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:46:48 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/19 19:29:09 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/27 13:17:17 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,16 @@ double			calc_vector(t_radar *r, t_data *d,  int calc)
 
 	x = r->x;
 	y = r->y;
+
 	if (calc == 1)
 	{
 		while (d->map->tab_map[(int)y][(int)x] != '1')
 		{
-			x += 1;
+				printf("%c\n", d->map->tab_map[(int)y][(int)x]);
+			printf("y = %d\n", (int)y);
+			printf("x = %d\n", (int)y);
+
+			x -= 1;
 			y = r->t * x + r->b;
 		}
 		return (y);
@@ -86,20 +91,21 @@ void		display_column(t_radar *r, t_data *d, int i)
 	{
 		vec_x = calc_vector(r, d, 1);
 		vec_y = calc_vector(r, d, 2);
+		printf("%f\n", vec_x);
 	}
 	if (vec_y > vec_x)
 		vec_x = vec_y;
-	display_raycast(d, vec_x, i, 0xf0f0f0);
+	//display_raycast(d, vec_x, i, 0xf0f0f0);
 
 }
 
-void		init_img_ray(t_image *img, t_data *d)
+void		init_img_ray(t_data *d)
 {
-	if (!(img = ft_calloc(sizeof(t_image), 1)))
+	if (!(d->img = ft_calloc(sizeof(t_image), 1)))
 		return ;
-	img->image = mlx_new_image(d->ptr, d->elem->r[0], d->elem->r[1]);
-	img->buffer = (int *)mlx_get_data_addr(img->image, &img->bpp,
-	&img->size_l, &d->img->endian);
+	d->img->image = mlx_new_image(d->ptr, d->elem->r[0], d->elem->r[1]);
+	d->img->buffer = (int *)mlx_get_data_addr(d->img->image, &d->img->bpp,
+	&d->img->size_l, &d->img->endian);
 }
 
 void		browse_column(t_data *d)
@@ -109,7 +115,7 @@ void		browse_column(t_data *d)
 	int				i;
 
 	i = 0;
-	init_img_ray(d->img, d);
+	init_img_ray(d);
 	r.alpha = d->p->alpha + M_PI / 6;
 	while (r.alpha > d->p->alpha - M_PI / 6)
 	{
