@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:24:01 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/27 12:39:41 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:16:13 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		destroy(t_data *d)
 
 int		refresh_img(t_data *d)
 {
-//	mlx_destroy_image(d->ptr, d->img->image);
+	//mlx_destroy_image(d->ptr, d->img->image);
 	//mlx_destroy_image(d->ptr, d->p->img->image);
-	//browse_column(d);
+	browse_column(d);
 	display_p(d, d->map, d->mini->t_case);
 	
 	return (0);

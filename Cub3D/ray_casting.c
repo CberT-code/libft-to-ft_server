@@ -6,7 +6,7 @@
 /*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 17:46:48 by cbertola          #+#    #+#             */
-/*   Updated: 2020/02/27 13:42:28 by cbertola         ###   ########.fr       */
+/*   Updated: 2020/02/27 18:26:15 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,34 @@
 
 void		display_raycast(t_data *d, double vec, int i, unsigned int color)
 {
-	double	h;
-	double	op;
-	int		height;
- 
-	op = d->elem->r[1] / vec;
-	height = d->elem->r[1] / 2;
-	while (op > 0)
-	{
-		d->img->buffer[(int)height-- * d->elem->r[0] + i] = color;
-		op -= 0.5;
-	}
-	while (height > 0)
-		d->img->buffer[(int)height-- * d->elem->r[0] + i] = 0x5555FF;
-	op = d->elem->r[1] / h * 6;
-	op /= 2;
-	height = d->elem->r[1] / 2;
-	while (op > 0)
-	{
-		d->img->buffer[(int)height++ * d->elem->r[0] + i] = color;
-		op -= 0.5;
-	}
-	while (height < d->elem->r[1] - 1)
-		d->img->buffer[(int)height++ * d->elem->r[0] + i] = 0x5555FF;
+	printf("%f\n", vec);
+	// double	h;
+	// double	op;
+	// int		height;
+	// op = fabs(vec * sin(30) * 400);
+	// printf("vec = %f\n", vec);
+	// printf("op = %f\n", op);
+	// height = d->elem->r[1] / 2;
+	// while (op > 0)
+	// {
+	// 	d->img->buffer[(int)height-- * d->elem->r[0] + i] = color;
+	// 	op -= 1;
+	// }
+	// while (height > 0)
+	// 	d->img->buffer[(int)height-- * d->elem->r[0] + i] = 0x5555FF;
+
+
+	// op = fabs(vec * sin(30) * 400);
+	// height = d->elem->r[1] / 2;
+	// while (op > 0)
+	// {
+	// 	d->img->buffer[(int)height++ * d->elem->r[0] + i] = color;
+	// 	op -= 1;
+	// }
+	// while (height < d->elem->r[1] - 1)
+	// 	d->img->buffer[(int)height++ * d->elem->r[0] + i] = 0x5555FF;
 }
+
 
 void		init_radar_r(t_radar *r, t_data *d)
 {
@@ -48,37 +52,39 @@ void		init_radar_r(t_radar *r, t_data *d)
 	r->width = d->elem->r[1];
 }
 
-double			calc_vector(t_radar *r, t_data *d,  int calc)
+double			calc_vector_x(t_radar *r, t_data *d,  int calc)
+{
+	double x;
+	double y;
+
+	x = r->x;
+	y = r->y;	
+	while (d->map->tab_map[(int)y][(int)x] != '1')
+	{
+		if (r->alpha > M_PI_2 && r->alpha < (M_PI_2 * 3))
+			x -= 1;
+		else
+			x += 1;
+		y = r->t * x + r->b;
+	}
+	return (y);
+}
+double			calc_vector_y(t_radar *r, t_data *d)
 {
 	double x;
 	double y;
 
 	x = r->x;
 	y = r->y;
-
-	if (calc == 1)
+	while (d->map->tab_map[(int)y][(int)x] != '1')
 	{
-		while (d->map->tab_map[(int)y][(int)x] != '1')
-		{
-				printf("%c\n", d->map->tab_map[(int)y][(int)x]);
-			printf("y = %d\n", (int)y);
-			printf("x = %d\n", (int)y);
-
-			x -= 1;
-			y = r->t * x + r->b;
-		}
-		return (y);
+		if (r->alpha > M_PI && r->alpha < M_2_PI)
+			y += 1;
+		else
+			y -= 1;
+		x = (y - r->b) / r->t;
 	}
-	if (calc == 2)
-	{
-		while (d->map->tab_map[(int)y][(int)x] != '1')
-		{
-			x -= 1;
-			x = (y - r->b) / r->t;
-		}
-		return (x);
-	}
-	return (0);
+	return (x);
 }
 
 void		display_column(t_radar *r, t_data *d, int i)
@@ -91,11 +97,10 @@ void		display_column(t_radar *r, t_data *d, int i)
 	{
 		vec_x = calc_vector(r, d, 1);
 		vec_y = calc_vector(r, d, 2);
-		printf("%f\n", vec_x);
 	}
 	if (vec_y > vec_x)
-		vec_x = vec_y;
-	//display_raycast(d, vec_x, i, 0xf0f0f0);
+	 	vec_x = vec_y;
+	display_raycast(d, vec_x, i, 0xffffff);
 
 }
 
@@ -120,9 +125,10 @@ void		browse_column(t_data *d)
 	while (r.alpha > d->p->alpha - M_PI / 6)
 	{
 		display_column(&r, d, i);
-		i++;
-		r.alpha -= M_PI / 3 / d->elem->r[0];
+	 	i++;
+		r.alpha -= M_PI / d->elem->r[0];
 	}
+
 	mlx_put_image_to_window(d->ptr, d->win, d->img->image, 0, 0);
 }
 
