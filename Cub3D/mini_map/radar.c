@@ -79,7 +79,7 @@ i=0;
 			{
 				r.width = 0;
 				r.dist = sqrt( pow(player.x - r.x, 2) + pow(player.y - r.y, 2))
-				trace_column();
+				display_raycast(r.dist, i);
 			}
 		}
 		r.alpha -= M_PI / 3 / d->elem->r[0];

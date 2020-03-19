@@ -14,13 +14,11 @@
 
 void		display_raycast(t_data *d, double vec, int i, unsigned int color)
 {
-	printf("%f\n", vec);
+
 	double	h;
 	double	op;
 	int		height;
 	op = fabs(vec * sin(30) * 400);
-	printf("vec = %f\n", vec);
-	printf("op = %f\n", op);
 	height = d->elem->r[1] / 2;
 	while (op > 0)
 	{
