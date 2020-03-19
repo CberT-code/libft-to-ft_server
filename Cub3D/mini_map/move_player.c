@@ -56,8 +56,8 @@ void		move_fb(t_data *d)
 		if (d->map->tab_map[(int)r.y / d->mini->t_case]
 		[(int)r.x / d->mini->t_case] != '1')
 		{
-			d->mini->coord->y = r.y + 0.5;
-			d->mini->coord->x = r.x + 0.5;
+			d->mini->vector->y = r.y + 0.5;
+			d->mini->vector->x = r.x + 0.5;
 		}
 	}
 }

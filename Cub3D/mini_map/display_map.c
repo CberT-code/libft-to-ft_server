@@ -37,12 +37,12 @@ void		display_map(t_data *d, t_map *map, int t_case)
 	}
 }
 
-void		calcul_coord(t_p *p, t_mini *mini, int t_case)
+void		calcul_vector(t_p *p, t_mini *mini, int t_case)
 {
-	if (!(mini->coord = ft_calloc(sizeof(t_coord), 1)))
+	if (!(mini->vector = ft_calloc(sizeof(t_vector), 1)))
 		return ;
-	mini->coord->x = (p->coord->x * t_case) + (t_case / 2);
-	mini->coord->y = (p->coord->y * t_case) + (t_case / 2);
+	mini->vector->x = (p->vector->x * t_case) + (t_case / 2);
+	mini->vector->y = (p->vector->y * t_case) + (t_case / 2);
 }
 
 void		init_mini(t_data *d, t_elem *elem, t_mini *mini)
@@ -70,8 +70,8 @@ void		mini_map(t_data *d, t_elem *elem)
 		printf("Map too big to be displayed %d\n", mini->t_case);
 	if (mini->t_case >= 10)
 	{
-		if (!d->mini->coord)
-			calcul_coord(d->p, d->mini, mini->t_case);
+		if (!d->mini->vector)
+			calcul_vector(d->p, d->mini, mini->t_case);
 		display_map(d, d->map, mini->t_case);
 		mlx_put_image_to_window(d->ptr, d->win, mini->img->image, 0, 0);
 	}

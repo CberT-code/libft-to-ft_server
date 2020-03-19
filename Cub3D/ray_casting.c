@@ -14,37 +14,36 @@
 
 void		display_raycast(t_data *d, double vec, int i, unsigned int color)
 {
+	t_column col;
+	int ind;
 
-	double	h;
-	double	op;
-	int		height;
-	op = fabs(vec * sin(30) * 400);
-	height = d->elem->r[1] / 2;
-	while (op > 0)
+	ind = 0;
+	col.wall = fabs(vec * sin(30) * 20);
+	col.top = (d->elem->r[1] - col.wall) / 2;
+	col.bottom = col.top;
+	while (col.top > ind)
 	{
-		d->img->buffer[(int)height-- * d->elem->r[0] + i] = color;
-		op -= 1;
+		d->img->buffer[ind * d->elem->r[0] + i] = d->elem->c;
+		ind++;
 	}
-	while (height > 0)
-		d->img->buffer[(int)height-- * d->elem->r[0] + i] = 0x5555FF;
-
-
-	op = fabs(vec * sin(30) * 400);
-	height = d->elem->r[1] / 2;
-	while (op > 0)
+	while ((col.wall + col.top) > ind)
 	{
-		d->img->buffer[(int)height++ * d->elem->r[0] + i] = color;
-		op -= 1;
+		d->img->buffer[ind * d->elem->r[0] + i] = color;
+		ind++;
 	}
-	while (height < d->elem->r[1] - 1)
-		d->img->buffer[(int)height++ * d->elem->r[0] + i] = 0x5555FF;
+	while ((col.wall + col.top + col.bottom) > ind)
+	{
+		d->img->buffer[ind * d->elem->r[0] + i] = d->elem->f;
+		ind++;
+	}
+
 }
 
 
 void		init_radar_r(t_radar *r, t_data *d)
 {
-	r->y = (double)d->p->coord->y + 0.5;
-	r->x = (double)d->p->coord->x + 0.5;
+	r->y = (double)d->p->vector->y + 0.5;
+	r->x = (double)d->p->vector->x + 0.5;
 	r->t = (double)tan(r->alpha);
 	r->b = r->y - r->t * r->x;
 	r->width = d->elem->r[1];

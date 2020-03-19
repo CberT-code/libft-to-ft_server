@@ -17,9 +17,9 @@ int			num_p2(t_data *d, int j, int h)
 	if (d->map->tab_map[j][h] == 'N' || d->map->tab_map[j][h] == 'S' ||
 			d->map->tab_map[j][h] == 'E' || d->map->tab_map[j][h] == 'W')
 	{
-		d->p->coord = ft_calloc(sizeof(t_coord), 1);
-		d->p->coord->y = j;
-		d->p->coord->x = h;
+		d->p->vector = ft_calloc(sizeof(t_vector), 1);
+		d->p->vector->y = j;
+		d->p->vector->x = h;
 		if (d->map->tab_map[j][h] == 'N')
 			d->p->alpha = M_PI_2;
 		if (d->map->tab_map[j][h] == 'S')

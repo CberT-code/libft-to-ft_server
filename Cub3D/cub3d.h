@@ -56,11 +56,12 @@ typedef struct			s_move
 	int					watch_left;
 }						t_move;
 
-typedef struct			s_coord
+typedef struct			s_vector
 {
-	int					y;
-	int					x;
-}						t_coord;
+	double				y;
+	double				x;
+	double				dist;
+}						t_vector;
 
 typedef struct			s_lmap
 {
@@ -92,7 +93,7 @@ typedef struct			s_map
 
 typedef struct			s_player
 {
-	t_coord				*coord;
+	t_vector			*vector;
 	t_image				*img;
 	double				alpha;
 	double				move;
@@ -113,7 +114,7 @@ typedef struct			s_mini
 	int					t_case;
 	int					ligne;
 	int					display;
-	t_coord				*coord;
+	t_vector				*vector;
 }						t_mini;
 
 typedef struct			s_data
@@ -140,11 +141,12 @@ typedef struct			s_radar
 	int					inc;
 }						t_radar;
 
-typedef struct			s_vector
+typedef struct			s_column
 {
-	double				y;
-	double				x;
-}						t_vector;
+	int					top;
+	int					wall;
+	int					bottom;
+}						t_column;
 
 /* 
 ** Position :
@@ -157,7 +159,7 @@ int						fill_int(int bit, char *str, int *tab, short *bit_elem);
 int						fill_int_rgb(int bit, char *str, int *tab,
 						short *bit_elem);
 int						check_elem(char *str, t_elem *elem, t_data *d);
-int						calc_dst_vector(t_coord *coord, int actual_x,
+int						calc_dst_vector(t_vector *vector, int actual_x,
 						int actual_y);
 void					full_map(t_map *map);
 void					fill_str(int bit, char *str, t_elem *elem);
@@ -174,7 +176,7 @@ void					full_map(t_map *map);
 void					parsing(char *doc_map, t_data *d);
 void					mini_map(t_data *d, t_elem *elem);
 void					init_mini(t_data *d, t_elem *elem, t_mini *mini);
-void					calcul_coord(t_p *p, t_mini *mini, int t_case);
+void					calcul_vector(t_p *p, t_mini *mini, int t_case);
 void					display_map(t_data *d, t_map *map, int t_case);
 void					map_color_case(t_data *d, int y, int x, int t_case);
 void					color_square(int i, t_mini *mini, int color, int mult);

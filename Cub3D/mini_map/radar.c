@@ -14,8 +14,8 @@
 
 void		init_radar(t_radar *r, t_data *d)
 {
-	r->y = (double)d->mini->coord->y;
-	r->x = (double)d->mini->coord->x;
+	r->y = (double)d->mini->vector->y;
+	r->x = (double)d->mini->vector->x;
 	r->t = (double)-tan(r->alpha);
 	r->b = r->y - r->t * r->x;
 	r->width = d->map->x_max * d->mini->t_case;
@@ -24,66 +24,95 @@ void		init_radar(t_radar *r, t_data *d)
 void		radar(t_data *d)
 {
 	t_radar	r;
-	t_vector vec_x;
-	t_vector vec_y;
-	int i;
-
-i=0;
 	r.alpha = d->p->alpha + M_PI / 6;
-
-
 	while (r.alpha > d->p->alpha - M_PI / 6)
 	{
 		init_radar(&r, d);
 		while (r.width--)
 		{
-			vec_x.x = r.x;
-			vec_x.y = r.y;
-			vec_y.x = r.x;
-			vec_y.y = r.y;
-			if (r.alpha - M_PI_2 == 0)
+			if (r.alpha - M_PI_2 < 0.000001 && r.alpha - M_PI_2 > 0.000001)
 				r.y = r.y - sin(r.alpha);
 			else
 			{
-				if (cos(r.alpha) > 0 )
-					vec_x.x = ((int)vec_x.x + 1);
-				else
-					vec_x.x = (int) vec_x.x + (vec_x.x == (int) vec_x.x ? -1 : 0);
-				vec_x.y = r.t * vec_x.x + r.b;
-
-
-				if (sin(r.alpha) < 0)
-					vec_y.y = ((int)vec_y.y);
-				else
-					vec_y.y = (int) vec_y.y + (vec_y.y == (int) vec_y.y ? -1 : 0);
-				vec_y.x = (vec_y.y - r.b) / r.t;
-				
-				if (pow(p.x - vec_x.x, 2) + pow(p.y - vec_x.y, 2) > pow(p.x - vec_y.x, 2) + pow(p.y - vec_y.y, 2))
-				{
-					r.x = vec_y.x;
-					r.y = vec_y.y;
-				}	
-				else
-				{
-					r.x = vec_x.x;
-					r.y = vec_x.y;
-				}
-				
-					
+				r.x = r.x + cos(r.alpha);
+				r.y = r.t * r.x + r.b;
 			}
 			if (d->map->tab_map[(int)r.y / d->mini->t_case]
 			[(int)r.x / d->mini->t_case] != '1')
 				d->p->img->buffer[(int)r.y * (int)d->mini->ligne
 				+ (int)(r.x)] = (int)0xFF0000;
 			else
-			{
 				r.width = 0;
-				r.dist = sqrt( pow(player.x - r.x, 2) + pow(player.y - r.y, 2))
-				display_raycast(r.dist, i);
-			}
 		}
 		r.alpha -= M_PI / 3 / d->elem->r[0];
-		i++;
 	}
-		printf("nombre de rayons %d\n", i);
 }
+
+// void		radar2(t_data *d)
+// {
+// 	t_radar	r;
+// 	t_vector vec_x;
+// 	t_vector vec_y;
+// 	int i;
+
+// i=0;
+// 	r.alpha = d->p->alpha + M_PI / 6;
+
+
+// 	while (r.alpha > d->p->alpha - M_PI / 6)
+// 	{
+// 		init_radar(&r, d);
+// 		while (r.width--)
+// 		{
+// 			vec_x.x = r.x;
+// 			vec_x.y = r.y;
+// 			vec_y.x = r.x;
+// 			vec_y.y = r.y;
+// 			if (r.alpha - M_PI_2 == 0)
+// 				r.y = r.y - sin(r.alpha);
+// 			else
+// 			{
+// 				if (cos(r.alpha) > 0 )
+// 					vec_x.x = ((int)vec_x.x + 1);
+// 				else
+// 					vec_x.x = (int) vec_x.x + (vec_x.x == (int) vec_x.x ? -1 : 0);
+// 				vec_x.y = r.t * vec_x.x + r.b;
+
+
+// 				if (sin(r.alpha) < 0)
+// 					vec_y.y = ((int)vec_y.y);
+// 				else
+// 					vec_y.y = (int) vec_y.y + (vec_y.y == (int) vec_y.y ? -1 : 0);
+// 				vec_y.x = (vec_y.y - r.b) / r.t;
+				
+// 				if ((vec_x.dist = pow(p.x - vec_x.x, 2) + pow(p.y - vec_x.y, 2)) > (vec_y.dist = pow(p.x - vec_y.x, 2) + pow(p.y - vec_y.y, 2)))
+// 				{
+// 					r.x = vec_y.x;
+// 					r.y = vec_y.y;
+// 					r.dist = vec_y.dist;
+// 				}	
+// 				else
+// 				{
+// 					r.x = vec_x.x;
+// 					r.y = vec_x.y;
+// 					r.dist = vec_x.dist;
+// 				}
+				
+					
+// 			}
+// 			if (d->map->tab_map[(int)r.y / d->mini->t_case]
+// 			[(int)r.x / d->mini->t_case] != '1')
+// 				d->p->img->buffer[(int)r.y * (int)d->mini->ligne
+// 				+ (int)(r.x)] = (int)0xFF0000;
+// 			else
+// 			{
+// 				r.width = 0;
+// 				r.dist = sqrt( pow(player.x - r.x, 2) + pow(player.y - r.y, 2));
+// 				display_raycast(d, r.dist, i, color);
+// 			}
+// 		}
+// 		r.alpha -= M_PI / 3 / d->elem->r[0];
+// 		i++;
+// 	}
+// 		printf("nombre de rayons %d\n", i);
+// }
