@@ -136,6 +136,7 @@ typedef struct			s_radar
 	double				t;
 	double				alpha;
 	double				width;
+	double				dist;
 	int					inc;
 }						t_radar;
 

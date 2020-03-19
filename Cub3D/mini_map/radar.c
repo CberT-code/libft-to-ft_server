@@ -24,14 +24,17 @@ void		init_radar(t_radar *r, t_data *d)
 void		radar(t_data *d)
 {
 	t_radar	r;
+	int i;
 
+i=0;
 	r.alpha = d->p->alpha + M_PI / 6;
 	while (r.alpha > d->p->alpha - M_PI / 6)
 	{
 		init_radar(&r, d);
 		while (r.width--)
 		{
-			if (r.alpha - M_PI_2 < 0.000001 && r.alpha - M_PI_2 > 0.000001)
+			
+			if (r.alpha - M_PI_2 == 0)
 				r.y = r.y - sin(r.alpha);
 			else
 			{
@@ -43,8 +46,13 @@ void		radar(t_data *d)
 				d->p->img->buffer[(int)r.y * (int)d->mini->ligne
 				+ (int)(r.x)] = (int)0xFF0000;
 			else
+			{
 				r.width = 0;
+				r.dist = sqrt( pow(player.x - rx, 2) + pow(player.y - r.y, 2) )
+			}
 		}
 		r.alpha -= M_PI / 3 / d->elem->r[0];
+		i++;
 	}
+		printf("nombre de rayons %d\n", i);
 }

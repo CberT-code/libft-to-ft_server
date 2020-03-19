@@ -6,7 +6,7 @@
 #    By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 12:20:26 by cbertola          #+#    #+#              #
-#    Updated: 2020/02/18 23:42:05 by cbertola         ###   ########.fr        #
+#    Updated: 2020/03/08 18:46:35 by cyrillebe        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ ${NAME}:
 			make re -C libft
 			make clean -C libft
 			gcc $(CLFAGS) $(SRCS) $(LIBFT) -o $(NAME)
-			./$(NAME) 04/03 12\03
+			./$(NAME) 04/03 12\06
 
 libft:
 			make re -C libft
@@ -52,6 +52,6 @@ all:		${NAME}
 
 re:			clean
 			gcc $(CLFAGS) $(SRCS) $(LIBFT) -o $(NAME)
-			./$(NAME) 04/03 12\03
+			./$(NAME) 04/03 12\06
 
 .PHONY:		all clean fclean re re2 re3 libft

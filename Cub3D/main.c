@@ -29,8 +29,8 @@ int		destroy(t_data *d)
 
 int		refresh_img(t_data *d)
 {
-	//mlx_destroy_image(d->ptr, d->img->image);
-	//mlx_destroy_image(d->ptr, d->p->img->image);
+	mlx_destroy_image(d->ptr, d->img->image);
+	mlx_destroy_image(d->ptr, d->p->img->image);
 	browse_column(d);
 	display_p(d, d->map, d->mini->t_case);
 	

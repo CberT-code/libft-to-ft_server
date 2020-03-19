@@ -1,127 +1,72 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/16 12:38:30 by cbertola          #+#    #+#             */
-/*   Updated: 2020/01/16 17:10:43 by cbertola         ###   ########.fr       */
-/*                                                                            */
-#include <libc.h>
-
-int		ft_strlen(char *str)
+#include "get_next_line.h"
+int		get_stock_split(char **stock, char **line)
 {
-	int i;
-
+	int				i;
+	char			*tmp;
 	i = 0;
-	while (str[i])
+	while ((*stock)[i] != '\n')
 		i++;
-	return (i);
+	*line = ft_substr(*stock, 0, i);
+	tmp = *stock;
+	*stock = ft_substr(*stock, i + 1, (ft_strlen(*stock) - i - 1));
+	free(tmp);
+	return (1);
 }
 
-int		charisfind(char *str, char c)
+int		dealwith_eof(char **stock, char **line)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-char	*envoi(char *s1, char **line)
-{
-	char	*s2;
-	char	*s3;
-	int		i;
-	int		j;
-
-	i =  charisfind(s1,'\n'); 
-	j =  ft_strlen(s1) - i;
-	s2 = malloc(sizeof(char) * i + 1);
-	s3 = malloc(sizeof(char) * j + 1);
-	i = 0;
-	j = 0;
-	while (s1[i] != '\n')
-	{
-		s2[i] = s1[i];
-		i++;
-	}
-	s2[i++] = '\0';
-	while (s1[i])
-		s3[j++] = s1[i++];
-	s3[j] = '\0';
-	*line = s2;
-	return (s3);
-}
-
-char	*join(char *s1, char *s2)
-{
-	char	*str;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (s2);
-	if (!s2)
-		return (s1);
-	if(!(str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1) )))
-		return (NULL);
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-		str[i++] = s2[j++];
-	str[i] = '\0';
-	return (str);
+	if (ret < BUFFER_SIZE && !ft_strchr(*stock, '\n'))
+        return (0);
+    if (ret < BUFFER_SIZE && ft_strchr(*stock, '\n')
+		return (1);
 }
 
 int		get_next_line(int fd, char **line)
 {
-	static char *stock;
-	char *buff;
-	int readc;
-
-	if (BUFFER_SIZE < 1)
+	int				ret;
+	static char		*stock = NULL;
+	char			*tmp;
+	char			buffer[BUFFER_SIZE + 1];
+	ret = 0;
+	if (fd < 0 || fd > OPEN_MAX || !line)
 		return (-1);
-	buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
-	readc = read(fd, buff, BUFFER_SIZE);
-	buff[readc] = '\0';
-	stock = join(stock, buff);
-	if (charisfind(stock,'\n') >= 0)
+	if (!stock)
+		stock = ft_strdup("");
+	if (stock[0] != '\0' && ft_strchr(stock, '\n'))
+		return (get_stock_split(&stock, line));
+	ret = read(fd, buffer, BUFFER_SIZE);
+	buffer[BUFFER_SIZE] = '\0';
+	tmp = stock;
+	stock = ft_strjoin(stock, buffer);
+	free(tmp);
+	if (ret < BUFFER_SIZE)
 	{
-		stock = envoi(stock, line);
-		return (1);
-	}
-	if (readc < BUFFER_SIZE)
-	{
-		*line = stock;
+		*line = ft_strdup(stock);
+		tmp = stock;
+		stock = ft_strdup("");
+		free(tmp);
 		return (0);
 	}
 	return (get_next_line(fd, line));
-
 }
-int		main()
+
+int		main(void)
 {
-	char *line;
-	int fd;
-	int i = 40;
-
+	int		fd;
+	int		ret;
+	char	*line;
 	fd = open("get_next_line.c", O_RDONLY);
-
-	//get_next_line(fd, &line);
-	while (get_next_line(fd, &line) == 1)
-		printf("%s\n", line);
-
+	while ((ret = get_next_line(fd, &line)))
+	{
+		if (ret == -1)
+		{
+			printf("error\n");
+			return(-1);
+		}
+		printf("|%d|%s\n", ret, line);
+		free(line);
+	}
+	printf("|%d|%s\n", ret, line);
+	while (1);
+	free(line);
 }
