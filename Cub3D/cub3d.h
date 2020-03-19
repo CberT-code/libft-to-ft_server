@@ -140,6 +140,12 @@ typedef struct			s_radar
 	int					inc;
 }						t_radar;
 
+typedef struct			s_vector
+{
+	double				y;
+	double				x;
+}						t_vector;
+
 /* 
 ** Position :
 ** 1 = N , 2 = E , 4 = S , 8 = W
