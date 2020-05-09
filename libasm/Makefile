@@ -12,7 +12,7 @@
 
 # COMPILATION
 CC		= nasm
-CFLAGS	= -fmacho64
+CFLAGS	= -felf64
 DFLAGS	= -MD $(DEP_DIR)/$*.d
 
 # DIRECTORIES

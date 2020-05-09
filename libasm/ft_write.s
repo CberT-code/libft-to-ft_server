@@ -1,7 +1,7 @@
-				global		_ft_write
+				global		ft_write
 
 				section		.text
-_ft_write:
+ft_write:
 				push	r8
 				push	r9
 				cmp		rsi, 0

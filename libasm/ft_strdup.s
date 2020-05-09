@@ -1,20 +1,20 @@
-                global	    _ft_strdup
-                extern      _ft_strlen
-                extern      _ft_strcpy
-                extern      _malloc
+                global	    ft_strdup
+                extern      ft_strlen
+                extern      ft_strcpy
+                extern      malloc
 
 		        section		.text
 _ft_strdup:
                 push        rdi
-                call        _ft_strlen
+                call        ft_strlen
                 mov         rdi, rax
                 inc         rdi
-                call        _malloc
+                call        malloc
                 cmp         rax, 0
                 jz          return
                 pop         rsi
                 mov         rdi, rax
-                call        _ft_strcpy
+                call        ft_strcpy
                 jmp         return
 return:
 		        ret

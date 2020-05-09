@@ -1,13 +1,18 @@
-                global      _ft_read
-
+                global      ft_read
+                extern      __errno_location
                 section     .text
-_ft_read:
-                mov		rax, 0x2000003 ;read
+ft_read:
+                mov		rax,0
                 syscall
-                jc      error
+                cmp     rax,0
+                jl      error
                 ret
-
+                
 error:
-                mov     ecx, 0
-                mov		rax, -1
+                neg     rax
+                mov     rdx, rax
+                call    __errno_location
+                mov     [rax],rdx
+                mov     ecx,0
+                mov     rax,-1
                 ret
