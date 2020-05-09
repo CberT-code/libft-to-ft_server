@@ -30,7 +30,6 @@ OBJB 	:= $(SRCB:%.s=$(OBJ_DIR)/%.o)
 $(NAME): $(OBJ)
 	ar -rcs $@ $^
 	ranlib $@
-	gcc  main.c $@ | ./a.out
 
 all: $(NAME)
 

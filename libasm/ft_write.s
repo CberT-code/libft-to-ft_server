@@ -1,28 +1,18 @@
 				global		ft_write
-
+				extern		__errno_location
 				section		.text
+
 ft_write:
-				push	r8
-				push	r9
-				cmp		rsi, 0
-				jz		error
-				mov		r8, rsi
-				mov		r9, rdx
-				mov		rsi, 0x0
-				mov		rax, 0x20000BD ;fstat test fd
+				mov		rax, 1
 				syscall
-				cmp		rax, 9
-				jz		error
-				mov		rsi, r8
-				mov		rdx, r9
-				mov		rax, 0x2000004
-				syscall
-				pop		r8
-				pop		r9
+				cmp		rax, 0
+				jl		error
 				ret
 
 error:
-				mov		rax, -1
-				pop		r8
-				pop		r9
+				neg     rax
+                mov     rdx, rax
+                call    __errno_location
+                mov     [rax], rdx
+                mov     rax, -1
 				ret

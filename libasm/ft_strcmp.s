@@ -2,12 +2,12 @@
 
 		        section		.text
 ft_strcmp:
-                mov     rdx, -1
+                mov     rcx, -1
 
 check:
-	            inc		rdx
-			    mov		al, byte [rdi + rdx]
-			    mov		bl, byte [rsi + rdx]
+	            inc		rcx
+			    mov		al, byte [rdi + rcx]
+			    mov		bl, byte [rsi + rcx]
                 cmp     al, 0
                 jz      return
                 cmp     bl, 0
@@ -24,9 +24,10 @@ return:
                 ret
 
 negative:
-                mov    rax, -1
+                sub     bl, byte [rsi,rcx]
+                neg     bl
                 ret
 
 positive:
-                mov    rax, 1
+                sub     al, byte [rsi,rcx]
                 ret
