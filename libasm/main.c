@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cyrillebertola <cyrillebertola@student.    +#+  +:+       +#+        */
+/*   By: cbertola <cbertola@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:55:58 by thgermai          #+#    #+#             */
-/*   Updated: 2020/04/07 20:22:47 by cyrillebert      ###   ########.fr       */
+/*   Updated: 2020/05/08 11:54:58 by cbertola         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libc.h>
+#include <errno.h>
 
 /*
 ** Useful macros
@@ -89,7 +90,15 @@ void	test_ft_read()
 	printf("\x1b[32mft_read:\x1b[0m\n");
 	printf("	\x1b[34m[1]\x1b[0m \x1b[36m'open(\"main.c\", O_RDONLY)' '' '0'\x1b[0m\n");
 	fd = open("main.c", O_RDONLY);
-	ret = read(fd, buffer, 10);
+	errno = 0;
+	ret = ft_read(-1, buffer, 10);
+	printf("%s  -  %d    -    %zd\n", strerror(errno), errno, ret);
+	printf("%s\n", buffer);
+	exit(0);
+
+
+
+
 	printf("		\x1b[33m<unistd.h>\x1b[0m  %zd - %s\n", ret, strncpy(show, buffer, 10));
 	close(fd);
 	fd = open("main.c", O_RDONLY);
